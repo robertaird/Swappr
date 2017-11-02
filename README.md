@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/HyT4LZP.png" alt="Drawing" style="width: 200px;"/>
+<img src="https://i.imgur.com/HyT4LZP.png" alt="Drawing" width="400" height="400"/>
 
 # Swappr
 ##### *Item trading made easy*
@@ -20,9 +20,9 @@ __Trade Items:__ If someone has approved of the same offer then you’ll get a m
 
 ## Built With:
 
-[Vue](https://vuejs.org/) - Framework that Swappr is built on
-[PostgreSQL](https://www.postgresql.org) – Database that Swappr uses
-[DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
+ - [Vue](https://vuejs.org/) - Framework that Swappr is built on
+ - [PostgreSQL](https://www.postgresql.org) – Database that Swappr uses
+ - [DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
 
 
 ## FAQ
