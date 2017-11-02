@@ -24,6 +24,13 @@ __Trade Items:__ If someone has approved of the same offer then you’ll get a m
  - [PostgreSQL](https://www.postgresql.org) – Database that Swappr uses
  - [DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
 
+## Project Wireframe
+
+<object data="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">
+        This browser does not support PDFs. Please download the PDF to view it: <a href="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 ## FAQ
 
