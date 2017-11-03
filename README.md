@@ -28,7 +28,7 @@ __Trade Items:__ If someone has approved of the same offer then you’ll get a m
 
 <object data="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">
-        This browser does not support PDFs. Please download the PDF to view it: <a href="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">Download PDF</a>.</p>
+        <p><a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">View PDF</a>.</p>
     </embed>
 </object>
 
