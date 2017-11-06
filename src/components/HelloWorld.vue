@@ -1,14 +1,22 @@
 <template>
   <div class="hello">
+    <h1>swappr</h1>
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <form @submit.prevent="handleSubmit">
+    <label>
+      Email:
+      <input type="email" v-model="user.email"/>
+    </label>
+    <label>
+      Name:
+      <input type="text" v-model="user.name"/>
+    </label>
+    <label>
+      Password:
+      <input type="password" v-model="user.password"/>
+    </label>
+    <button type="submit">Submit</button>
+  </form>
     <button @click="something">Hello!</button>
   </div>
 </template>
@@ -19,9 +27,17 @@ export default {
   data() {
     return {
       msg: 'Please Sign In',
+      user: {
+        email: '',
+        name: '',
+        password: '',
+      },
     };
   },
   methods: {
+    handleSubmit() {
+      console.log(this.user, this.password, this.email);
+    },
     something() {
       this.msg = 'Pressed a button!';
     },
