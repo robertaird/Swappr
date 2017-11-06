@@ -1,5 +1,8 @@
 <template>
   <div class="hello">
+      <nav>
+          <button></button>
+      </nav>
     <h1>{{ msg }}</h1>
     <button v-on:click="nextPage">Log In</button>
   </div>
