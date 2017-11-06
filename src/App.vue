@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="https://i.imgur.com/HyT4LZP.png">
     <router-view/>
   </div>
 </template>
@@ -21,8 +20,4 @@ export default {
   margin-top: 60px;
 }
 
-img {
-  width: 400px;
-  height: 400px;
-}
 </style>
