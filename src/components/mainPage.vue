@@ -1,19 +1,29 @@
 <template>
   <div class="hello">
       <nav>
-          <button></button>
+          <button>Profile Page</button>
       </nav>
-    <h1>{{ msg }}</h1>
-    <button v-on:click="nextPage">Log In</button>
+      <div class="itemArea">
+    <button v-on:click="decline">No Thanks</button>
+    <div>
+        <h3>{{title}}</h3>
+        <h6>{{description}}</h6>
+    </div>
+    <button v-on:click="accept">Let's Trade!</button>
+      </div>
+      
   </div>
 </template>
 
 <script>
 export default {
-  name: 'loginScreen',
+  name: 'mainPage',
   data() {
     return {
-      msg: 'Welcome to Swappr',
+        currentItem: {
+            title: "test Title",
+            description: "test description"
+        }
     };
   },
 };
