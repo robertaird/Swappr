@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
+    <img src="https://i.imgur.com/HyT4LZP.png">
     <h1>{{ msg }}</h1>
-    <button v-on:click="nextPage">Log In</button>
+    <button @click="nextPage">Log In</button>
   </div>
 </template>
 
@@ -13,6 +14,11 @@ export default {
       msg: 'Welcome to Swappr',
     };
   },
+  methods: {
+    nextPage() {
+      this.msg = 'logged in!';
+    },
+  },
 };
 </script>
 
@@ -20,5 +26,13 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+.hello {
+    text-align: center;
+}
+
+img {
+  width: 400px;
+  height: 400px;
 }
 </style>
