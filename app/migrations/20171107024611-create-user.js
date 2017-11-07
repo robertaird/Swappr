@@ -11,10 +11,12 @@ module.exports = {
         type: Sequelize.STRING,
       },
       email: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       facebook: {
-        type: Sequelize.TEXT,
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -23,7 +25,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-      }
+      },
     }),
   down: queryInterface /* Sequelize */ =>
     queryInterface.dropTable('Users'),

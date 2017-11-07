@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
   });
 
-  Category.associate = (models) => {
-    // associations can be defined here
-  };
+  // Category.associate = (models) => {
+  //   // associations can be defined here
+  // };
 
   return Category;
 };

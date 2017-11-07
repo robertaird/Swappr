@@ -5,7 +5,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Transaction.associate = (models) => {
-      // associations can be defined here
+    Transaction.belongsTo(models.User, {
+      foreignKey: 'id_user',
+    });
+    Transaction.belongsTo(models.Item, {
+      foreignKey: 'id_item_desired',
+    });
+    Transaction.belongsTo(models.Item, {
+      foreignKey: 'id_item_offered',
+    });
   };
   return Transaction;
 };

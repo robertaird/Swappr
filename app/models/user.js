@@ -2,15 +2,15 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    facebook: DataTypes.STRING,
+    facebook: DataTypes.INTEGER,
   });
 
-  User.associate = (models) => {
-    User.hasMany(models.TradeItem, {
-      foreignKey: 'id_user',
-      as: 'owner',
-    });
-  };
+  // User.associate = (models) => {
+  //   User.hasMany(models.Item, {
+  //     foreignKey: 'id_user',
+  //     as: 'id_user',
+  //   });
+  // };
 
   return User;
 };
