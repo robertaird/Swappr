@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   TradeItem.associate = (models) => {
-    // associations can be defined here
+    TradeItem.hasOne(models.User, {
+      foreignKey: 'id_tradeItem',
+      as: 'tradeItems',
+    });
   };
 
   return TradeItem;
