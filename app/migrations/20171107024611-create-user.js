@@ -14,9 +14,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      facebook: {
+      id_facebook: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
       },
       createdAt: {
         allowNull: false,
