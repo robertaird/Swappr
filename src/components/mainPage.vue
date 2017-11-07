@@ -2,7 +2,7 @@
   <div class="hello">
       <nav class="navbar">
         <button class="navbar-btn" @click="signOut">Sign Out</button>
-        <button class="navbar-btn">Profile Page</button>
+        <button class="navbar-btn" @click="profilePage">Profile Page</button>
       </nav>
       <div class="well">
         <button class="btn-warning" @click="decline">No Thanks</button>
@@ -30,6 +30,9 @@ export default {
   methods: {
     signOut() {
       this.$router.push({ path: '/' });
+    },
+    profilePage() {
+      this.$router.push({ path: '/profile' });
     },
     accept() {
       console.log('accept');
