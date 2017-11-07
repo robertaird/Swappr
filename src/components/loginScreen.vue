@@ -1,5 +1,3 @@
-const axios = require
-
 <template>
   <div class="hello">
     <img src="https://i.imgur.com/HyT4LZP.png">
@@ -10,17 +8,17 @@ const axios = require
 
 <script>
 export default {
-  name: "loginScreen",
+  name: 'loginScreen',
   data() {
     return {
-      msg: "Welcome to Swappr"
+      msg: 'Welcome to Swappr',
     };
   },
   methods: {
     nextPage() {
-      axios.get("/main");
-    }
-  }
+      this.$router.push({ path: '/main' });
+    },
+  },
 };
 </script>
 
