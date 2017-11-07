@@ -1,15 +1,15 @@
   <template>
   <div class="hello">
-      <nav>
-          <button>Profile Page</button>
+      <nav class="navbar">
+          <button class="navbar-btn">Profile Page</button>
       </nav>
       <div class="itemArea">
-    <!-- <button @click="decline">No Thanks</button> -->
+    <button class="btn-warning" @click="decline">No Thanks</button>
     <div>
-        <h3>{{title}}</h3>
-        <h6>{{description}}</h6>
+        <h3>{{currentItem.title}}</h3>
+        <h6>{{currentItem.description}}</h6>
     </div>
-    <!-- <button @click="accept">Let's Trade!</button> -->
+    <button class="btn-success" @click="accept">Let's Trade!</button>
       </div>
       
   </div>
@@ -26,14 +26,14 @@ export default {
       },
     };
   },
-  // methods: {
-  //   accept() {
-  //     console.log('accept');
-  //   },
-  //   decline() {
-  //     console.log('decline');
-  //   }
-  // },
+  methods: {
+    accept() {
+      console.log('accept');
+    },
+    decline() {
+      console.log('decline');
+    },
+  },
 };
 </script>
 
