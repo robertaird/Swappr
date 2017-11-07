@@ -4,12 +4,12 @@ const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.json')[env];
+const config = require('./config/config.json')[env];
 
 const db = {};
 
 let sequelize;
-console.log(config.use_env_variable)
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
@@ -34,7 +34,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 sequelize.authenticate().then(() => {
-  console.log("Success!");
+  console.log('Success!');
 }).catch((err) => {
   console.log(err);
 });
