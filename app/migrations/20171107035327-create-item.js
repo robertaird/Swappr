@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      img_url: {
+      url_img: {
         type: Sequelize.STRING,
       },
       id_user: {
