@@ -6,6 +6,10 @@
       </nav>
       <button @click="tradeView" class="btn">Accepted Trades {{tradeCount}}</button>
       <modal name="addNew">
+        <div class="modal-header">
+          <button class="close" @click="hide">&times;</button>
+          <h4 class="modal-title">Add New Item</h4>
+        </div>
         <form>
           <div class="form-group">
             <label for="titleArea">Title</label>
@@ -19,6 +23,14 @@
         </form>
       </modal>
       <modal name="acceptedTrades">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <button class="close" @click="closeTradeView">&times;</button>
+          <h4 class="modal-title">Accepted Trades</h4>
+          <ul>
+
+          </ul>
+        </div>
       </modal>
       <div class="well">
         <button @click="show" class="btn">Add New Item</button>
@@ -80,6 +92,9 @@ export default {
     },
     tradeView() {
       this.$modal.show('acceptedTrades');
+    },
+    closeTradeView() {
+      this.$modal.hide('acceptedTrades');
     },
   },
 };
