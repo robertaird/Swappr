@@ -4,19 +4,35 @@
         <button class="navbar-btn" @click="signOut">Sign Out</button>
         <button class="navbar-btn" @click="profilePage">Profile Page</button>
       </nav>
+      <modal name="itemModal">
+       <ul>
+         <li v-for="(item,index) in profileItems" :key='index'>
+           <div class="card" style="border-style: outset; width: 15rem;">
+             <div class="card-block">
+               <h3 class="card-title">{{item.title}}</h3>
+               <p class="card-text">{{item.description}}</p>
+               <a href="#" @click="offerItem(index)" class="btn btn-primary">Offer</a>
+             </div>
+           </div>
+         </li>
+       </ul>
+       <button class="btn-danger" @click="hide">Nevermind</button>
+      </modal>
       <div class="well">
-        <button class="btn-warning" @click="decline">No Thanks</button>
+        <button class="btn-warning" @click="getItem">No Thanks</button>
         <div>
           <h3>{{currentItem.title}}</h3>
           <h6>{{currentItem.description}}</h6>
         </div>
-        <button class="btn-success" @click="accept">Let's Trade!</button>
+        <button class="btn-success" @click="show">Let's Trade!</button>
       </div>
       
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'mainPage',
   data() {
@@ -24,21 +40,40 @@ export default {
       currentItem: {
         title: 'test Title',
         description: 'test description',
+        id: 4,
       },
+      profileItems: [
+        { title: 'testItem1', description: 'a very fine item', id: 3 },
+        { title: 'testItem2', description: 'an even nicer item', id: 6 },
+      ],
     };
   },
   methods: {
+    getItem() {
+      // const config = {
+      //   headers: {
+      //     category,
+      //   },
+      // };
+      axios.get('/newItem')
+      .then(console.log);
+    },
+    show() {
+      this.$modal.show('itemModal');
+    },
+    hide() {
+      this.$modal.hide('itemModal');
+      this.getItem();
+    },
     signOut() {
       this.$router.push({ path: '/' });
     },
     profilePage() {
       this.$router.push({ path: '/profile' });
     },
-    accept() {
-      console.log('accept');
-    },
-    decline() {
-      console.log('decline');
+    offerItem(index) {
+      axios.post('/offer', { body: { has: this.profileItems[index].id, wants: this.currentItem.id } })
+        .then(this.hide);
     },
   },
 };

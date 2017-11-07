@@ -4,10 +4,13 @@
         <button class="navbar-btn" @click="signOut">Sign Out</button>
         <button  class="navbar-btn" @click="mainMenu">Main Menu</button>
       </nav>
-      <div class="well">
+      <modal name="addNew">
         <input v-model="title" placeholder="Title" type="text">
         <input v-model="description" placeholder="Description" type="text">
-        <button @click="addItem" class="btn">Add item</button>
+        <button @click="addItem">Add Item</button>
+      </modal>
+      <div class="well">
+        <button @click="show" class="btn">Add New Item</button>
           <div class="well">
             <ul>
               <li v-for="(item,index) in profileItems" :key='index'>
@@ -19,7 +22,6 @@
                   </div>
                 </div>
               </li>
-
             </ul>
           </div>
       </div>
@@ -47,6 +49,12 @@ export default {
     removeListing(index) {
       this.profileItems.splice(index, 1);
     },
+    show() {
+      this.$modal.show('addNew');
+    },
+    hide() {
+      this.$modal.hide('addNew');
+    },
     addItem() {
       if (this.title.length !== 0 && this.description.length !== 0) {
         this.profileItems.push({
@@ -55,6 +63,7 @@ export default {
         });
         this.title = '';
         this.description = '';
+        this.hide();
       }
     },
   },
