@@ -85,6 +85,14 @@ var readyPromise = new Promise((resolve, reject) => {
 
 app.get('/newItem', (req, res) => {
   console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
+})
+
+app.post('/offer', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
 })
 
 
