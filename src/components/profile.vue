@@ -4,6 +4,7 @@
         <button class="navbar-btn" @click="signOut">Sign Out</button>
         <button  class="navbar-btn" @click="mainMenu">Main Menu</button>
       </nav>
+      <button @click="tradeView" class="btn">Accepted Trades {{tradeCount}}</button>
       <modal name="addNew">
         <form>
           <div class="form-group">
@@ -16,6 +17,8 @@
           </div>
           <button @click="addItem" class="btn btn-primary">Add Item</button>
         </form>
+      </modal>
+      <modal name="acceptedTrades">
       </modal>
       <div class="well">
         <button @click="show" class="btn">Add New Item</button>
@@ -41,6 +44,7 @@ export default {
   name: 'profile',
   data() {
     return {
+      tradeCount: '(3)',
       profileItems: [
         { title: 'testItem1', description: 'a very fine item' },
         { title: 'testItem2', description: 'an even nicer item' },
@@ -73,6 +77,9 @@ export default {
         this.description = '';
         this.hide();
       }
+    },
+    tradeView() {
+      this.$modal.show('acceptedTrades');
     },
   },
 };
