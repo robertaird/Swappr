@@ -5,9 +5,17 @@
         <button  class="navbar-btn" @click="mainMenu">Main Menu</button>
       </nav>
       <modal name="addNew">
-        <input v-model="title" placeholder="Title" type="text">
-        <input v-model="description" placeholder="Description" type="text">
-        <button @click="addItem">Add Item</button>
+        <form>
+          <div class="form-group">
+            <label for="titleArea">Title</label>
+            <input v-model="title" type="email" class="form-control" id="titleArea" aria-describedby="emailHelp" placeholder="Enter title">
+          </div>
+          <div class="form-group">
+            <label for="descriptionArea">Description</label>
+            <input v-model="description" type="text" class="form-control" id="descriptionArea" placeholder="description">
+          </div>
+          <button @click="addItem" class="btn btn-primary">Add Item</button>
+        </form>
       </modal>
       <div class="well">
         <button @click="show" class="btn">Add New Item</button>
