@@ -15,3 +15,9 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< HEAD
+
+# Config file for sequelize
+app/config/config.json
+=======
+>>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
