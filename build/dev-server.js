@@ -6,7 +6,10 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
+<<<<<<< HEAD
 const db = require('../app/db');
+=======
+>>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
@@ -48,7 +51,12 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 
 // enable hot-reload and state-preserving
 // compilation error display
+<<<<<<< HEAD
 app.use(hotMiddleware)
+=======
+app.use(hotMiddleware);
+app.use(express.urlencoded());
+>>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
@@ -59,6 +67,12 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
@@ -78,6 +92,25 @@ var readyPromise = new Promise((resolve, reject) => {
   _reject = reject
 })
 
+<<<<<<< HEAD
+=======
+
+
+app.get('/newItem', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
+})
+
+app.post('/offer', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
+})
+
+
+
+>>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
 var server
 var portfinder = require('portfinder')
 portfinder.basePort = port
