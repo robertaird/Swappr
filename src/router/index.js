@@ -1,17 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-<<<<<<< HEAD
-import HelloWorld from '@/components/HelloWorld';
-
-Vue.use(Router);
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: HelloWorld,
-=======
 import loginScreen from '@/components/loginScreen';
 import mainPage from '@/components/mainPage';
 import profile from '@/components/profile';
@@ -39,7 +27,6 @@ export default new Router({
       path: '/',
       name: 'loginScreen',
       component: loginScreen,
->>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
     },
   ],
 });
