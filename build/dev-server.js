@@ -47,7 +47,8 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 
 // enable hot-reload and state-preserving
 // compilation error display
-app.use(hotMiddleware)
+app.use(hotMiddleware);
+app.use(express.urlencoded());
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
@@ -57,6 +58,9 @@ Object.keys(proxyTable).forEach(function (context) {
   }
   app.use(proxyMiddleware(options.filter || context, options))
 })
+
+
+
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
@@ -76,6 +80,22 @@ var readyPromise = new Promise((resolve, reject) => {
   _resolve = resolve
   _reject = reject
 })
+
+
+
+app.get('/newItem', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
+})
+
+app.post('/offer', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
+})
+
+
 
 var server
 var portfinder = require('portfinder')
