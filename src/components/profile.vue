@@ -4,10 +4,33 @@
         <button class="navbar-btn" @click="signOut">Sign Out</button>
         <button  class="navbar-btn" @click="mainMenu">Main Menu</button>
       </nav>
+      <button @click="tradeView" class="btn">Accepted Trades {{tradeCount}}</button>
       <modal name="addNew">
-        <input v-model="title" placeholder="Title" type="text">
-        <input v-model="description" placeholder="Description" type="text">
-        <button @click="addItem">Add Item</button>
+        <div class="modal-header">
+          <button class="close" @click="hide">&times;</button>
+          <h4 class="modal-title">Add New Item</h4>
+        </div>
+        <form>
+          <div class="form-group">
+            <label for="titleArea">Title</label>
+            <input v-model="title" type="email" class="form-control" id="titleArea" aria-describedby="emailHelp" placeholder="Enter title">
+          </div>
+          <div class="form-group">
+            <label for="descriptionArea">Description</label>
+            <input v-model="description" type="text" class="form-control" id="descriptionArea" placeholder="description">
+          </div>
+          <button @click="addItem" class="btn btn-primary">Add Item</button>
+        </form>
+      </modal>
+      <modal name="acceptedTrades">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <button class="close" @click="closeTradeView">&times;</button>
+          <h4 class="modal-title">Accepted Trades</h4>
+          <ul>
+
+          </ul>
+        </div>
       </modal>
       <div class="well">
         <button @click="show" class="btn">Add New Item</button>
@@ -33,6 +56,7 @@ export default {
   name: 'profile',
   data() {
     return {
+      tradeCount: '(3)',
       profileItems: [
         { title: 'testItem1', description: 'a very fine item' },
         { title: 'testItem2', description: 'an even nicer item' },
@@ -65,6 +89,12 @@ export default {
         this.description = '';
         this.hide();
       }
+    },
+    tradeView() {
+      this.$modal.show('acceptedTrades');
+    },
+    closeTradeView() {
+      this.$modal.hide('acceptedTrades');
     },
   },
 };

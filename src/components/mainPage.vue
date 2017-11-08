@@ -5,6 +5,10 @@
         <button class="navbar-btn" @click="profilePage">Profile Page</button>
       </nav>
       <modal name="itemModal">
+        <!-- <div class="modal-header">
+          <button class="close" @click="hide">&times;</button>
+          <h4 class="modal-title">Your Offer</h4>
+        </div> -->
        <ul>
          <li v-for="(item,index) in profileItems" :key='index'>
            <div class="card" style="border-style: outset; width: 15rem;">
