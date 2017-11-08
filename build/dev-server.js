@@ -6,10 +6,7 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
-<<<<<<< HEAD
 const db = require('../app/db');
-=======
->>>>>>> 4c8d4bf93875763b3ac282c7f30e15ad51c9bc16
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
