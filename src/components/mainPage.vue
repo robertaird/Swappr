@@ -32,7 +32,6 @@
         </div>
         <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
-      
   </div>
 </template>
 
