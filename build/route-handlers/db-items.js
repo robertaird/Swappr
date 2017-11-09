@@ -6,12 +6,14 @@ const app = express();
 app.use(express.json());
 
 app.get('/items', (req, res) => {
-  const { id: id_user } = req.body;
-  db.Item.find({ where: { id_user } })
+  const { id_user } = req.headers;
+  db.Item.findAll({ where: { id_user } })
     .then(items =>
       res.send(items))
-    .catch(err =>
-      console.log(err));
+    .catch((err) => {
+      console.log(err);
+      res.send(500);
+    });
 });
 
 app.post('/items', (req, res) => {
