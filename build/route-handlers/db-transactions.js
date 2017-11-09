@@ -38,11 +38,10 @@ app.get('/transactions', (req, res) => {
             [Op.notIn]: [userId],
           },
         },
-      },
-    ).then((item) => {
-      console.log(item);
-      res.send(item);
-    })
+      }).then((item) => {
+        console.log(item);
+        res.send(item);
+      })
     .catch((err) => {
       console.log(err);
       res.send(500);
@@ -64,14 +63,13 @@ app.post('/transactions', (req, res) => {
         id_item_offered: id_item_desired,
       },
       returning: true,
-    },
-  ).then(([rows, updatedTransaction]) => {
-    if (rows > 0) {
-      res.send(updatedTransaction);
-    } else {
-      createTransaction(res, newTransaction);
-    }
-  }).catch(err =>
+    }).then(([rows, updatedTransaction]) => {
+      if (rows > 0) {
+        res.send(updatedTransaction);
+      } else {
+        createTransaction(res, newTransaction);
+      }
+    }).catch(err =>
     console.log(err));
 });
 

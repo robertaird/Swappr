@@ -15,6 +15,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'loginScreen',
+      component: loginScreen,
+    },
+    {
       path: '/profile',
       name: 'profile',
       component: profile,
@@ -23,11 +28,6 @@ export default new Router({
       path: '/main',
       name: 'mainPage',
       component: mainPage,
-    },
-    {
-      path: '/',
-      name: 'loginScreen',
-      component: loginScreen,
     },
     {
       path: '/callback',
