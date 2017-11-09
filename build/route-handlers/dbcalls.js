@@ -6,8 +6,11 @@ const app = express();
 app.use(express.json());
 
 app.post('/items', (req, res) => {
-  console.log(req.body);
-  // db.Item.create()
+  const newItem = req.body;
+  if (newItem.id_category === undefined) {
+    newItem.id_category = 17;
+  }
+  console.log(newItem);
   res.send();
 });
 
