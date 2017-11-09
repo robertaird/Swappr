@@ -23,7 +23,7 @@
        <button class="btn-danger" @click="hide">Nevermind</button>
       </modal>
       <div class="well">
-        <button class="btn-warning" @click="getItem">No Thanks</button>
+        <button class="btn-warning" @click="getTradeItem">No Thanks</button>
         <div>
           <h3>{{currentItem.title}}</h3>
           <h6>{{currentItem.description}}</h6>
@@ -74,7 +74,7 @@ export default {
     },
     hide() {
       this.$modal.hide('itemModal');
-      this.getItem();
+      this.getTradeItem();
     },
     signOut() {
       this.$router.push({ path: '/' });
