@@ -40,10 +40,9 @@ import axios from 'axios';
 
 export default {
   name: 'mainPage',
-  props: ['auth', 'authentication'],
+  props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      id_user: 5,
       currentItem: {
         name: 'test Title',
         description: 'test description',
@@ -88,7 +87,7 @@ export default {
         .then(this.hide);
     },
     ready() {
-      this.getItems(this.id_user);
+      this.getItems(this.userId);
     },
   },
 };

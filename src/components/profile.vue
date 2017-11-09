@@ -64,10 +64,11 @@ import axios from 'axios';
 
 export default {
   name: 'profile',
-  props: ['auth', 'authentication'],
+  props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      id_user: 5,
+      name: '',
+      description: '',
       tradeOffers: [{
         myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
         tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
@@ -102,7 +103,7 @@ export default {
       };
       axios.delete('/items', config)
         .then(() => {
-          this.getItems(this.id_user);
+          this.getItems(this.userId);
         });
     },
     show() {
@@ -117,12 +118,12 @@ export default {
           body: {
             name: this.name,
             description: this.description,
-            id_user: this.id_user,
+            id_user: this.userId,
           },
         };
         axios.post('/items', config)
           .then(() => {
-            this.getItems(this.id_user);
+            this.getItems(this.userId);
             this.name = '';
             this.description = '';
             this.hide();
@@ -136,7 +137,7 @@ export default {
       this.$modal.hide('acceptedTrades');
     },
     ready() {
-      this.getItems(this.id_user);
+      this.getItems(this.userId);
     },
   },
 };
