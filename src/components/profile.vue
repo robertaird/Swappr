@@ -65,10 +65,12 @@ import axios from 'axios';
 
 export default {
   name: 'profile',
-  props: ['auth', 'authentication'],
+  props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      id_user: 2,
+      // ! Testing purposes only
+      name: '',
+      description: '',
       tradeOffers: [{
         myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
         tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
@@ -88,13 +90,15 @@ export default {
     getItems(userId) {
       const config = {
         headers: {
-          id_user: userId,
+          // ! Change this back to userId!!
+          id_user: 2,
         },
       };
-      console.log('happening??');
+      console.log(config, userId);
       axios.get('/items', config)
-        .then((userItems) => {
+        .then(({ data: userItems }) => {
           console.log(userItems);
+          userItems.forEach(item => this.profileItems.push(item));
         });
     },
     mainMenu() {
@@ -108,7 +112,7 @@ export default {
       };
       axios.delete('/items', config)
         .then(() => {
-          this.getItems(this.id_user);
+          this.getItems(this.userId);
         });
     },
     show() {
