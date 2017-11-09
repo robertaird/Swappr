@@ -2,6 +2,7 @@
   <div id='app'>
     <div class="container">
       <router-view 
+        :userId="userId"
         :auth="auth" 
         :authenticated="authenticated">
       </router-view>
@@ -22,10 +23,12 @@ export default {
   data() {
     authNotifier.on('authChange', (authState) => {
       this.authenticated = authState.authenticated;
+      this.userId = localStorage.getItem('userId');
     });
     return {
       auth,
       authenticated,
+      userId: '0',
     };
   },
 };
