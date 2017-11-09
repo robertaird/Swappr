@@ -23,7 +23,7 @@ const newItem = {
   id_user: null,
   description: null,
   name: null,
-  type: null,
+  id_category: null,
   url_img: null,
 };
 
