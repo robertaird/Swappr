@@ -16,17 +16,32 @@ app.post('/items', (req, res) => {
       res.send(createdItem))
     .catch((err) => {
       console.log(err);
-      res.send(500, 'something went wrong!')
+      res.send(500, 'something went wrong!');
     });
   // res.send();
 });
 
 app.post('/users', (req, res) => {
+  // ! Verification will probably need to happen in here!
   const newUser = req.body;
-  console.log(newUser);
   db.User.create(newUser)
-    .then(user => res.send(user))
-    .catch(err => console.log(err));
+    .then(createdUser =>
+      res.send(createdUser))
+    .catch((err) => {
+      console.log(err);
+      res.send(500, 'something went wrong!');
+    });
+});
+
+app.post('/transactions', (req, res) => {
+  const newTransaction = req.body;
+  db.Transaction.create(newTransaction)
+    .then(createdTransaction =>
+      res.send(createdTransaction))
+    .catch((err) => {
+      console.log(err);
+      res.send(500, 'something went wrong!');
+    });
 });
 
 module.exports = app;
