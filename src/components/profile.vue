@@ -4,7 +4,7 @@
         <button class="navbar-btn" @click="signOut">Sign Out</button>
         <button  class="navbar-btn" @click="mainMenu">Main Menu</button>
       </nav>
-      <button @click="tradeView" class="btn">Accepted Trades {{tradeCount}}</button>
+      <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
       <modal name="addNew">
         <div class="modal-header">
           <button class="close" @click="hide">&times;</button>
@@ -12,8 +12,8 @@
         </div>
         <form>
           <div class="form-group">
-            <label for="titleArea">Title</label>
-            <input v-model="title" type="email" class="form-control" id="titleArea" aria-describedby="emailHelp" placeholder="Enter title">
+            <label for="titleArea">Item Name</label>
+            <input v-model="name" type="email" class="form-control" id="titleArea" placeholder="Enter Item Name">
           </div>
           <div class="form-group">
             <label for="descriptionArea">Description</label>
@@ -28,7 +28,15 @@
           <button class="close" @click="closeTradeView">&times;</button>
           <h4 class="modal-title">Accepted Trades</h4>
           <ul>
-
+            <li v-for="(trade,index) in tradeOffers" :key='index'>
+              <!-- <div class="card" style="border-style: outset; width: 15rem;">
+                <div class="card-block">
+                  <h3 class="card-title">{{item.name}}</h3>
+                  <p class="card-text">{{item.description}}</p>
+                  <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
+                </div>
+              </div> -->
+            </li>
           </ul>
         </div>
       </modal>
@@ -39,7 +47,7 @@
               <li v-for="(item,index) in profileItems" :key='index'>
                 <div class="card" style="border-style: outset; width: 15rem;">
                   <div class="card-block">
-                    <h3 class="card-title">{{item.title}}</h3>
+                    <h3 class="card-title">{{item.name}}</h3>
                     <p class="card-text">{{item.description}}</p>
                     <a href="#" @click="removeListing(index)" class="btn btn-primary">remove</a>
                   </div>
@@ -52,18 +60,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'profile',
   data() {
     return {
-      tradeCount: '(3)',
+      id_user: 5,
+      tradeOffers: [{
+        myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
+        tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
+      },
+      ],
       profileItems: [
-        { title: 'testItem1', description: 'a very fine item' },
-        { title: 'testItem2', description: 'an even nicer item' },
+        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
+        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
       ],
     };
   },
   methods: {
+    getItems(userId) {
+      const config = {
+        headers: {
+          id_user: userId,
+        },
+      };
+      axios.get('/items', config)
+        .then((userItems) => {
+          console.log(userItems);
+        });
+    },
     signOut() {
       this.$router.push({ path: '/' });
     },
@@ -71,7 +97,15 @@ export default {
       this.$router.push({ path: '/main' });
     },
     removeListing(index) {
-      this.profileItems.splice(index, 1);
+      const config = {
+        headers: {
+          id_item: this.profileItems[index].id_item,
+        },
+      };
+      axios.delete('/items', config)
+        .then(() => {
+          this.getItems(this.id_user);
+        });
     },
     show() {
       this.$modal.show('addNew');
@@ -80,14 +114,21 @@ export default {
       this.$modal.hide('addNew');
     },
     addItem() {
-      if (this.title.length !== 0 && this.description.length !== 0) {
-        this.profileItems.push({
-          title: this.title,
-          description: this.description,
-        });
-        this.title = '';
-        this.description = '';
-        this.hide();
+      if (this.name.length !== 0 && this.description.length !== 0) {
+        const config = {
+          body: {
+            name: this.name,
+            description: this.description,
+            id_user: this.id_user,
+          },
+        };
+        axios.post('/items', config)
+          .then(() => {
+            this.getItems(this.id_user);
+            this.name = '';
+            this.description = '';
+            this.hide();
+          });
       }
     },
     tradeView() {
@@ -95,6 +136,9 @@ export default {
     },
     closeTradeView() {
       this.$modal.hide('acceptedTrades');
+    },
+    ready() {
+      this.getItems(this.id_user);
     },
   },
 };
