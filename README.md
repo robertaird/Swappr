@@ -35,12 +35,12 @@ __Trade Items:__ If someone has approved of the same offer then you’ll get a m
 ## Project Set-up
 
 ### Getting Started
-First things first, run npm install.
+First things first, run `npm install`.
 
 This project uses Postgres, so be sure to have that installed on your system.
 
 ### Initializing the Database
-Inside the app/config folder is a config.example.json file. Copy this to config.json, and enter your credentials for your Postgres database.
+Inside the app/config folder is a `config.example.json` file. Copy this to `config.json`, and enter your credentials for your Postgres database.
 
 Once your database is set up, you will need to use the Sequelize CLI to initialize everything.
 
