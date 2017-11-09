@@ -11,6 +11,9 @@ const opn = require('opn')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
+const itemRoutes = require('./route-handlers/db-items');
+const transactionRoutes = require('./route-handlers/db-transactions');
+const userRoutes = require('./route-handlers/db-users');
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = (process.env.NODE_ENV === 'testing' || process.env.NODE_ENV === 'production')
   ? require('./webpack.prod.conf')
@@ -26,6 +29,10 @@ const proxyTable = config.dev.proxyTable
 
 const app = express()
 const compiler = webpack(webpackConfig)
+
+app.use(itemRoutes);
+app.use(transactionRoutes);
+app.use(userRoutes); 
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
