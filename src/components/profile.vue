@@ -76,10 +76,7 @@ export default {
         tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
       },
       ],
-      profileItems: [
-        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
-      ],
+      profileItems: [],
     };
   },
   methods: {
