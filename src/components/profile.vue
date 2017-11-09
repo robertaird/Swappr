@@ -1,8 +1,8 @@
   <template>
   <div class="hello">
       <nav class="navbar">
-        <button class="navbar-btn" @click="signOut">Sign Out</button>
-        <button  class="navbar-btn" @click="mainMenu">Main Menu</button>
+        <button class="btn" @click="signOut">Sign Out</button>
+        <button  class="btn" @click="mainMenu">Main Menu</button>
       </nav>
       <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
       <modal name="addNew">
