@@ -67,6 +67,8 @@ export default {
   props: ['auth', 'authentication'],
   data() {
     return {
+      name: '',
+      description: '',
       id_user: 5,
       tradeOffers: [{
         myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
