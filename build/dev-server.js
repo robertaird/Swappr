@@ -11,7 +11,9 @@ const opn = require('opn')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
-const routes = require('./route-handlers/dbcalls');
+const itemRoutes = require('./route-handlers/db-items');
+const transactionRoutes = require('./route-handlers/db-transactions');
+const userRoutes = require('./route-handlers/db-users');
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = (process.env.NODE_ENV === 'testing' || process.env.NODE_ENV === 'production')
   ? require('./webpack.prod.conf')
@@ -82,7 +84,9 @@ var readyPromise = new Promise((resolve, reject) => {
   _reject = reject
 })
 
-app.use(routes); 
+app.use(itemRoutes); 
+app.use(transactionRoutes); 
+app.use(userRoutes); 
 
 app.get('/newItem', (req, res) => {
   console.log(req.body);
