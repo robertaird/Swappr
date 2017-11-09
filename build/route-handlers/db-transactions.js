@@ -1,5 +1,8 @@
 const express = require('express');
+const Sequelize = require('sequelize');
 const db = require('../../app/db');
+
+const Op = Sequelize.Op;
 
 const app = express();
 
@@ -15,9 +18,23 @@ const createTransaction = (res, newTransaction) =>
     });
 
 app.get('/transactions', (req, res) => {
-  const { id_user } = req.headers;
-
-  res.send(id_user);
+  const { id_user: userId } = req.headers;
+  db.Item.find(
+    {
+      where: {
+        id_user: {
+          [Op.notIn]: [userId],
+        },
+      },
+    },
+  ).then((item) => {
+    console.log(item);
+    res.send(item);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.send(500);
+  });
 });
 
 app.post('/transactions', (req, res) => {
