@@ -41,7 +41,7 @@
         </div>
       </modal>
       <div class="well">
-        <add-item v-on:child-data="childData"></add-item>
+        <add-item v-on:child-data="newItem"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
@@ -81,7 +81,7 @@ export default {
     };
   },
   methods: {
-    childData({ data }) {
+    newItem({ data }) {
       console.log(data);
       this.profileItems.push(data);
     },
@@ -91,6 +91,7 @@ export default {
           id_user: userId,
         },
       };
+      console.log('happening??');
       axios.get('/items', config)
         .then((userItems) => {
           console.log(userItems);
@@ -116,34 +117,15 @@ export default {
     hide() {
       this.$modal.hide('addNew');
     },
-    addItem() {
-      if (this.name.length !== 0 && this.description.length !== 0) {
-        const config = {
-          data: {
-            name: this.name,
-            description: this.description,
-            id_user: this.id_user,
-          },
-        };
-        console.log(config, this.name);
-        axios.post('/items', config)
-          .then(() => {
-            this.getItems(this.id_user);
-            this.name = '';
-            this.description = '';
-            this.hide();
-          });
-      }
-    },
     tradeView() {
       this.$modal.show('acceptedTrades');
     },
     closeTradeView() {
       this.$modal.hide('acceptedTrades');
     },
-    ready() {
-      this.getItems(this.id_user);
-    },
+  },
+  mounted() {
+    this.getItems(this.id_user);
   },
 };
 </script>

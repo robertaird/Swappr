@@ -34,31 +34,6 @@ export default {
     };
   },
   methods: {
-    getItems(userId) {
-      const config = {
-        headers: {
-          id_user: userId,
-        },
-      };
-      axios.get('/items', config)
-        .then((userItems) => {
-          console.log(userItems);
-        });
-    },
-    mainMenu() {
-      this.$router.push({ path: '/main' });
-    },
-    removeListing(index) {
-      const config = {
-        headers: {
-          id_item: this.profileItems[index].id_item,
-        },
-      };
-      axios.delete('/items', config)
-        .then(() => {
-          this.getItems(this.id_user);
-        });
-    },
     show() {
       this.$modal.show('addNew');
     },
@@ -74,8 +49,10 @@ export default {
             id_user: this.id_user,
           },
         };
-        // console.log(config, this.name);
+
         this.$emit('child-data', config);
+        axios.post();
+        this.hide();
         // axios.post('/items', config)
         //   .then(() => {
         //     this.getItems(this.id_user);
@@ -84,15 +61,6 @@ export default {
         //     this.hide();
         //   });
       }
-    },
-    tradeView() {
-      this.$modal.show('acceptedTrades');
-    },
-    closeTradeView() {
-      this.$modal.hide('acceptedTrades');
-    },
-    ready() {
-      this.getItems(this.id_user);
     },
   },
 };
