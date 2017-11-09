@@ -62,16 +62,15 @@ export default {
     };
   },
   methods: {
-    newItem({ data }) {
-      this.profileItems.push(data);
+    newItem({ data: newItem }) {
+      this.profileItems.push(newItem);
     },
-    getItems(userId) {
+    getItems() {
       const config = {
         headers: {
           id_user: this.userId,
         },
       };
-      console.log(config, userId);
       axios.get('/items', config)
         .then(({ data: userItems }) => {
           console.log(userItems);
@@ -100,7 +99,7 @@ export default {
     },
   },
   mounted() {
-    this.getItems(this.id_user);
+    this.getItems();
   },
 };
 </script>
