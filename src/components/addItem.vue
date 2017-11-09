@@ -29,7 +29,6 @@ export default {
   props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      id_user: 2,
       newItem: null,
     };
   },
@@ -51,7 +50,7 @@ export default {
           .then((item) => {
             this.name = '';
             this.description = '';
-            this.$emit('child-data', item);
+            this.$emit('new-item', item);
             this.hide();
           });
       }

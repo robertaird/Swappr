@@ -5,23 +5,6 @@
         <button  class="btn" @click="mainMenu">Main Menu</button>
       </nav>
       <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
-      <!-- <modal name="addNew">
-        <div class="modal-header">
-          <button class="close" @click="hide">&times;</button>
-          <h4 class="modal-title">Add New Item</h4>
-        </div>
-        <form>
-          <div class="form-group">
-            <label for="titleArea">Item Name</label>
-            <input v-model="name" type="name" class="form-control" id="titleArea" placeholder="Enter Item Name">
-          </div>
-          <div class="form-group">
-            <label for="descriptionArea">Description</label>
-            <input v-model="description" type="text" class="form-control" id="descriptionArea" placeholder="description">
-          </div>
-          <button @click="addItem" type='button' class="btn btn-primary">Add Item</button>
-        </form>
-      </modal> -->
       <modal name="acceptedTrades">
         <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
@@ -41,7 +24,7 @@
         </div>
       </modal>
       <div class="well">
-        <add-item v-on:child-data="newItem"></add-item>
+        <add-item v-on:new-item="newItem"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
@@ -68,7 +51,6 @@ export default {
   props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      // ! Testing purposes only
       name: '',
       description: '',
       tradeOffers: [{
@@ -81,7 +63,6 @@ export default {
   },
   methods: {
     newItem({ data }) {
-      console.log(data);
       this.profileItems.push(data);
     },
     getItems(userId) {
@@ -110,12 +91,6 @@ export default {
         .then(() => {
           this.getItems(this.userId);
         });
-    },
-    show() {
-      this.$modal.show('addNew');
-    },
-    hide() {
-      this.$modal.hide('addNew');
     },
     tradeView() {
       this.$modal.show('acceptedTrades');
