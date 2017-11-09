@@ -5,6 +5,15 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/items', (req, res) => {
+  const { id: id_user } = req.body;
+  db.Item.find({ where: { id_user } })
+    .then(items =>
+      res.send(items))
+    .catch(err =>
+      console.log(err));
+});
+
 app.post('/items', (req, res) => {
   const newItem = req.body;
   if (newItem.id_category === undefined) {
