@@ -32,6 +32,30 @@ __Trade Items:__ If someone has approved of the same offer then you’ll get a m
     </embed>
 </object>
 
+## Project Set-up
+
+### Getting Started
+First things first, run npm install.
+
+This project uses Postgres, so be sure to have that installed on your system.
+
+### Initializing the Database
+Inside the app/config folder is a config.example.json file. Copy this to config.json, and enter your credentials for your Postgres database.
+
+Once your database is set up, you will need to use the Sequelize CLI to initialize everything.
+
+Run the following commands from inside of the `app` folder using your command line interface of choice:
+
+```
+sequelize db:migrate
+```
+
+```
+sequelize db:seed:all
+```
+
+If 'sequelize' is not a command, you may need to install the sequelize-cli globally. Otherwise, your database should be ready to go!
+
 ## FAQ
 
 ### Do I need to sign up for an account?
