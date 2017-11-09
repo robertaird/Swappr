@@ -83,7 +83,7 @@ export default {
       this.$router.push({ path: '/profile' });
     },
     offerItem(index) {
-      axios.post('/offer', { body: { id_ite_offered: this.profileItems[index].id_item, id_ite_desired: this.currentItem.id_item } })
+      axios.post('/offer', { body: { id_item_offered: this.profileItems[index].id_item, id_item_desired: this.currentItem.id_item } })
         .then(this.hide);
     },
     ready() {
