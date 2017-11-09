@@ -5,9 +5,6 @@ const app = express();
 
 app.use(express.json());
 
-// app.get('/transactions', (req, res) => {
-
-// });
 const createTransaction = (res, newTransaction) =>
   db.Transaction.create(newTransaction)
     .then(createdTransaction =>
@@ -15,7 +12,13 @@ const createTransaction = (res, newTransaction) =>
     .catch((err) => {
       console.log(err);
       res.send(500, 'something went wrong!');
-  });
+    });
+
+app.get('/transactions', (req, res) => {
+  const { id_user } = req.headers;
+
+  res.send(id_user);
+});
 
 app.post('/transactions', (req, res) => {
   const newTransaction = req.body;
