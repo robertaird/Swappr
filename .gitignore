@@ -16,3 +16,6 @@ src/Auth/auth0-variables.js
 *.ntvs*
 *.njsproj
 *.sln
+
+# Config file for sequelize
+app/config/config.json

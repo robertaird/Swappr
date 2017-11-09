@@ -6,6 +6,7 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
+const db = require('../app/db');
 const opn = require('opn')
 const path = require('path')
 const express = require('express')
@@ -47,7 +48,8 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 
 // enable hot-reload and state-preserving
 // compilation error display
-app.use(hotMiddleware)
+app.use(hotMiddleware);
+app.use(express.urlencoded());
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
@@ -75,6 +77,18 @@ var _reject
 var readyPromise = new Promise((resolve, reject) => {
   _resolve = resolve
   _reject = reject
+})
+
+app.get('/newItem', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
+})
+
+app.post('/offer', (req, res) => {
+  console.log(req.body);
+  res.statusCode = 200;
+  res.send('hello!');
 })
 
 var server
