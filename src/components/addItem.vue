@@ -1,11 +1,7 @@
   <template>
-  <div class="hello">
-      <nav class="navbar">
-        <button class="btn" @click="auth.logout">Sign Out</button>
-        <button  class="btn" @click="mainMenu">Main Menu</button>
-      </nav>
-      <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
-      <!-- <modal name="addNew">
+  <div class="addItem">
+      <button @click="show" class="btn">Add New Item</button>
+      <modal name="addNew">
         <div class="modal-header">
           <button class="close" @click="hide">&times;</button>
           <h4 class="modal-title">Add New Item</h4>
@@ -21,42 +17,7 @@
           </div>
           <button @click="addItem" type='button' class="btn btn-primary">Add Item</button>
         </form>
-      </modal> -->
-      <modal name="acceptedTrades">
-        <div class="modal-header">
-          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-          <button class="close" @click="closeTradeView">&times;</button>
-          <h4 class="modal-title">Accepted Trades</h4>
-          <ul>
-            <li v-for="(trade,index) in tradeOffers" :key='index'>
-              <!-- <div class="card" style="border-style: outset; width: 15rem;">
-                <div class="card-block">
-                  <h3 class="card-title">{{item.name}}</h3>
-                  <p class="card-text">{{item.description}}</p>
-                  <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
-                </div>
-              </div> -->
-            </li>
-          </ul>
-        </div>
-      </modal>
-      <div class="well">
-        <add-item></add-item>
-        <!-- <button @click="show" class="btn">Add New Item</button> -->
-          <div class="well">
-            <ul>
-              <li v-for="(item,index) in profileItems" :key='index'>
-                <div class="card" style="border-style: outset; width: 15rem;">
-                  <div class="card-block">
-                    <h3 class="card-title">{{item.name}}</h3>
-                    <p class="card-text">{{item.description}}</p>
-                    <a href="#" @click="removeListing(index)" class="btn btn-primary">remove</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-      </div>
+      </modal>          
    </div>
 </template>
 
@@ -64,7 +25,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'profile',
+  name: 'addItem',
   props: ['auth', 'authentication'],
   data() {
     return {
