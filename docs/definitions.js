@@ -20,6 +20,7 @@ const newUser = {
 };
 
 const newItem = {
+  id_user: null,
   description: null,
   name: null,
   type: null,

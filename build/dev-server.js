@@ -11,6 +11,7 @@ const opn = require('opn')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
+const routes = require('./route-handlers/dbcalls');
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = (process.env.NODE_ENV === 'testing' || process.env.NODE_ENV === 'production')
   ? require('./webpack.prod.conf')
@@ -32,10 +33,11 @@ const devMiddleware = require('webpack-dev-middleware')(compiler, {
   quiet: true
 })
 
-const hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: false,
-  heartbeat: 2000
-})
+// ! RE ENABLE
+// const hotMiddleware = require('webpack-hot-middleware')(compiler, {
+//   log: false,
+//   heartbeat: 2000
+// })
 // force page reload when html-webpack-plugin template changes
 // currently disabled until this is resolved:
 // https://github.com/jantimon/html-webpack-plugin/issues/680
@@ -48,7 +50,8 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 
 // enable hot-reload and state-preserving
 // compilation error display
-app.use(hotMiddleware);
+// ! RE ENABLE
+// app.use(hotMiddleware);
 app.use(express.urlencoded());
 
 // proxy api requests
@@ -78,6 +81,8 @@ var readyPromise = new Promise((resolve, reject) => {
   _resolve = resolve
   _reject = reject
 })
+
+app.use(routes); 
 
 app.get('/newItem', (req, res) => {
   console.log(req.body);
