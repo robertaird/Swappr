@@ -43,23 +43,22 @@ export default {
     addItem() {
       if (this.name.length !== 0 && this.description.length !== 0) {
         const config = {
-          data: {
-            name: this.name,
-            description: this.description,
-            id_user: this.id_user,
-          },
+          name: this.name,
+          description: this.description,
+          id_user: 2,
+          // ! Don't forget to move this back!!
+          // id_user: this.id_user,
         };
 
-        this.$emit('child-data', config);
-        axios.post();
-        this.hide();
-        // axios.post('/items', config)
-        //   .then(() => {
-        //     this.getItems(this.id_user);
-        //     this.name = '';
-        //     this.description = '';
-        //     this.hide();
-        //   });
+        axios.post('/items', config)
+          .then((item) => {
+            console.log(item, this);
+            this.getItems(this.id_user);
+            this.name = '';
+            this.description = '';
+            this.$emit('child-data', item);
+            this.hide();
+          });
       }
     },
   },
