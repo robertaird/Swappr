@@ -30,16 +30,19 @@ const proxyTable = config.dev.proxyTable
 const app = express()
 const compiler = webpack(webpackConfig)
 
+app.use(itemRoutes);
+app.use(transactionRoutes);
+app.use(userRoutes); 
+
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
 })
 
-// ! RE ENABLE
-// const hotMiddleware = require('webpack-hot-middleware')(compiler, {
-//   log: false,
-//   heartbeat: 2000
-// })
+const hotMiddleware = require('webpack-hot-middleware')(compiler, {
+  log: false,
+  heartbeat: 2000
+})
 // force page reload when html-webpack-plugin template changes
 // currently disabled until this is resolved:
 // https://github.com/jantimon/html-webpack-plugin/issues/680
@@ -52,8 +55,7 @@ const devMiddleware = require('webpack-dev-middleware')(compiler, {
 
 // enable hot-reload and state-preserving
 // compilation error display
-// ! RE ENABLE
-// app.use(hotMiddleware);
+app.use(hotMiddleware);
 app.use(express.urlencoded());
 
 // proxy api requests
@@ -83,10 +85,6 @@ var readyPromise = new Promise((resolve, reject) => {
   _resolve = resolve
   _reject = reject
 })
-
-app.use(itemRoutes); 
-app.use(transactionRoutes); 
-app.use(userRoutes); 
 
 app.get('/newItem', (req, res) => {
   console.log(req.body);
