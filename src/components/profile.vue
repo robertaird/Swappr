@@ -12,8 +12,8 @@
         </div>
         <form>
           <div class="form-group">
-            <label for="titleArea">Title</label>
-            <input v-model="title" type="email" class="form-control" id="titleArea" placeholder="Enter title">
+            <label for="titleArea">Item Name</label>
+            <input v-model="name" type="email" class="form-control" id="titleArea" placeholder="Enter Item Name">
           </div>
           <div class="form-group">
             <label for="descriptionArea">Description</label>
@@ -31,7 +31,7 @@
             <li v-for="(trade,index) in tradeOffers" :key='index'>
               <!-- <div class="card" style="border-style: outset; width: 15rem;">
                 <div class="card-block">
-                  <h3 class="card-title">{{item.title}}</h3>
+                  <h3 class="card-title">{{item.name}}</h3>
                   <p class="card-text">{{item.description}}</p>
                   <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
                 </div>
@@ -47,7 +47,7 @@
               <li v-for="(item,index) in profileItems" :key='index'>
                 <div class="card" style="border-style: outset; width: 15rem;">
                   <div class="card-block">
-                    <h3 class="card-title">{{item.title}}</h3>
+                    <h3 class="card-title">{{item.name}}</h3>
                     <p class="card-text">{{item.description}}</p>
                     <a href="#" @click="removeListing(index)" class="btn btn-primary">remove</a>
                   </div>
@@ -66,15 +66,15 @@ export default {
   name: 'profile',
   data() {
     return {
-      userId: 5,
+      id_user: 5,
       tradeOffers: [{
-        myItem: { title: 'testItem1', description: 'a very fine item', id: 3 },
-        tradeFor: { title: 'testItem2', description: 'an even nicer item', id: 7 },
+        myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
+        tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
       },
       ],
       profileItems: [
-        { title: 'testItem1', description: 'a very fine item', id: 3 },
-        { title: 'testItem2', description: 'an even nicer item', id: 6 },
+        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
+        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
       ],
     };
   },
@@ -82,7 +82,7 @@ export default {
     getItems(userId) {
       const config = {
         headers: {
-          userId,
+          id_user: userId,
         },
       };
       axios.get('/items', config)
@@ -99,12 +99,12 @@ export default {
     removeListing(index) {
       const config = {
         headers: {
-          item_id: this.profileItems[index].id,
+          id_item: this.profileItems[index].id_item,
         },
       };
       axios.delete('/items', config)
         .then(() => {
-          this.getItems(this.userId);
+          this.getItems(this.id_user);
         });
     },
     show() {
@@ -114,18 +114,18 @@ export default {
       this.$modal.hide('addNew');
     },
     addItem() {
-      if (this.title.length !== 0 && this.description.length !== 0) {
+      if (this.name.length !== 0 && this.description.length !== 0) {
         const config = {
           body: {
-            title: this.title,
+            name: this.name,
             description: this.description,
-            user_id: this.userId,
+            id_user: this.id_user,
           },
         };
         axios.post('/items', config)
           .then(() => {
-            this.getItems(this.userId);
-            this.title = '';
+            this.getItems(this.id_user);
+            this.name = '';
             this.description = '';
             this.hide();
           });
@@ -138,7 +138,7 @@ export default {
       this.$modal.hide('acceptedTrades');
     },
     ready() {
-      this.getItems(this.userId);
+      this.getItems(this.id_user);
     },
   },
 };

@@ -13,7 +13,7 @@
          <li v-for="(item,index) in profileItems" :key='index'>
            <div class="card" style="border-style: outset; width: 15rem;">
              <div class="card-block">
-               <h3 class="card-title">{{item.title}}</h3>
+               <h3 class="card-title">{{item.name}}</h3>
                <p class="card-text">{{item.description}}</p>
                <a href="#" @click="offerItem(index)" class="btn btn-primary">Offer</a>
              </div>
@@ -25,7 +25,7 @@
       <div class="well">
         <button class="btn-warning" @click="getTradeItem">No Thanks</button>
         <div>
-          <h3>{{currentItem.title}}</h3>
+          <h3>{{currentItem.name}}</h3>
           <h6>{{currentItem.description}}</h6>
         </div>
         <button class="btn-success" @click="show">Let's Trade!</button>
@@ -41,15 +41,15 @@ export default {
   name: 'mainPage',
   data() {
     return {
-      userId: 5,
+      id_user: 5,
       currentItem: {
-        title: 'test Title',
+        name: 'test Title',
         description: 'test description',
-        id: 4,
+        id_item: 4,
       },
       profileItems: [
-        { title: 'testItem1', description: 'a very fine item', id: 3 },
-        { title: 'testItem2', description: 'an even nicer item', id: 6 },
+        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
+        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
       ],
     };
   },
@@ -57,7 +57,7 @@ export default {
     getItems(userId) {
       const config = {
         headers: {
-          userId,
+          id_user: userId,
         },
       };
       axios.get('/items', config)
@@ -83,11 +83,11 @@ export default {
       this.$router.push({ path: '/profile' });
     },
     offerItem(index) {
-      axios.post('/offer', { body: { has: this.profileItems[index].id, wants: this.currentItem.id } })
+      axios.post('/offer', { body: { id_ite_offered: this.profileItems[index].id_item, id_ite_desired: this.currentItem.id_item } })
         .then(this.hide);
     },
     ready() {
-      this.getItems(this.userId);
+      this.getItems(this.id_user);
     },
   },
 };
