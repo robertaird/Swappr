@@ -73,6 +73,12 @@ $$;
         updatedAt: Sequelize.fn('NOW'),
       },
       {
+        name: 'Movies',
+        url_img: './assets/cats/movies.svg',
+        createdAt: Sequelize.fn('NOW'),
+        updatedAt: Sequelize.fn('NOW'),
+      },
+      {
         name: 'Music',
         url_img: './assets/cats/music.svg',
         createdAt: Sequelize.fn('NOW'),
