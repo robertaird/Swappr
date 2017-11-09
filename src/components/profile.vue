@@ -41,7 +41,7 @@
         </div>
       </modal>
       <div class="well">
-        <add-item></add-item>
+        <add-item v-on:child-data="childData"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
@@ -81,6 +81,10 @@ export default {
     };
   },
   methods: {
+    childData({ data }) {
+      console.log(data);
+      this.profileItems.push(data);
+    },
     getItems(userId) {
       const config = {
         headers: {

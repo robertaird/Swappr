@@ -30,15 +30,7 @@ export default {
   data() {
     return {
       id_user: 2,
-      tradeOffers: [{
-        myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
-      },
-      ],
-      profileItems: [
-        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
-      ],
+      newItem: null,
     };
   },
   methods: {
@@ -82,14 +74,15 @@ export default {
             id_user: this.id_user,
           },
         };
-        console.log(config, this.name);
-        axios.post('/items', config)
-          .then(() => {
-            this.getItems(this.id_user);
-            this.name = '';
-            this.description = '';
-            this.hide();
-          });
+        // console.log(config, this.name);
+        this.$emit('child-data', config);
+        // axios.post('/items', config)
+        //   .then(() => {
+        //     this.getItems(this.id_user);
+        //     this.name = '';
+        //     this.description = '';
+        //     this.hide();
+        //   });
       }
     },
     tradeView() {
