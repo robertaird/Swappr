@@ -1,14 +1,14 @@
   <template>
   <div class="hello">
       <nav class="navbar">
-        <button class="navbar-btn" @click="signOut">Sign Out</button>
-        <button class="navbar-btn" @click="profilePage">Profile Page</button>
+        <button class="btn" @click="signOut">Sign Out</button>
+        <button class="btn" @click="profilePage">Profile Page</button>
       </nav>
       <modal name="itemModal">
-        <!-- <div class="modal-header">
+        <div class="modal-header">
           <button class="close" @click="hide">&times;</button>
           <h4 class="modal-title">Your Offer</h4>
-        </div> -->
+        </div>
        <ul>
          <li v-for="(item,index) in profileItems" :key='index'>
            <div class="card" style="border-style: outset; width: 15rem;">
@@ -20,15 +20,17 @@
            </div>
          </li>
        </ul>
-       <button class="btn-danger" @click="hide">Nevermind</button>
+       <!-- <button class="btn-danger" @click="hide">Nevermind</button> -->
       </modal>
       <div class="well">
-        <button class="btn-warning" @click="getTradeItem">No Thanks</button>
-        <div>
-          <h3>{{currentItem.name}}</h3>
-          <h6>{{currentItem.description}}</h6>
+        <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
+        <div class="card" style="border-style: outset; width: 15rem;">
+          <div class="card-block">
+            <h3 class="card-title">{{currentItem.name}}</h3>
+            <p class="card-text">{{currentItem.description}}</p>
+          </div>
         </div>
-        <button class="btn-success" @click="show">Let's Trade!</button>
+        <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
       
   </div>
@@ -63,6 +65,9 @@ export default {
       axios.get('/items', config)
         .then((userItems) => {
           console.log(userItems);
+          if (!this.profileItems.length) {
+            console.log('cannot trade');
+          }
         });
     },
     getTradeItem() {
@@ -74,7 +79,6 @@ export default {
     },
     hide() {
       this.$modal.hide('itemModal');
-      this.getTradeItem();
     },
     signOut() {
       this.$router.push({ path: '/' });
@@ -99,4 +103,13 @@ h1,
 h2 {
   font-weight: normal;
 }
+
+.well * {
+  display: inline-block;
+}
+
+li {
+  display: inline-block;
+}
+
 </style>

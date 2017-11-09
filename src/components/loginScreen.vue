@@ -5,7 +5,7 @@
     </modal>
     <img src="https://i.imgur.com/HyT4LZP.png">
     <h1>{{ msg }}</h1>
-    <button class="btn" @click="nextPage">Log In</button>
+    <button class="btn-lg" @click="nextPage">Log In</button>
   </div>
 </template>
 
