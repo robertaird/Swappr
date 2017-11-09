@@ -5,10 +5,10 @@
         <button class="btn" @click="profilePage">Profile Page</button>
       </nav>
       <modal name="itemModal">
-        <!-- <div class="modal-header">
+        <div class="modal-header">
           <button class="close" @click="hide">&times;</button>
           <h4 class="modal-title">Your Offer</h4>
-        </div> -->
+        </div>
        <ul>
          <li v-for="(item,index) in profileItems" :key='index'>
            <div class="card" style="border-style: outset; width: 15rem;">
@@ -20,7 +20,7 @@
            </div>
          </li>
        </ul>
-       <button class="btn-danger" @click="hide">Nevermind</button>
+       <!-- <button class="btn-danger" @click="hide">Nevermind</button> -->
       </modal>
       <div class="well">
         <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
@@ -65,6 +65,9 @@ export default {
       axios.get('/items', config)
         .then((userItems) => {
           console.log(userItems);
+          if (!this.profileItems.length) {
+            console.log('cannot trade');
+          }
         });
     },
     getTradeItem() {
@@ -76,7 +79,6 @@ export default {
     },
     hide() {
       this.$modal.hide('itemModal');
-      this.getTradeItem();
     },
     signOut() {
       this.$router.push({ path: '/' });
@@ -103,6 +105,10 @@ h2 {
 }
 
 .well * {
+  display: inline-block;
+}
+
+li {
   display: inline-block;
 }
 
