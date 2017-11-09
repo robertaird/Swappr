@@ -1,7 +1,7 @@
   <template>
   <div class="hello">
       <nav class="navbar">
-        <button class="btn" @click="signOut">Sign Out</button>
+        <button class="btn" @click="auth.logout">Sign Out</button>
         <button  class="btn" @click="mainMenu">Main Menu</button>
       </nav>
       <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
@@ -64,6 +64,7 @@ import axios from 'axios';
 
 export default {
   name: 'profile',
+  props: ['auth', 'authentication'],
   data() {
     return {
       id_user: 5,
@@ -89,9 +90,6 @@ export default {
         .then((userItems) => {
           console.log(userItems);
         });
-    },
-    signOut() {
-      this.$router.push({ path: '/' });
     },
     mainMenu() {
       this.$router.push({ path: '/main' });

@@ -1,7 +1,7 @@
   <template>
   <div class="hello">
       <nav class="navbar">
-        <button class="btn" @click="signOut">Sign Out</button>
+        <button class="btn" @click="auth.logout">Sign Out</button>
         <button class="btn" @click="profilePage">Profile Page</button>
       </nav>
       <modal name="itemModal">
@@ -32,7 +32,6 @@
         </div>
         <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
-      
   </div>
 </template>
 
@@ -41,6 +40,7 @@ import axios from 'axios';
 
 export default {
   name: 'mainPage',
+  props: ['auth', 'authentication'],
   data() {
     return {
       id_user: 5,
@@ -79,9 +79,6 @@ export default {
     },
     hide() {
       this.$modal.hide('itemModal');
-    },
-    signOut() {
-      this.$router.push({ path: '/' });
     },
     profilePage() {
       this.$router.push({ path: '/profile' });
