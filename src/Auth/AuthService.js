@@ -22,7 +22,6 @@ export default class AuthService {
     responseType: 'token id_token',
     scope: 'openid',
   })
-   
   login() {
     this.auth0.authorize();
   }
