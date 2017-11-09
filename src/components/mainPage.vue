@@ -80,9 +80,6 @@ export default {
     hide() {
       this.$modal.hide('itemModal');
     },
-    signOut() {
-      this.$router.push({ path: '/' });
-    },
     profilePage() {
       this.$router.push({ path: '/profile' });
     },
