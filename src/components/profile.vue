@@ -13,13 +13,13 @@
         <form>
           <div class="form-group">
             <label for="titleArea">Item Name</label>
-            <input v-model="name" type="email" class="form-control" id="titleArea" placeholder="Enter Item Name">
+            <input v-model="name" type="name" class="form-control" id="titleArea" placeholder="Enter Item Name">
           </div>
           <div class="form-group">
             <label for="descriptionArea">Description</label>
             <input v-model="description" type="text" class="form-control" id="descriptionArea" placeholder="description">
           </div>
-          <button @click="addItem" class="btn btn-primary">Add Item</button>
+          <button @click="addItem" type='button' class="btn btn-primary">Add Item</button>
         </form>
       </modal>
       <modal name="acceptedTrades">
@@ -67,7 +67,7 @@ export default {
   props: ['auth', 'authentication'],
   data() {
     return {
-      id_user: 5,
+      id_user: 2,
       tradeOffers: [{
         myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
         tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
@@ -114,12 +114,13 @@ export default {
     addItem() {
       if (this.name.length !== 0 && this.description.length !== 0) {
         const config = {
-          body: {
+          data: {
             name: this.name,
             description: this.description,
             id_user: this.id_user,
           },
         };
+        console.log(config, this.name);
         axios.post('/items', config)
           .then(() => {
             this.getItems(this.id_user);
