@@ -41,6 +41,7 @@ export default {
   name: 'mainPage',
   data() {
     return {
+      userId: 5,
       currentItem: {
         title: 'test Title',
         description: 'test description',
@@ -53,12 +54,18 @@ export default {
     };
   },
   methods: {
-    getItem() {
-      // const config = {
-      //   headers: {
-      //     category,
-      //   },
-      // };
+    getItems(userId) {
+      const config = {
+        headers: {
+          userId,
+        },
+      };
+      axios.get('/items', config)
+        .then((userItems) => {
+          console.log(userItems);
+        });
+    },
+    getTradeItem() {
       axios.get('/newItem')
       .then(console.log);
     },
@@ -78,6 +85,9 @@ export default {
     offerItem(index) {
       axios.post('/offer', { body: { has: this.profileItems[index].id, wants: this.currentItem.id } })
         .then(this.hide);
+    },
+    ready() {
+      this.getItems(this.userId);
     },
   },
 };
