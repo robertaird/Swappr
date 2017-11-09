@@ -17,7 +17,7 @@ module.exports = {
       id_facebook: {
         allowNull: false,
         unique: true,
-        type: Sequelize.BIGINT,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
