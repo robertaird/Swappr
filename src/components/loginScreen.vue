@@ -5,22 +5,18 @@
     </modal>
     <img src="https://i.imgur.com/HyT4LZP.png">
     <h1>{{ msg }}</h1>
-    <button class="btn-lg" @click="nextPage">Log In</button>
+    <button class="btn" @click="auth.login">Log In</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'loginScreen',
+  props: ['auth'],
   data() {
     return {
       msg: 'Welcome to Swappr',
     };
-  },
-  methods: {
-    nextPage() {
-      this.$router.push({ path: '/main' });
-    },
   },
 };
 </script>
@@ -30,7 +26,7 @@ export default {
 h1,
 h2 {
   font-weight: normal;
-} 
+}
 .hello {
   text-align: center;
 }
