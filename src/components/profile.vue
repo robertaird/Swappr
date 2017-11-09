@@ -66,7 +66,7 @@ export default {
   name: 'profile',
   data() {
     return {
-      userId: 4,
+      userId: 5,
       tradeOffers: [{
         myItem: { title: 'testItem1', description: 'a very fine item', id: 3 },
         tradeFor: { title: 'testItem2', description: 'an even nicer item', id: 7 },
@@ -116,10 +116,13 @@ export default {
     addItem() {
       if (this.title.length !== 0 && this.description.length !== 0) {
         const config = {
-          title: this.title,
-          description: this.description,
+          body: {
+            title: this.title,
+            description: this.description,
+            user_id: this.userId,
+          },
         };
-        axios.post('/item', config)
+        axios.post('/items', config)
           .then(() => {
             this.getItems(this.userId);
             this.title = '';
