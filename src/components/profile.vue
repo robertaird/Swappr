@@ -87,8 +87,7 @@ export default {
     getItems(userId) {
       const config = {
         headers: {
-          // ! Change this back to userId!!
-          id_user: 2,
+          id_user: this.userId,
         },
       };
       console.log(config, userId);

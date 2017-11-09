@@ -45,9 +45,7 @@ export default {
         const config = {
           name: this.name,
           description: this.description,
-          id_user: 2,
-          // ! Don't forget to move this back!!
-          // id_user: this.userId,
+          id_user: this.userId,
         };
         axios.post('/items', config)
           .then((item) => {
