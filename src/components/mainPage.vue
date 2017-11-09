@@ -1,8 +1,8 @@
   <template>
   <div class="hello">
       <nav class="navbar">
-        <button class="navbar-btn" @click="signOut">Sign Out</button>
-        <button class="navbar-btn" @click="profilePage">Profile Page</button>
+        <button class="btn" @click="signOut">Sign Out</button>
+        <button class="btn" @click="profilePage">Profile Page</button>
       </nav>
       <modal name="itemModal">
         <!-- <div class="modal-header">
@@ -23,12 +23,14 @@
        <button class="btn-danger" @click="hide">Nevermind</button>
       </modal>
       <div class="well">
-        <button class="btn-warning" @click="getTradeItem">No Thanks</button>
-        <div>
-          <h3>{{currentItem.name}}</h3>
-          <h6>{{currentItem.description}}</h6>
+        <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
+        <div class="card" style="border-style: outset; width: 15rem;">
+          <div class="card-block">
+            <h3 class="card-title">{{currentItem.name}}</h3>
+            <p class="card-text">{{currentItem.description}}</p>
+          </div>
         </div>
-        <button class="btn-success" @click="show">Let's Trade!</button>
+        <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
       
   </div>
@@ -99,4 +101,9 @@ h1,
 h2 {
   font-weight: normal;
 }
+
+.well * {
+  display: inline-block;
+}
+
 </style>
