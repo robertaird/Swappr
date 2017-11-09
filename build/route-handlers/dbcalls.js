@@ -8,7 +8,7 @@ app.use(express.json());
 app.post('/items', (req, res) => {
   const newItem = req.body;
   if (newItem.id_category === undefined) {
-    newItem.id_category = 17;
+    newItem.id_category = 15;
   }
   console.log(newItem);
   db.Item.create(newItem)
@@ -24,7 +24,7 @@ app.post('/items', (req, res) => {
 app.post('/users', (req, res) => {
   const newUser = req.body;
   console.log(newUser);
-  db.User.create({ name: 'Bilbo Baggins', email: 'bilbo@bagend.com', id_facebook: 666 })
+  db.User.create(newUser)
     .then(user => res.send(user))
     .catch(err => console.log(err));
 });
