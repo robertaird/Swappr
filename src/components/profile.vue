@@ -5,23 +5,6 @@
         <button  class="btn" @click="mainMenu">Main Menu</button>
       </nav>
       <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
-      <modal name="addNew">
-        <div class="modal-header">
-          <button class="close" @click="hide">&times;</button>
-          <h4 class="modal-title">Add New Item</h4>
-        </div>
-        <form>
-          <div class="form-group">
-            <label for="titleArea">Item Name</label>
-            <input v-model="name" type="email" class="form-control" id="titleArea" placeholder="Enter Item Name">
-          </div>
-          <div class="form-group">
-            <label for="descriptionArea">Description</label>
-            <input v-model="description" type="text" class="form-control" id="descriptionArea" placeholder="description">
-          </div>
-          <button @click="addItem" class="btn btn-primary">Add Item</button>
-        </form>
-      </modal>
       <modal name="acceptedTrades">
         <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
@@ -41,7 +24,8 @@
         </div>
       </modal>
       <div class="well">
-        <button @click="show" class="btn">Add New Item</button>
+        <add-item v-on:new-item="newItem"></add-item>
+        <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
               <li v-for="(item,index) in profileItems" :key='index'>
@@ -74,22 +58,23 @@ export default {
         tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
       },
       ],
-      profileItems: [
-        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
-      ],
+      profileItems: [],
     };
   },
   methods: {
-    getItems(userId) {
+    newItem({ data: newItem }) {
+      this.profileItems.push(newItem);
+    },
+    getItems() {
       const config = {
         headers: {
-          id_user: userId,
+          id_user: this.userId,
         },
       };
       axios.get('/items', config)
-        .then((userItems) => {
+        .then(({ data: userItems }) => {
           console.log(userItems);
+          userItems.forEach(item => this.profileItems.push(item));
         });
     },
     mainMenu() {
@@ -106,39 +91,15 @@ export default {
           this.getItems(this.userId);
         });
     },
-    show() {
-      this.$modal.show('addNew');
-    },
-    hide() {
-      this.$modal.hide('addNew');
-    },
-    addItem() {
-      if (this.name.length !== 0 && this.description.length !== 0) {
-        const config = {
-          body: {
-            name: this.name,
-            description: this.description,
-            id_user: this.userId,
-          },
-        };
-        axios.post('/items', config)
-          .then(() => {
-            this.getItems(this.userId);
-            this.name = '';
-            this.description = '';
-            this.hide();
-          });
-      }
-    },
     tradeView() {
       this.$modal.show('acceptedTrades');
     },
     closeTradeView() {
       this.$modal.hide('acceptedTrades');
     },
-    ready() {
-      this.getItems(this.userId);
-    },
+  },
+  mounted() {
+    this.getItems();
   },
 };
 </script>
