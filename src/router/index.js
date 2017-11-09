@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Home from '@/components/Home';
+import Callback from '@/components/Callback';
 import loginScreen from '@/components/loginScreen';
 import mainPage from '@/components/mainPage';
 import profile from '@/components/profile';
@@ -25,6 +27,20 @@ export default new Router({
       path: '/',
       name: 'loginScreen',
       component: loginScreen,
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home,
+    },
+    {
+      path: '/callback',
+      name: 'Callback',
+      component: Callback,
+    },
+    {
+      path: '*',
+      redirect: '/home',
     },
   ],
 });
