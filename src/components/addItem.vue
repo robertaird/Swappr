@@ -26,7 +26,7 @@ import axios from 'axios';
 
 export default {
   name: 'addItem',
-  props: ['auth', 'authentication'],
+  props: ['auth', 'authentication', 'userId'],
   data() {
     return {
       id_user: 2,
@@ -47,13 +47,10 @@ export default {
           description: this.description,
           id_user: 2,
           // ! Don't forget to move this back!!
-          // id_user: this.id_user,
+          // id_user: this.userId,
         };
-
         axios.post('/items', config)
           .then((item) => {
-            console.log(item, this);
-            this.getItems(this.id_user);
             this.name = '';
             this.description = '';
             this.$emit('child-data', item);
