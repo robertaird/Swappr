@@ -8,6 +8,7 @@
         </div>
         <form>
           <div class="form-group">
+            {{ userId }}
             <label for="titleArea">Item Name</label>
             <input v-model="name" type="name" class="form-control" id="titleArea" placeholder="Enter Item Name">
           </div>
@@ -30,6 +31,8 @@ export default {
   data() {
     return {
       newItem: null,
+      name: '',
+      description: '',
     };
   },
   methods: {
@@ -41,6 +44,7 @@ export default {
     },
     addItem() {
       if (this.name.length !== 0 && this.description.length !== 0) {
+        console.log(this.userId);
         const config = {
           name: this.name,
           description: this.description,
@@ -55,6 +59,9 @@ export default {
           });
       }
     },
+  },
+  mounted() {
+    console.log(this.userId, 'should be user ID');
   },
 };
 </script>

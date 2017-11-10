@@ -65,7 +65,8 @@ export default class AuthService {
         id_facebook: idGoogle,
         email,
       };
-      userService.createUser(user).then(({ id }) => {
+      userService.createUser(user).then(({ data: { id } }) => {
+        console.log(id);
         localStorage.setItem('userId', id);
       });
     });

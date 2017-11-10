@@ -28,7 +28,7 @@ export default {
     return {
       auth,
       authenticated,
-      userId: '0',
+      userId: localStorage.getItem('userId'),
     };
   },
 };
