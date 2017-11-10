@@ -22,7 +22,7 @@ export default class AuthService {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid',
+    scope: 'openid profile email',
   })
   login() {
     this.auth0.authorize();
@@ -49,6 +49,9 @@ export default class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    console.log(authResult, '-----------------------');
+    // console.log(this.auth0.client, '---------------------');
+    // console.log(this.auth0.client.userInfo);
     this.auth0.client.userInfo(authResult.accessToken, (issue, userInfo) => {
       if (issue) {
         console.error(issue);
