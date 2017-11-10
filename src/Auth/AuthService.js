@@ -4,6 +4,7 @@ import auth0 from 'auth0-js';
 import EventEmitter from 'EventEmitter';
 import { AUTH_CONFIG } from './auth0-variables';
 import router from './../router';
+import userService from '../services/createUser';
 
 export default class AuthService {
   authenticated = this.isAuthenticated();
@@ -53,7 +54,6 @@ export default class AuthService {
       if (issue) {
         console.error(issue);
       }
-      console.log(userInfo);
       const { email, sub, given_name } = userInfo;
       const idGoogle = sub.slice(userInfo.sub.indexOf('|') + 1);
       const user = {
@@ -62,6 +62,7 @@ export default class AuthService {
         email,
       };
       console.log(user);
+      userService.createUser(user);
       localStorage.setItem('userId', userInfo.sub.slice(userInfo.sub.indexOf('|') + 1));
       setTimeout(() => {
         this.authNotifier.emit('authChange', { authenticated: true });
