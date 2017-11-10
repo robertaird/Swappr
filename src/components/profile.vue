@@ -24,7 +24,7 @@
         </div>
       </modal>
       <div class="well">
-        <add-item v-on:new-item="newItem"></add-item>
+        <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
@@ -73,7 +73,6 @@ export default {
       };
       axios.get('/items', config)
         .then(({ data: userItems }) => {
-          console.log(userItems);
           userItems.forEach(item => this.profileItems.push(item));
         });
     },

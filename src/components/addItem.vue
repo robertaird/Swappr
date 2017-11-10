@@ -30,6 +30,8 @@ export default {
   data() {
     return {
       newItem: null,
+      name: '',
+      description: '',
     };
   },
   methods: {
