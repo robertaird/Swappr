@@ -32,7 +32,12 @@ app.post('/items', (req, res) => {
 });
 
 app.delete('/items', (req, res) => {
-  console.log(req);
+  console.log(req.headers);
+  const { id_item: id } = req.headers;
+  console.log(id);
+  db.Item.destroy({ where: { id } }).then((...args) => {
+    console.log(args);
+  });
   res.send();
 });
 
