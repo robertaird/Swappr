@@ -28,6 +28,7 @@
         <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
+              <item-view v-for="(item,index) in profileItems" :item='item' :key='index'></item-view>
               <li v-for="(item,index) in profileItems" :key='index'>
                 <div class="card" style="border-style: outset; width: 15rem;">
                   <div class="card-block">

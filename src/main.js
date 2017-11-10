@@ -4,11 +4,13 @@
 import Vue from 'vue';
 import App from './App';
 import addItem from './components/addItem.vue';
+import itemView from './components/itemView.vue';
 import router from './router';
 
 Vue.config.productionTip = false;
 
 Vue.component('add-item', addItem);
+Vue.component('item-view', itemView);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
