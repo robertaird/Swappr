@@ -23,12 +23,16 @@
           </ul>
         </div>
       </modal>
-      <div class="well">
-        <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
+      <div class="card" style="background-color: #99999;">
+          <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
-          <div class="well">
+          <div class="card">
             <ul>
+              <div class="container-fluid">
+                <div class="row">
               <item-view v-for="(item,index) in profileItems" :item='item' :key='index'></item-view>
+                </div>
+              </div>
               <li v-for="(item,index) in profileItems" :key='index'>
                 <div class="card" style="border-style: outset; width: 15rem;">
                   <div class="card-block">
@@ -114,4 +118,5 @@ h2 {
 li {
   display: inline-block;
 }
+
 </style>

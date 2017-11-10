@@ -1,16 +1,29 @@
   <template>
   <div :class="item.id">
-      <button @click="show" class="btn">{{ item.name }}</button>
+      <div class="card col" @click="show" style="border-style: outset; width: 12rem; height: 11rem;">
+        <div class="card-block">
+          <h3 class="card-title">{{item.name}}</h3>
+        </div>
+      </div>
+      <!-- <button @click="show" class="btn">{{ item.name }}</button> -->
       <modal :name="item.id">
         <div class="modal-header">
-          <button class="close" @click="hide">&times;</button>
           <h4 class="modal-title">{{ item.name }}</h4>
+          <button class="close" @click="hide">&times;</button>
+        </div>
+        <div class="modal-body" style="height: 10rem;">
+          {{ item.description }}
+        </div>
+        <div class="modal-footer">
+          <a href="#" @click="removeListing(index)" class="btn btn-danger mr-auto">Delete Item</a>
+          <a href="#" @click="hide" class="btn btn-primary">Close</a>
         </div>
       </modal>          
    </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'addItem',
@@ -26,18 +39,33 @@ export default {
     hide() {
       this.$modal.hide(this.item.id);
     },
+    removeListing(index) {
+      const config = {
+        headers: {
+          id_item: this.profileItems[index].id,
+        },
+      };
+      axios.delete('/items', config)
+        .then(() => {
+          // this.getItems(this.userId);
+        });
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h1,
 h2 {
   font-weight: normal;
 }
 
-li {
+.btn-danger {
+  display: inline-block;
+}
+
+.card {
   display: inline-block;
 }
 </style>
