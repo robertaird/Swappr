@@ -1,14 +1,16 @@
   <template>
   <div :class="item.id">
-      <div class="card col" @click="show" style="border-style: outset; width: 12rem; height: 11rem;">
-        <div class="card-block">
-          <h3 class="card-title">{{item.name}}</h3>
+      <div class="card col" @click="show" style="margin: 5px; border-style: outset; width: 12rem; height: 11rem;">
+        <div class="card-body">
+        </div>
+        <div class="card-footer bg-transparent">
+          <h5 class="card-title">{{item.name}}</h5>
         </div>
       </div>
       <!-- <button @click="show" class="btn">{{ item.name }}</button> -->
       <modal :name="item.id">
         <div class="modal-header">
-          <h4 class="modal-title">{{ item.name }}</h4>
+          <h4 class="modal-title ">{{ item.name }}</h4>
           <button class="close" @click="hide">&times;</button>
         </div>
         <div class="modal-body" style="height: 10rem;">

@@ -2,9 +2,9 @@
   <div class="hello">
       <nav class="navbar">
         <button class="btn" @click="auth.logout">Sign Out</button>
-        <button  class="btn" @click="mainMenu">Main Menu</button>
+        <button  class="btn btn-primary" @click="mainMenu">Swap!</button>
       </nav>
-      <button @click="tradeView" class="btn">Accepted Trades ({{tradeOffers.length}})</button>
+      <button @click="tradeView" class="btn">Pending Trades ({{tradeOffers.length}})</button>
       <modal name="acceptedTrades">
         <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
@@ -23,10 +23,10 @@
           </ul>
         </div>
       </modal>
-      <div class="card" style="background-color: #99999;">
+      <div class="card" style="background-color: #E5E7E9;">
           <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
-          <div class="card">
+          <div class="card" style="background-color: #F0F3F4">
             <ul>
               <div class="container-fluid">
                 <div class="row">

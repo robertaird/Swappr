@@ -3,8 +3,8 @@
       <button @click="show" class="btn">Add New Item</button>
       <modal name="addNew">
         <div class="modal-header">
-          <button class="close" @click="hide">&times;</button>
           <h4 class="modal-title">Add New Item</h4>
+          <button class="close" @click="hide">&times;</button>
         </div>
         <form>
           <div class="form-group">
@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <label for="descriptionArea">Description</label>
-            <input v-model="description" v-on:keyup.enter="addItem" type="text" class="form-control" id="descriptionArea" placeholder="description">
+            <textarea v-model="description" v-on:keyup.enter="addItem" type="text" class="form-control" id="descriptionArea" placeholder="description"></textarea>
           </div>
           <button @click="addItem" type='button' class="btn btn-primary">Add Item</button>
         </form>
