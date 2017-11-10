@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('sequelize');
 const db = require('../../app/db');
 
 const app = express();
@@ -7,8 +8,8 @@ app.use(express.json());
 
 app.get('/users', (req, res) => {
   // ! Verification will probably need to happen in here!
-  const { id_user: id } = req.headers;
-  db.User.findOne({ where: { id } })
+  const { id_facebook } = req.headers;
+  db.User.findOne({ where: { id_facebook } })
     .then((foundUser) => {
       if (foundUser) {
         res.send(foundUser);
@@ -24,18 +25,30 @@ app.get('/users', (req, res) => {
 
 app.post('/users', (req, res) => {
   // ! Verification will probably need to happen in here!
-  const newUser = req.body;
-  db.User.create(newUser)
-    .then(createdUser =>
-      res.send(createdUser))
-    .catch((err) => {
-      if (err.name === 'SequelizeUniqueConstraintError') {
-        res.send('User already exists!');
-      } else {
-        console.log(err);
-        res.send(500, 'something went wrong!');
-      }
-    });
+  const { name, email, id_facebook } = req.body;
+
+  return db.User.findCreateFind({
+    where: {
+      email,
+      id_facebook,
+    },
+  })
+  .spread((userResult, created) => {
+    if (created) {
+      userResult.update({ name })
+        .then((updatedUser) => {
+          res.send(updatedUser);
+        });
+    } else if (userResult === null) {
+      res.send(406, 'could not find or create');
+    } else {
+      res.send(userResult);
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+    res.send(500, err);
+  });
 });
 
 module.exports = app;
