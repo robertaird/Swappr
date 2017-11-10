@@ -49,4 +49,5 @@ allRoutes.beforeEach((to, from, next) => {
   }
 });
 
+
 export default allRoutes;

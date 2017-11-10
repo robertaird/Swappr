@@ -23,12 +23,14 @@ export default {
   data() {
     authNotifier.on('authChange', (authState) => {
       this.authenticated = authState.authenticated;
-      this.userId = localStorage.getItem('userId');
+      // this.userId = localStorage.getItem('userId');
+      this.userId = 2;
     });
     return {
       auth,
       authenticated,
-      userId: localStorage.getItem('userId'),
+      userId: 2,
+      // userId: localStorage.getItem('userId'),
     };
   },
 };
