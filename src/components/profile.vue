@@ -24,8 +24,7 @@
         </div>
       </modal>
       <div class="well">
-        {{ userId }}
-        <add-item v-if="userId !== undefined" v-on:new-item="newItem"></add-item>
+        <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
         <!-- <button @click="show" class="btn">Add New Item</button> -->
           <div class="well">
             <ul>
@@ -100,7 +99,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.userId, 'should be user ID');
     this.getItems();
   },
 };
