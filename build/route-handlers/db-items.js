@@ -1,7 +1,9 @@
 const express = require('express');
+const Sequelize = require('sequelize');
 const db = require('../../app/db');
 
 const app = express();
+const Op = Sequelize.Op;
 
 app.use(express.json());
 
@@ -29,6 +31,31 @@ app.post('/items', (req, res) => {
       res.send(500, 'something went wrong!');
     });
   // res.send();
+});
+
+app.delete('/items', (req, res) => {
+  console.log(req.headers);
+  const { id_item: id } = req.headers;
+  console.log(id);
+  db.Transaction.destroy({
+    where: {
+      [Op.or]: [{ id_item_desired: id }, { id_item_offered: id }],
+    },
+  })
+  .then(() => {
+    db.Item.destroy({ where: { id } })
+      .then(() => {
+        res.send('Item deleted successfully!');
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(500, 'something went wrong!');
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+    res.send(500, 'something went wrong!');
+  });
 });
 
 module.exports = app;
