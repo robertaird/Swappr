@@ -31,4 +31,9 @@ app.post('/items', (req, res) => {
   // res.send();
 });
 
+app.delete('/items', (req, res) => {
+  console.log(req);
+  res.send();
+});
+
 module.exports = app;
