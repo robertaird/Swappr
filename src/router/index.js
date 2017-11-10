@@ -11,7 +11,7 @@ Vue.use(Router);
 Vue.use(axios);
 Vue.use(VModal);
 
-export default new Router({
+const allRoutes = new Router({
   mode: 'history',
   routes: [
     {
@@ -40,3 +40,13 @@ export default new Router({
     },
   ],
 });
+
+allRoutes.beforeEach((to, from, next) => {
+  if (to.name === 'Callback' || to.name === 'loginScreen' || Number(localStorage.getItem('userId'))) {
+    next();
+  } else {
+    next('/');
+  }
+});
+
+export default allRoutes;
