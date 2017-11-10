@@ -23,7 +23,7 @@
        <!-- <button class="btn-danger" @click="hide">Nevermind</button> -->
       </modal>
       <div class="well">
-        <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
+        <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
         <div class="card" style="border-style: outset; width: 15rem;">
           <div class="card-block">
             <h3 class="card-title">{{currentItem.name}}</h3>
@@ -88,6 +88,24 @@ export default {
     },
     ready() {
       this.getItems(this.userId);
+    },
+    rejectTradeItem() {
+      axios.post('/transactions', { body: {
+        user_id: this.userId,
+        id_item_offered: this.currentItem.id_item,
+        id_item_desired: this.currentItem.id_item,
+        pending: false,
+        accepted: false,
+      },
+      }).then((item) => {
+        this.getTradeItem();
+        console.log(item);
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    acceptTradeItem() {
+
     },
   },
 };
