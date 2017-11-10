@@ -48,6 +48,18 @@ app.get('/transactions', (req, res) => {
   });
 });
 
+app.get('/transactions/offers', (req, res) => {
+  const { id_user: userId } = req.headers;
+  db.Transaction.findAll({ where: { id_user: userId, accepted: true } })
+    .then((offers) => {
+      res.send(offers);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(500);
+    });
+});
+
 app.post('/transactions', (req, res) => {
   const newTransaction = req.body;
   const { id_item_offered, id_item_desired } = newTransaction;

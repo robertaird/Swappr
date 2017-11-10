@@ -65,7 +65,18 @@ export default {
     newItem({ data: newItem }) {
       this.profileItems.push(newItem);
     },
-    getUserItems() {
+    getTradeOffers() {
+      const config = {
+        headers: {
+          id_user: this.userId,
+        },
+      };
+      axios.get('/transactions/offers', config)
+        .then((trades) => {
+          trades.forEach(item => this.tradeOffers.push(item));
+        });
+    },
+    getItems() {
       const config = {
         headers: {
           id_user: this.userId,
@@ -98,7 +109,8 @@ export default {
     },
   },
   mounted() {
-    this.getUserItems();
+    this.getItems();
+    this.getTradeOffers(this.userId);
   },
 };
 </script>
