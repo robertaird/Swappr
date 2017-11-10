@@ -49,13 +49,19 @@ export default class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    console.log(authResult, '-----------------------');
-    // console.log(this.auth0.client, '---------------------');
-    // console.log(this.auth0.client.userInfo);
     this.auth0.client.userInfo(authResult.accessToken, (issue, userInfo) => {
       if (issue) {
         console.error(issue);
       }
+      console.log(userInfo);
+      const { email, sub, given_name } = userInfo;
+      const idGoogle = sub.slice(userInfo.sub.indexOf('|') + 1);
+      const user = {
+        name: given_name,
+        id_facebook: idGoogle,
+        email,
+      };
+      console.log(user);
       localStorage.setItem('userId', userInfo.sub.slice(userInfo.sub.indexOf('|') + 1));
       setTimeout(() => {
         this.authNotifier.emit('authChange', { authenticated: true });
