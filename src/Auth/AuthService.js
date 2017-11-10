@@ -4,6 +4,7 @@ import auth0 from 'auth0-js';
 import EventEmitter from 'EventEmitter';
 import { AUTH_CONFIG } from './auth0-variables';
 import router from './../router';
+import userService from '../services/createUser';
 
 export default class AuthService {
   authenticated = this.isAuthenticated();
@@ -22,7 +23,7 @@ export default class AuthService {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid',
+    scope: 'openid profile email',
   })
   login() {
     this.auth0.authorize();
@@ -57,7 +58,17 @@ export default class AuthService {
       if (issue) {
         console.error(issue);
       }
-      localStorage.setItem('userId', userInfo.sub.slice(userInfo.sub.indexOf('|') + 1));
+      const { email, sub, given_name } = userInfo;
+      const idGoogle = sub.slice(userInfo.sub.indexOf('|') + 1);
+      const user = {
+        name: given_name,
+        id_facebook: idGoogle,
+        email,
+      };
+      userService.createUser(user).then(({ data: { id } }) => {
+        console.log(id);
+        localStorage.setItem('userId', id);
+      });
     });
     this.authNotifier.emit('authChange', { authenticated: true });
   }
