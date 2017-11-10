@@ -73,7 +73,6 @@ export default {
       };
       axios.get('/items', config)
         .then(({ data: userItems }) => {
-          console.log(userItems);
           userItems.forEach(item => this.profileItems.push(item));
         });
     },
