@@ -5,9 +5,11 @@ export default {
     axios.post('/users', newUser)
       .then(createdUser => console.log(createdUser));
   },
-  getUser(authId) {
+  getUser({ id_facebook }) {
     const config = {
-      id_facebook: authId,
+      headers: {
+        id_facebook,
+      },
     };
     axios.get('/users', config);
   },
