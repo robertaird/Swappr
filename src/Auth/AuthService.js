@@ -32,10 +32,14 @@ export default class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        router.replace('main');
+        setTimeout(() => {
+          router.replace('main');
+        }, 1000);
       } else if (err) {
-        router.replace('main');
-        console.log(err);
+        setTimeout(() => {
+          router.replace('main');
+          console.log(err);
+        }, 1000);
         // alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });
@@ -54,10 +58,8 @@ export default class AuthService {
         console.error(issue);
       }
       localStorage.setItem('userId', userInfo.sub.slice(userInfo.sub.indexOf('|') + 1));
-      setTimeout(() => {
-        this.authNotifier.emit('authChange', { authenticated: true });
-      }, 500);
     });
+    this.authNotifier.emit('authChange', { authenticated: true });
   }
 
   logout() {
