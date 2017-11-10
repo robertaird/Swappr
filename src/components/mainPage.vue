@@ -15,7 +15,7 @@
              <div class="card-block">
                <h3 class="card-title">{{item.name}}</h3>
                <p class="card-text">{{item.description}}</p>
-               <a href="#" @click="offerItem(index)" class="btn btn-primary">Offer</a>
+               <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary">Offer</a>
              </div>
            </div>
          </li>
@@ -81,6 +81,7 @@ export default {
       axios.get('/transactions', config)
       .then(({ data: tradeItem }) => {
         this.currentTradeItem = tradeItem;
+        // console.log(this.currentTradeItem);
       });
     },
     show() {
@@ -100,34 +101,37 @@ export default {
       this.getUserItems(this.userId);
     },
     rejectTradeItem() {
-      console.log(this.userId);
-      console.log(this.currentTradeItem.id);
-      console.log(this.userItems);
-      axios.post('/transactions', { body: {
-        user_id: this.userId,
+      const config = {
+        id_user: this.userId,
         id_item_offered: this.currentTradeItem.id,
         id_item_desired: this.currentTradeItem.id,
         pending: false,
         accepted: false,
-      },
-      }).then((item) => {
-        this.getTradeItem();
+      };
+      console.log(config);
+      axios.post('/transactions', config)
+      .then((item) => {
         console.log(item);
+        this.getTradeItem();
       }).catch((error) => {
         console.log(error);
       });
     },
-    acceptTradeItem(profileItem) {
-      axios.post('/transactions', { body: {
-        user_id: this.userId,
-        id_item_offered: profileItem,
-        id_item_desired: this.currentTradeItem.id_item,
+    acceptTradeItem(userItem) {
+      const config = {
+        id_user: 2,
+        id_item_offered: 18,
+        id_item_desired: 52,
         pending: true,
-      },
-      }).then((item) => {
+      };
+      console.log(config);
+      axios.post('/transactions', config)
+      .then((item) => {
+        this.hide();
         console.log(item);
       }).catch((error) => {
         console.log(error);
+        console.log(this.userId, userItem.id, this.currentTradeItem.id);
       });
     },
   },
