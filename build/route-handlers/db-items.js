@@ -1,7 +1,9 @@
 const express = require('express');
+const Sequelize = require('sequelize');
 const db = require('../../app/db');
 
 const app = express();
+const Op = Sequelize.Op;
 
 app.use(express.json());
 
@@ -35,10 +37,20 @@ app.delete('/items', (req, res) => {
   console.log(req.headers);
   const { id_item: id } = req.headers;
   console.log(id);
-  db.Item.destroy({ where: { id } }).then((...args) => {
+  db.Transaction.destroy({
+    where: {
+      [Op.or]: [{ id_item_desired: id }, { id_item_offered: id }],
+    },
+  })
+  .then((...args) => {
     console.log(args);
-  });
-  res.send();
+    db.Item.destroy({ where: { id } })
+      .then(() => {
+        res.send();
+      })
+      .catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
 });
 
 module.exports = app;
