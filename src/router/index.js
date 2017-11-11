@@ -4,21 +4,16 @@ import Callback from '@/components/Callback';
 import loginScreen from '@/components/loginScreen';
 import mainPage from '@/components/mainPage';
 import profile from '@/components/profile';
-import axios from 'axios';
+// import axios from 'axios';
 import VModal from 'vue-js-modal';
 
 Vue.use(Router);
-Vue.use(axios);
+// Vue.use(axios);
 Vue.use(VModal);
 
 const allRoutes = new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'loginScreen',
-      component: loginScreen,
-    },
     {
       path: '/profile',
       name: 'profile',
@@ -28,6 +23,11 @@ const allRoutes = new Router({
       path: '/main',
       name: 'mainPage',
       component: mainPage,
+    },
+    {
+      path: '/',
+      name: 'loginScreen',
+      component: loginScreen,
     },
     {
       path: '/callback',
@@ -42,12 +42,11 @@ const allRoutes = new Router({
 });
 
 allRoutes.beforeEach((to, from, next) => {
-  if (to.name === 'Callback' || to.name === 'loginScreen' || to.name === 'profile' || to.name === 'mainPage' || Number(localStorage.getItem('userId'))) {
+  if (to.name === 'Callback' || to.name === 'loginScreen' || Number(localStorage.getItem('userId'))) {
     next();
   } else {
     next('/');
   }
 });
-
 
 export default allRoutes;
