@@ -17,9 +17,12 @@
                     <label for="descriptionArea">Description</label>
                     <textarea v-model="description" v-on:keyup.enter="addItem" type="text" class="form-control" id="descriptionArea" placeholder="description"></textarea>
                   </div>
-                  <button @click="addItem" type='button' class="btn btn-primary">Add Item</button>
                 </form>
               </div>
+            </div>
+            <div slot="modal-footer" class="w-100">
+              <button @click="addItem" type='button' class="btn btn-primary float-left">Add Item</button>
+              <b-btn class="float-right" variant="primary" @click="hideModal">Close</b-btn>
             </div>
       </b-modal>          
    </div>
