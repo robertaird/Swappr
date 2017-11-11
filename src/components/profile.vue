@@ -10,18 +10,18 @@
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           <button class="close" @click="closeTradeView">&times;</button>
           <h4 class="modal-title">Accepted Trades</h4>
-          <ul>
+        </div>
+         <ul>
             <li v-for="(trade,index) in tradeOffers" :key='index'>
-              <!-- <div class="card" style="border-style: outset; width: 15rem;">
+              <div class="card" style="border-style: outset; width: 15rem;">
                 <div class="card-block">
                   <h3 class="card-title">{{item.name}}</h3>
                   <p class="card-text">{{item.description}}</p>
                   <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
                 </div>
-              </div> -->
+              </div>
             </li>
           </ul>
-        </div>
       </modal>
       <div class="well">
         <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
@@ -73,7 +73,9 @@ export default {
       };
       axios.get('/transactions/offers', config)
         .then((trades) => {
-          trades.forEach(item => this.tradeOffers.push(item));
+          console.log(trades);
+          this.tradeOffers = trades.data;
+          // trades.forEach(item => this.tradeOffers.push(item));
         });
     },
     getItems() {

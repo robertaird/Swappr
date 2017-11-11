@@ -50,14 +50,15 @@ app.get('/transactions', (req, res) => {
 
 app.get('/transactions/offers', (req, res) => {
   const { id_user: userId } = req.headers;
-  db.Transaction.findAll({ where: { id_user: userId, accepted: true } })
-    .then((offers) => {
-      res.send(offers);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.send(500);
-    });
+  // db.Transaction.findAll({ where: { id_user: userId, accepted: true } })
+  //   .then((offers) => {
+  //     res.send(offers);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.send(500);
+  //   });
+  db.Item.findAll({  where: {id:}})
 });
 
 app.post('/transactions', (req, res) => {
