@@ -65,9 +65,13 @@ export default class AuthService {
         id_facebook: idGoogle,
         email,
       };
-      userService.createUser(user).then(({ data: { id } }) => {
-        console.log(id);
+      console.log(user);
+      userService.createUser(user)
+      .then(({ data: { id } }) => {
         localStorage.setItem('userId', id);
+      })
+      .catch((error) => {
+        console.log(error);
       });
     });
     this.authNotifier.emit('authChange', { authenticated: true });
