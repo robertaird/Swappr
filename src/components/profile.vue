@@ -2,7 +2,9 @@
   <div class="container-fluid">
       <nav class="navbar">
         <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
-        <button class="btn btn-info ml-auto" @click="tradeView">Pending Trades ({{tradeOffers.length}})</button>
+        <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
+          <button class="btn btn-info ml-auto" @click="tradeView">Pending Trades</button>
+        </span>
         <div style="width: 7em;">
           <button class="btn btn-primary btn-block" @click="mainMenu">Swap!</button>
         </div>
@@ -93,10 +95,6 @@ export default {
 h1,
 h2 {
   font-weight: normal;
-}
-
-.container-fluid {
-  max-width: 700px;
 }
 
 .btn {
