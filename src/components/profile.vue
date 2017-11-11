@@ -95,6 +95,10 @@ h2 {
   font-weight: normal;
 }
 
+.container-fluid {
+  max-width: 700px;
+}
+
 .btn {
   margin: 1px;
 }

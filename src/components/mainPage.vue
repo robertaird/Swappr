@@ -103,6 +103,10 @@ h2 {
   font-weight: normal;
 }
 
+.container-fluid {
+  max-width: 700px;
+}
+
 .well * {
   display: inline-block;
 }
