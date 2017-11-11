@@ -3,7 +3,7 @@
       <div class="card col" @click="show" style="margin: 5px; border-style: outset; width: 12rem; height: 11rem;">
         <div class="card-body">
         </div>
-        <div class="card-footer bg-transparent">
+        <div class="card-footer bg-transparent border-white">
           <h5 class="card-title">{{item.name}}</h5>
         </div>
       </div>

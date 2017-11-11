@@ -1,10 +1,10 @@
   <template>
   <div class="hello">
       <nav class="navbar">
-        <button class="btn" @click="auth.logout">Sign Out</button>
-        <button  class="btn btn-primary" @click="mainMenu">Swap!</button>
+        <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
+        <button class="btn btn-info ml-auto" @click="tradeView">Pending Trades ({{tradeOffers.length}})</button>
+        <button class="btn btn-primary" @click="mainMenu">Swap!</button>
       </nav>
-      <button @click="tradeView" class="btn">Pending Trades ({{tradeOffers.length}})</button>
       <modal name="acceptedTrades">
         <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
@@ -33,7 +33,7 @@
               <item-view v-for="(item,index) in profileItems" :item='item' :key='index'></item-view>
                 </div>
               </div>
-              <li v-for="(item,index) in profileItems" :key='index'>
+              <!-- <li v-for="(item,index) in profileItems" :key='index'>
                 <div class="card" style="border-style: outset; width: 15rem;">
                   <div class="card-block">
                     <h3 class="card-title">{{item.name}}</h3>
@@ -41,7 +41,7 @@
                     <a href="#" @click="removeListing(index)" class="btn btn-primary">remove</a>
                   </div>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
       </div>
@@ -113,6 +113,10 @@ export default {
 h1,
 h2 {
   font-weight: normal;
+}
+
+.btn {
+  margin: 1px;
 }
 
 li {
