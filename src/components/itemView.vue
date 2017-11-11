@@ -17,7 +17,7 @@
           {{ item.id }}
         </div>
         <div slot="modal-footer" class="w-100">
-          <a href="#" @click="removeListing(index)" class="btn btn-danger float-left">Delete Item</a>
+          <a href="#" @click="removeListing" class="btn btn-danger float-left">Delete Item</a>
           <a href="#" @click="hide" class="btn btn-primary float-right">Close</a>
         </div>
       </b-modal>          
@@ -41,15 +41,16 @@ export default {
     hide() {
       this.$refs[this.item.id].hide();
     },
-    removeListing(index) {
+    removeListing() {
+      this.hide();
       const config = {
         headers: {
-          id_item: this.profileItems[index].id,
+          id_item: this.item.id,
         },
       };
-      axios.delete('/itemss', config)
+      axios.delete('/items', config)
         .then(() => {
-          // this.getItems(this.userId);
+          this.$emit('deleted-item');
         });
     },
   },

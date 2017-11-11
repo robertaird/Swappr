@@ -19,7 +19,7 @@
             <ul>
               <div class="container-fluid">
                 <div class="row">
-              <item-view v-for="(item,index) in profileItems" :item='item' :key='index'></item-view>
+              <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getItems"></item-view>
                 </div>
               </div>
             </ul>
