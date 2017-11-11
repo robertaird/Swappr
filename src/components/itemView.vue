@@ -4,23 +4,23 @@
         <div class="card-body">
         </div>
         <div class="card-footer bg-transparent border-white">
-          <h5 class="card-title">{{item.name}}</h5>
+          <h5 class="card-title">{{ item.name }}</h5>
         </div>
       </div>
-      <!-- <button @click="show" class="btn">{{ item.name }}</button> -->
-      <modal :name="item.id">
-        <div class="modal-header">
-          <h4 class="modal-title ">{{ item.name }}</h4>
-          <button class="close" @click="hide">&times;</button>
+      <b-modal :ref="item.id">
+        <div slot="modal-header" class="w-100">
+          <h4 class="modal-title float-left">{{ item.name }}</h4>
+          <button class="close float-right" @click="hide">&times;</button>
         </div>
         <div class="modal-body" style="height: 10rem;">
-          {{ item.description }}
+          {{ item.description }}<br>
+          {{ item.id }}
         </div>
-        <div class="modal-footer">
-          <a href="#" @click="removeListing(index)" class="btn btn-danger mr-auto">Delete Item</a>
-          <a href="#" @click="hide" class="btn btn-primary">Close</a>
+        <div slot="modal-footer" class="w-100">
+          <a href="#" @click="removeListing(index)" class="btn btn-danger float-left">Delete Item</a>
+          <a href="#" @click="hide" class="btn btn-primary float-right">Close</a>
         </div>
-      </modal>          
+      </b-modal>          
    </div>
 </template>
 
@@ -36,10 +36,10 @@ export default {
   },
   methods: {
     show() {
-      this.$modal.show(this.item.id);
+      this.$refs[this.item.id].show();
     },
     hide() {
-      this.$modal.hide(this.item.id);
+      this.$refs[this.item.id].hide();
     },
     removeListing(index) {
       const config = {
@@ -47,7 +47,7 @@ export default {
           id_item: this.profileItems[index].id,
         },
       };
-      axios.delete('/items', config)
+      axios.delete('/itemss', config)
         .then(() => {
           // this.getItems(this.userId);
         });
