@@ -73,7 +73,7 @@ export default {
       };
       axios.get('/items', config)
         .then(({ data: userItems }) => {
-          userItems.forEach(item => this.profileItems.push(item));
+          this.profileItems = userItems;
         });
     },
     mainMenu() {
@@ -82,7 +82,7 @@ export default {
     removeListing(index) {
       const config = {
         headers: {
-          id_item: this.profileItems[index].id_item,
+          id_item: this.profileItems[index].id,
         },
       };
       axios.delete('/items', config)

@@ -13,7 +13,7 @@
           </div>
           <div class="form-group">
             <label for="descriptionArea">Description</label>
-            <input v-model="description" type="text" class="form-control" id="descriptionArea" placeholder="description">
+            <input v-model="description" v-on:keyup.enter="addItem" type="text" class="form-control" id="descriptionArea" placeholder="description">
           </div>
           <button @click="addItem" type='button' class="btn btn-primary">Add Item</button>
         </form>
@@ -48,12 +48,12 @@ export default {
           description: this.description,
           id_user: this.userId,
         };
+        this.hide();
         axios.post('/items', config)
           .then((item) => {
             this.name = '';
             this.description = '';
             this.$emit('new-item', item);
-            this.hide();
           });
       }
     },
