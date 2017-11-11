@@ -26,7 +26,7 @@
       </modal>
       <div class="card p-1 col-12" style="background-color: #E5E7E9;">
         <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
-        <div class="card" style="border-style: outset; width: 15rem;">
+        <div class="card" style="border-style: outset; width: 15rem; height: 14rem;">
           <div class="card-block">
             <h3 class="card-title">{{currentItem.name}}</h3>
             <p class="card-text">{{currentItem.description}}</p>
