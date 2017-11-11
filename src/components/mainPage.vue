@@ -65,6 +65,7 @@ export default {
         });
     },
     getTradeItem() {
+      console.log(this.userId);
       const config = {
         headers: {
           id_user: this.userId,
