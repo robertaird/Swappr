@@ -1,6 +1,6 @@
   <template>
   <div :class="item.id">
-      <div class="card col mx-2" @click="show" style="margin: 5px; border-style: outset; width: 11rem; height: 10rem;">
+      <div class="card col" @click="show" style="margin: 5px; border-style: outset; width: 12rem; height: 11rem;">
         <div class="card-body">
         </div>
         <div class="card-footer bg-transparent border-white">

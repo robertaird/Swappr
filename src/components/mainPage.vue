@@ -1,8 +1,10 @@
   <template>
-  <div class="hello">
+  <div class="container-fluid">
       <nav class="navbar">
-        <button class="btn" @click="auth.logout">Sign Out</button>
-        <button class="btn" @click="profilePage">Profile Page</button>
+        <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
+        <div style="width: 7em;">
+          <button class="btn btn-primary btn-block" @click="profilePage">Profile Page</button>
+        </div>
       </nav>
       <modal name="itemModal">
         <div class="modal-header">
@@ -22,7 +24,7 @@
        </ul>
        <!-- <button class="btn-danger" @click="hide">Nevermind</button> -->
       </modal>
-      <div class="well">
+      <div class="card p-1 col-12" style="background-color: #E5E7E9;">
         <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
         <div class="card" style="border-style: outset; width: 15rem;">
           <div class="card-block">
@@ -103,6 +105,10 @@ h2 {
 
 .well * {
   display: inline-block;
+}
+
+.btn {
+  margin: 1px;
 }
 
 li {

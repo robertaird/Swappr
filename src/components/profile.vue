@@ -3,7 +3,9 @@
       <nav class="navbar">
         <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
         <button class="btn btn-info ml-auto" @click="tradeView">Pending Trades ({{tradeOffers.length}})</button>
-        <button class="btn btn-primary" @click="mainMenu">Swap!</button>
+        <div style="width: 7em;">
+          <button class="btn btn-primary btn-block" @click="mainMenu">Swap!</button>
+        </div>
       </nav>
       <modal name="acceptedTrades">
         <div class="modal-header">
@@ -11,9 +13,9 @@
           <h4 class="modal-title">Accepted Trades</h4>
         </div>
       </modal>
-      <div class="card p-1" style="background-color: #E5E7E9;">
+      <div class="card py-1 col-12" style="min-height: 10em; background-color: #E5E7E9;">
           <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
-          <div class="card px-3" style="background-color: #F0F3F4">
+          <div class="card my-1 pl-4 w-100" style="background-color: #F0F3F4; min-height: 10em;">
             <div class="container-fluid">
               <div class="row">
                 <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getItems"></item-view>
