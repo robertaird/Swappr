@@ -50,7 +50,7 @@ export default {
     newItem({ data: newItem }) {
       this.profileItems.push(newItem);
     },
-    getItems() {
+    getUserItems() {
       const config = {
         headers: {
           id_user: this.userId,
@@ -85,7 +85,7 @@ export default {
     },
   },
   mounted() {
-    this.getItems();
+    this.getUserItems();
   },
 };
 </script>

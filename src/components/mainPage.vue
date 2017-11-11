@@ -12,24 +12,23 @@
           <h4 class="modal-title">Your Offer</h4>
         </div>
        <ul>
-         <li v-for="(item,index) in profileItems" :key='index'>
+         <li v-for="(item,index) in userItems" :key='index'>
            <div class="card" style="border-style: outset; width: 15rem;">
              <div class="card-block">
                <h3 class="card-title">{{item.name}}</h3>
                <p class="card-text">{{item.description}}</p>
-               <a href="#" @click="offerItem(index)" class="btn btn-primary">Offer</a>
+               <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary">Offer</a>
              </div>
            </div>
          </li>
        </ul>
-       <!-- <button class="btn-danger" @click="hide">Nevermind</button> -->
       </modal>
       <div class="card p-1 col-12" style="background-color: #E5E7E9;">
         <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
         <div class="card" style="border-style: outset; width: 15rem; height: 14rem;">
           <div class="card-block">
-            <h3 class="card-title">{{currentItem.name}}</h3>
-            <p class="card-text">{{currentItem.description}}</p>
+            <h3 class="card-title">{{currentTradeItem.name}}</h3>
+            <p class="card-text">{{currentTradeItem.description}}</p>
           </div>
         </div>
         <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
@@ -45,32 +44,39 @@ export default {
   props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      currentItem: {
-        name: 'test Title',
-        description: 'test description',
-        id_item: 4,
-      },
-      profileItems: [
-        { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
-      ],
+      currentTradeItem: {},
+      userItems: [],
     };
   },
   methods: {
-    getItems(userId) {
+    getUserItems() {
       const config = {
         headers: {
-          id_user: userId,
+          id_user: this.userId,
         },
       };
       axios.get('/items', config)
-        .then((userItems) => {
-          console.log(userItems);
-          if (!this.profileItems.length) {
+        .then(({ data: userItems }) => {
+          userItems.forEach((item) => {
+            this.userItems.push(item);
+          });
+          if (!this.userItems.length) {
             console.log('cannot trade');
           }
         })
         .catch(err => console.log(err));
+    },
+    getTradeItem() {
+      console.log(this.userId);
+      const config = {
+        headers: {
+          id_user: this.userId,
+        },
+      };
+      axios.get('/transactions', config)
+      .then(({ data: tradeItem }) => {
+        this.currentTradeItem = tradeItem;
+      });
     },
     show() {
       this.$modal.show('itemModal');
@@ -81,17 +87,44 @@ export default {
     profilePage() {
       this.$router.push({ path: '/profile' });
     },
-    offerItem(index) {
-      axios.post('/offer', { body: { id_item_offered: this.profileItems[index].id_item, id_item_desired: this.currentItem.id_item } })
-        .then(this.hide)
-        .catch(err => console.log(err));
-    },
-    getTradeItem() {
-
-    },
     ready() {
-      this.getItems(this.userId);
+      this.getUserItems(this.userId);
     },
+    rejectTradeItem() {
+      const config = {
+        id_user: this.userId,
+        id_item_offered: this.currentTradeItem.id,
+        id_item_desired: this.currentTradeItem.id,
+        pending: false,
+        accepted: false,
+      };
+      axios.post('/transactions', config)
+      .then(() => {
+        this.getTradeItem();
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    acceptTradeItem(userItem) {
+      const config = {
+        id_user: this.userId,
+        id_item_offered: userItem.id,
+        id_item_desired: this.currentTradeItem.id,
+        pending: true,
+      };
+      axios.post('/transactions', config)
+      .then(() => {
+        this.getTradeItem();
+        this.hide();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+  },
+  mounted() {
+    this.getTradeItem();
+    this.getUserItems();
   },
 };
 </script>

@@ -67,10 +67,11 @@ export default class AuthService {
       };
       userService.createUser(user)
         .then(({ data: { id } }) => {
-          console.log(id);
           localStorage.setItem('userId', id);
         })
-        .catch(err => console.log(err));
+        .catch((error) => {
+          console.log(error);
+        });
     });
     this.authNotifier.emit('authChange', { authenticated: true });
   }
