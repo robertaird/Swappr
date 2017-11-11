@@ -44,7 +44,6 @@ export default {
     return {
       currentTradeItem: {},
       userItems: [],
-      // userId: 2,
     };
   },
   methods: {

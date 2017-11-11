@@ -6,6 +6,7 @@ import App from './App';
 import addItem from './components/addItem.vue';
 import router from './router';
 
+
 Vue.config.productionTip = false;
 
 Vue.component('add-item', addItem);
