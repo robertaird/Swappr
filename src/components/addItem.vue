@@ -1,7 +1,7 @@
   <template>
   <div class="addItem">
       <b-button @click="showModal" class="btn btn-info">Add New Item</b-button>
-      <b-modal ref="addItemModal" title="Add New Item">
+      <b-modal ref="addItemModal" class="mt-10">
             <div slot="modal-header" class="w-100">
               <h3 class="float-left">Add New Item</h3>
               <button class="close float-right" @click="hideModal">&times;</button>
@@ -58,7 +58,7 @@ export default {
           description: this.description,
           id_user: this.userId,
         };
-        this.hide();
+        this.hideModal();
         axios.post('/items', config)
           .then((item) => {
             this.name = '';
