@@ -20,7 +20,6 @@
            </div>
          </li>
        </ul>
-       <!-- <button class="btn-danger" @click="hide">Nevermind</button> -->
       </modal>
       <div class="well">
         <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
@@ -43,16 +42,9 @@ export default {
   props: ['auth', 'authentication', 'userId'],
   data() {
     return {
-      currentTradeItem: {
-        // name: 'test Title',
-        // description: 'test description',
-        // id_item: 4,
-      },
-      userItems: [
-        // { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        // { name: 'testItem2', description: 'an even nicer item', id_item: 6 },
-      ],
-      userId: 2,
+      currentTradeItem: {},
+      userItems: [],
+      // userId: 2,
     };
   },
   methods: {
@@ -81,7 +73,6 @@ export default {
       axios.get('/transactions', config)
       .then(({ data: tradeItem }) => {
         this.currentTradeItem = tradeItem;
-        // console.log(this.currentTradeItem);
       });
     },
     show() {
@@ -92,10 +83,6 @@ export default {
     },
     profilePage() {
       this.$router.push({ path: '/profile' });
-    },
-    offerItem(index) {
-      axios.post('/offer', { body: { id_item_offered: this.userItems[index].id_item, id_item_desired: this.currentTradeItem.id_item } })
-        .then(this.hide);
     },
     ready() {
       this.getUserItems(this.userId);
@@ -108,10 +95,8 @@ export default {
         pending: false,
         accepted: false,
       };
-      console.log(config);
       axios.post('/transactions', config)
-      .then((item) => {
-        console.log(item);
+      .then(() => {
         this.getTradeItem();
       }).catch((error) => {
         console.log(error);
@@ -119,19 +104,18 @@ export default {
     },
     acceptTradeItem(userItem) {
       const config = {
-        id_user: 2,
-        id_item_offered: 18,
-        id_item_desired: 52,
+        id_user: this.userId,
+        id_item_offered: userItem.id,
+        id_item_desired: this.currentTradeItem.id,
         pending: true,
       };
-      console.log(config);
       axios.post('/transactions', config)
-      .then((item) => {
+      .then(() => {
+        this.getTradeItem();
         this.hide();
-        console.log(item);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
-        console.log(this.userId, userItem.id, this.currentTradeItem.id);
       });
     },
   },
