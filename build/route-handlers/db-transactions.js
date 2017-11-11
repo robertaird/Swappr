@@ -17,6 +17,38 @@ const createTransaction = (res, newTransaction) =>
       res.send(500, 'something went wrong!');
     });
 
+
+const test = userId =>
+// db.Transaction.findAll({
+//   where: {
+//     accepted: true,
+//     $or: [
+//           { 'Transaction.id_item_offered': 'b.id' },
+//     ],
+//   },
+//   include: [{
+//     model: 'Item',
+//     as: 'b',
+//   }],
+// }, { raw: true });
+
+db.Transaction.findAll({
+  attributes: ['id_user', 'id_item_offered', 'id_item_desired'],
+  include: [{
+    model: db.Item,
+    attributes: [['name', 'description']],
+  },
+  ],
+  where: {
+    // [Op.or]: [{ id_item_desired: 'Item'.id }, { id_item_offered: 'Item'.id }],
+    // id: id
+    // id_user: userId,
+    accepted: true,
+  },
+});
+
+test('2').then(console.log);
+
 const getSeenItems = userId =>
   db.Transaction.findAll({ where: { id_user: userId }, raw: true })
     .then(items =>
@@ -48,8 +80,8 @@ app.get('/transactions', (req, res) => {
   });
 });
 
-app.get('/transactions/offers', (req, res) => {
-  const { id_user: userId } = req.headers;
+// app.get('/transactions/offers', (req, res) => {
+//   const { id_user: userId } = req.headers;
   // db.Transaction.findAll({ where: { id_user: userId, accepted: true } })
   //   .then((offers) => {
   //     res.send(offers);
@@ -58,8 +90,6 @@ app.get('/transactions/offers', (req, res) => {
   //     console.error(err);
   //     res.send(500);
   //   });
-  db.Item.findAll({  where: {id:}})
-});
 
 app.post('/transactions', (req, res) => {
   const newTransaction = req.body;
