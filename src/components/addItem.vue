@@ -61,7 +61,8 @@ export default {
             this.name = '';
             this.description = '';
             this.$emit('new-item', item);
-          });
+          })
+          .catch(err => console.log(err));
       }
     },
   },

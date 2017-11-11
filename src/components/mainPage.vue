@@ -67,11 +67,8 @@ export default {
           if (!this.profileItems.length) {
             console.log('cannot trade');
           }
-        }).catch(err => console.log(err));
-    },
-    getTradeItem() {
-      axios.get('/newItem')
-      .then(console.log);
+        })
+        .catch(err => console.log(err));
     },
     show() {
       this.$modal.show('itemModal');
@@ -84,7 +81,11 @@ export default {
     },
     offerItem(index) {
       axios.post('/offer', { body: { id_item_offered: this.profileItems[index].id_item, id_item_desired: this.currentItem.id_item } })
-        .then(this.hide).catch(err => console.log(err));
+        .then(this.hide)
+        .catch(err => console.log(err));
+    },
+    getTradeItem() {
+
     },
     ready() {
       this.getItems(this.userId);

@@ -55,7 +55,8 @@ export default {
       axios.get('/items', config)
         .then(({ data: userItems }) => {
           this.profileItems = userItems;
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     },
     mainMenu() {
       this.$router.push({ path: '/main' });
@@ -69,7 +70,8 @@ export default {
       axios.delete('/items', config)
         .then(() => {
           this.getItems(this.userId);
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     },
     tradeView() {
       this.$modal.show('acceptedTrades');
