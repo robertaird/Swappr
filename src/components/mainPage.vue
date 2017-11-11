@@ -67,7 +67,7 @@ export default {
           if (!this.profileItems.length) {
             console.log('cannot trade');
           }
-        });
+        }).catch(err => console.log(err));
     },
     getTradeItem() {
       axios.get('/newItem')
@@ -84,7 +84,7 @@ export default {
     },
     offerItem(index) {
       axios.post('/offer', { body: { id_item_offered: this.profileItems[index].id_item, id_item_desired: this.currentItem.id_item } })
-        .then(this.hide);
+        .then(this.hide).catch(err => console.log(err));
     },
     ready() {
       this.getItems(this.userId);

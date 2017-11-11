@@ -17,7 +17,7 @@
           {{ item.id }}
         </div>
         <div slot="modal-footer" class="w-100">
-          <a href="#" @click="removeListing" class="btn btn-danger float-left">Delete Item</a>
+          <a href="#" @click="removeListing" class="btn btn-danger  btn-sm float-left">Delete Item</a>
           <a href="#" @click="hide" class="btn btn-primary float-right">Close</a>
         </div>
       </b-modal>          
@@ -51,7 +51,8 @@ export default {
       axios.delete('/items', config)
         .then(() => {
           this.$emit('deleted-item');
-        });
+        })
+        .catch(err => console.log(err));
     },
   },
 };

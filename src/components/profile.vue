@@ -7,22 +7,18 @@
       </nav>
       <modal name="acceptedTrades">
         <div class="modal-header">
-          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           <button class="close" @click="closeTradeView">&times;</button>
           <h4 class="modal-title">Accepted Trades</h4>
         </div>
       </modal>
-      <div class="card" style="background-color: #E5E7E9;">
+      <div class="card p-1" style="background-color: #E5E7E9;">
           <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
-        <!-- <button @click="show" class="btn">Add New Item</button> -->
-          <div class="card" style="background-color: #F0F3F4">
-            <ul>
-              <div class="container-fluid">
-                <div class="row">
-              <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getItems"></item-view>
-                </div>
+          <div class="card px-3" style="background-color: #F0F3F4">
+            <div class="container-fluid">
+              <div class="row">
+                <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getItems"></item-view>
               </div>
-            </ul>
+            </div>
           </div>
       </div>
    </div>
@@ -59,7 +55,7 @@ export default {
       axios.get('/items', config)
         .then(({ data: userItems }) => {
           this.profileItems = userItems;
-        });
+        }).catch(err => console.log(err));
     },
     mainMenu() {
       this.$router.push({ path: '/main' });
@@ -73,7 +69,7 @@ export default {
       axios.delete('/items', config)
         .then(() => {
           this.getItems(this.userId);
-        });
+        }).catch(err => console.log(err));
     },
     tradeView() {
       this.$modal.show('acceptedTrades');

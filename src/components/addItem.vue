@@ -48,12 +48,6 @@ export default {
     hideModal() {
       this.$refs.addItemModal.hide();
     },
-    // show() {
-    //   this.$modal.show('addNew');
-    // },
-    // hide() {
-    //   this.$modal.hide('addNew');
-    // },
     addItem() {
       if (this.name.length !== 0 && this.description.length !== 0) {
         const config = {
