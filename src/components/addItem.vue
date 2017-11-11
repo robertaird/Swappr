@@ -1,11 +1,11 @@
   <template>
-  <iv class="addItem">
-      <button @click="show" class="btn btn-info">Add New Item</button>
-      <modal name="addNew" :adaptive="true" draggable=".window-header" height="500px">
+  <div class="addItem">
+      <b-button @click="showModal" class="btn btn-info">Add New Item</b-button>
+      <b-modal ref="addItemModal" :adaptive="true" draggable=".window-header" height="500px">
         <!-- <div class="modal-content"> -->
             <div class="modal-header">
               <h4 class="modal-title">Add New Item</h4>
-              <button class="close" @click="hide">&times;</button>
+              <button class="close" @click="hideModal">&times;</button>
             </div>
             <!-- <div class="modal-body"> -->
               <div>
@@ -24,8 +24,8 @@
               </div>
             <!-- </div> -->
           <!-- </div> -->
-      </modal>          
-   </iv>
+      </b-modal>          
+   </div>
 </template>
 
 <script>
@@ -42,12 +42,18 @@ export default {
     };
   },
   methods: {
-    show() {
-      this.$modal.show('addNew');
+    showModal() {
+      this.$refs.addItemModal.show();
     },
-    hide() {
-      this.$modal.hide('addNew');
+    hideModal() {
+      this.$refs.addItemModal.hide();
     },
+    // show() {
+    //   this.$modal.show('addNew');
+    // },
+    // hide() {
+    //   this.$modal.hide('addNew');
+    // },
     addItem() {
       if (this.name.length !== 0 && this.description.length !== 0) {
         const config = {

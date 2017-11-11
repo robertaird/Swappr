@@ -1,5 +1,5 @@
   <template>
-  <div class="hello">
+  <div class="container-fluid">
       <nav class="navbar">
         <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
         <button class="btn btn-info ml-auto" @click="tradeView">Pending Trades ({{tradeOffers.length}})</button>
@@ -10,17 +10,6 @@
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           <button class="close" @click="closeTradeView">&times;</button>
           <h4 class="modal-title">Accepted Trades</h4>
-          <ul>
-            <li v-for="(trade,index) in tradeOffers" :key='index'>
-              <!-- <div class="card" style="border-style: outset; width: 15rem;">
-                <div class="card-block">
-                  <h3 class="card-title">{{item.name}}</h3>
-                  <p class="card-text">{{item.description}}</p>
-                  <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
-                </div>
-              </div> -->
-            </li>
-          </ul>
         </div>
       </modal>
       <div class="card" style="background-color: #E5E7E9;">
@@ -33,15 +22,6 @@
               <item-view v-for="(item,index) in profileItems" :item='item' :key='index'></item-view>
                 </div>
               </div>
-              <!-- <li v-for="(item,index) in profileItems" :key='index'>
-                <div class="card" style="border-style: outset; width: 15rem;">
-                  <div class="card-block">
-                    <h3 class="card-title">{{item.name}}</h3>
-                    <p class="card-text">{{item.description}}</p>
-                    <a href="#" @click="removeListing(index)" class="btn btn-primary">remove</a>
-                  </div>
-                </div>
-              </li> -->
             </ul>
           </div>
       </div>
