@@ -68,10 +68,11 @@ export default {
     getTradeOffers() {
       const config = {
         headers: {
-          id_user: this.userId,
+          id: this.userId,
+          items: this.profileItems
         },
       };
-      axios.get('/transactions/offers', config)
+      axios.get('/users', config)
         .then((trades) => {
           console.log(trades);
           this.tradeOffers = trades.data;
