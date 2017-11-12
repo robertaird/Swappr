@@ -9,10 +9,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'id_user',
     });
     Transaction.belongsTo(models.Item, {
-      foreignKey: 'id_item_desired',
+      foreignKey: 'id_item_offered',
+      as: 'offered',
     });
     Transaction.belongsTo(models.Item, {
-      foreignKey: 'id_item_offered',
+      foreignKey: 'id_item_desired',
+      as: 'desired',
     });
   };
   return Transaction;

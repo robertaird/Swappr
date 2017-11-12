@@ -23,17 +23,24 @@
 
 }
 
-  .fa-stack[data-count]:after{
-    position:absolute;
-    top:1%;
-    content: attr(data-count);
-    font-size:70%;
-    padding:.6em;
-    border-radius:999px;
-    line-height:.75em;
-    color: white;
-    background:rgba(255,0,0,.85);
-    text-align:center;
-    min-width:2em;
-    font-weight:bold;
-  }
+html {
+  margin: auto;
+}
+.inner-container {
+  height: 75vh;
+}
+
+.fa-stack[data-count]:after{
+  position:absolute;
+  top:1%;
+  content: attr(data-count);
+  font-size:70%;
+  padding:.6em;
+  border-radius:999px;
+  line-height:.75em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width:2em;
+  font-weight:bold;
+}

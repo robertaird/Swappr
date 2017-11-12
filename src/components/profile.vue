@@ -1,5 +1,5 @@
   <template>
-  <div class="container-fluid">
+  <div class="container-fluid main-container">
       <nav class="navbar">
         <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
         <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
@@ -15,7 +15,7 @@
           <h4 class="modal-title">Accepted Trades</h4>
         </div>
       </modal>
-      <div class="card py-1 col-12" style="min-height: 10em; background-color: #E5E7E9;">
+      <div class="card py-1 col-12 inner-container" style="min-height: 10em; background-color: #E5E7E9;">
           <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
           <div class="card my-1 pl-4 w-100" style="background-color: #F0F3F4; min-height: 10em;">
             <div class="container-fluid">

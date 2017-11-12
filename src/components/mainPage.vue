@@ -1,5 +1,5 @@
   <template>
-  <div class="container-fluid">
+  <div class="container-fluid main-container">
       <nav class="navbar">
         <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
         <div style="width: 7em;">
@@ -23,7 +23,7 @@
          </li>
        </ul>
       </modal>
-      <div class="card p-1 col-12" style="background-color: #E5E7E9;">
+      <div class="card p-1 col-12 inner-container" style="background-color: #E5E7E9;">
         <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
         <div class="card" style="border-style: outset; width: 15rem; height: 14rem;">
           <div class="card-block">
@@ -134,10 +134,6 @@ export default {
 h1,
 h2 {
   font-weight: normal;
-}
-
-.container-fluid {
-  max-width: 700px;
 }
 
 .well * {
