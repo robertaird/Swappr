@@ -10,18 +10,18 @@
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           <button class="close" @click="closeTradeView">&times;</button>
           <h4 class="modal-title">Accepted Trades</h4>
-        </div>
-         <ul>
+          <ul>
             <li v-for="(trade,index) in tradeOffers" :key='index'>
-              <div class="card" style="border-style: outset; width: 15rem;">
+              <!-- <div class="card" style="border-style: outset; width: 15rem;">
                 <div class="card-block">
                   <h3 class="card-title">{{item.name}}</h3>
                   <p class="card-text">{{item.description}}</p>
                   <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
                 </div>
-              </div>
+              </div> -->
             </li>
           </ul>
+        </div>
       </modal>
       <div class="well">
         <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
@@ -65,21 +65,7 @@ export default {
     newItem({ data: newItem }) {
       this.profileItems.push(newItem);
     },
-    // getTradeOffers() {
-    //   const config = {
-    //     headers: {
-    //       id: this.userId,
-    //       items: this.profileItems.map(item => item.id),
-    //     },
-    //   };
-    //   axios.get('/users', config)
-    //     .then((trades) => {
-    //       console.log(trades);
-    //       this.tradeOffers = trades.data;
-    //       // trades.forEach(item => this.tradeOffers.push(item));
-    //     });
-    // },
-    getItems() {
+    getUserItems() {
       const config = {
         headers: {
           id_user: this.userId,
@@ -92,6 +78,16 @@ export default {
     },
     mainMenu() {
       this.$router.push({ path: '/main' });
+    },
+    getTradeOffers() {
+      const config = {
+        headers: {
+          id: this.userId,
+          items: this.profileItems.map(item => item.id),
+        },
+      };
+      axios.get('/users', config)
+        .then(console.log);
     },
     removeListing(index) {
       const config = {
@@ -112,8 +108,8 @@ export default {
     },
   },
   mounted() {
-    this.getItems();
-    // this.getTradeOffers(this.userId);
+    this.getUserItems();
+    this.getTradeOffers();
   },
 };
 </script>

@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.get('/users', (req, res) => {
   const { id, items } = req.headers;
+  console.log(id, items);
   // console.log(items);
   const itemArray = items.split(',');
   db.Transaction.findAll({
@@ -36,7 +37,7 @@ app.get('/users', (req, res) => {
     res.send(data);
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
     res.send(err);
   });
 });
@@ -64,7 +65,7 @@ app.post('/users', (req, res) => {
     }
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
     res.send(500, err);
   });
 });

@@ -39,7 +39,7 @@ export default class AuthService {
       } else if (err) {
         setTimeout(() => {
           router.replace('main');
-          console.log(err);
+          console.error(err);
         }, 1000);
         // alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -65,13 +65,12 @@ export default class AuthService {
         id_facebook: idGoogle,
         email,
       };
-      console.log(user);
       userService.createUser(user)
       .then(({ data: { id } }) => {
         localStorage.setItem('userId', id);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
     });
     this.authNotifier.emit('authChange', { authenticated: true });

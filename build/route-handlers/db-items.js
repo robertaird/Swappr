@@ -13,7 +13,7 @@ app.get('/items', (req, res) => {
     .then(items =>
       res.send(items))
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.send(500);
     });
 });
@@ -27,16 +27,14 @@ app.post('/items', (req, res) => {
     .then(createdItem =>
       res.send(createdItem))
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.send(500, 'something went wrong!');
     });
   // res.send();
 });
 
 app.delete('/items', (req, res) => {
-  console.log(req.headers);
   const { id_item: id } = req.headers;
-  console.log(id);
   db.Transaction.destroy({
     where: {
       [Op.or]: [{ id_item_desired: id }, { id_item_offered: id }],
@@ -48,12 +46,12 @@ app.delete('/items', (req, res) => {
         res.send('Item deleted successfully!');
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         res.send(500, 'something went wrong!');
       });
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
     res.send(500, 'something went wrong!');
   });
 });
