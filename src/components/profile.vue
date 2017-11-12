@@ -10,18 +10,18 @@
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           <button class="close" @click="closeTradeView">&times;</button>
           <h4 class="modal-title">Accepted Trades</h4>
-          <ul>
-            <li v-for="(trade,index) in tradeOffers" :key='index'>
-              <!-- <div class="card" style="border-style: outset; width: 15rem;">
-                <div class="card-block">
-                  <h3 class="card-title">{{item.name}}</h3>
-                  <p class="card-text">{{item.description}}</p>
-                  <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
-                </div>
-              </div> -->
-            </li>
-          </ul>
         </div>
+        <ul>
+          <li v-for="(trade,index) in tradeOffers" :key='index'>
+            <div class="card" style="border-style: outset; width: 15rem;">
+              <div class="card-block">
+                <h3 class="card-title">{{trade.theirItem.name}}</h3>
+                <p class="card-text">{{trade.theirItem.description}}</p>
+                <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
+              </div>
+            </div>
+          </li>
+        </ul>
       </modal>
       <div class="well">
         <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
@@ -33,6 +33,7 @@
                   <div class="card-block">
                     <h3 class="card-title">{{item.name}}</h3>
                     <p class="card-text">{{item.description}}</p>
+                    <h3 class="card-title">for your: {{item.name}}</h3>
                     <a href="#" @click="removeListing(index)" class="btn btn-primary">remove</a>
                   </div>
                 </div>
@@ -89,10 +90,16 @@ export default {
           items: this.profileItems.map(item => item.id),
         },
       };
-      console.log(config);
       axios.get('/users', config)
         .then((items) => {
-          this.tradeOffers = items.data;
+          const sorted = items.data.map((offer) => {
+            if (offer.id_user.toString() === this.userId) {
+              return { myItem: offer.offered, theirItem: offer.desired };
+            }
+            return { myItem: offer.desired, theirItem: offer.offered };
+          });
+          this.tradeOffers = sorted;
+          console.log(this.tradeOffers);
         });
     },
     removeListing(index) {
