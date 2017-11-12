@@ -17,11 +17,20 @@
               <div class="card-block">
                 <h3 class="card-title">{{trade.theirItem.name}}</h3>
                 <p class="card-text">{{trade.theirItem.description}}</p>
+                <h3 class="card-title">For Your {{trade.myItem.name}}</h3>
                 <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
               </div>
             </div>
           </li>
         </ul>
+      </modal>
+      <modal name="tradeInfo">
+        <div class="modal-header">
+          <button class="close" @click="closeOfferView">&times;</button>
+          <h4 class="modal-title">Trade Info</h4>
+          <h5>Please contact: {{acceptedTrade.name}}</h5>
+          <h5>At: {{acceptedTrade.email}}</h5>
+        </div>
       </modal>
       <div class="well">
         <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
@@ -54,17 +63,31 @@ export default {
     return {
       name: '',
       description: '',
-      tradeOffers: [{
-        myItem: { name: 'testItem1', description: 'a very fine item', id_item: 3 },
-        tradeFor: { name: 'testItem2', description: 'an even nicer item', id_item: 7 },
-      },
-      ],
+      tradeOffers: [],
       profileItems: [],
+      acceptedTrade: {
+        traderName: '',
+        traderEmail: '',
+      },
     };
   },
   methods: {
     newItem({ data: newItem }) {
       this.profileItems.push(newItem);
+    },
+    acceptOffer(index) {
+      const config = {
+        headers: {
+          id: this.tradeOffers[index].theirItem.id_user,
+        },
+      };
+      axios.get('/users/single', config)
+        .then((trader) => {
+          this.acceptedTrade = trader.data;
+          return 'changed';
+        }).then(() => {
+          this.$modal.show('tradeInfo');
+        });
     },
     getUserItems() {
       return new Promise((resolve) => {
@@ -84,6 +107,9 @@ export default {
       this.$router.push({ path: '/main' });
     },
     getTradeOffers() {
+      if (!this.profileItems.length) {
+        return;
+      }
       const config = {
         headers: {
           id: this.userId,
@@ -118,6 +144,9 @@ export default {
     },
     closeTradeView() {
       this.$modal.hide('acceptedTrades');
+    },
+    closeOfferView() {
+      this.$modal.hide('tradeInfo');
     },
   },
   mounted() {

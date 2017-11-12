@@ -8,10 +8,21 @@ const Op = Sequelize.Op;
 
 app.use(express.json());
 
+
+app.get('/users/single', (req, res) => {
+  const { id } = req.headers;
+  db.User.findOne({ where: { id } })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
+
 app.get('/users', (req, res) => {
   const { id, items } = req.headers;
-  console.log(id, items);
-  // console.log(items);
   const itemArray = items.split(',');
   db.Transaction.findAll({
     where: {
