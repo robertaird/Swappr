@@ -66,15 +66,18 @@ export default {
       this.profileItems.push(newItem);
     },
     getUserItems() {
-      const config = {
-        headers: {
-          id_user: this.userId,
-        },
-      };
-      axios.get('/items', config)
-        .then(({ data: userItems }) => {
-          this.profileItems = userItems;
-        });
+      return new Promise((resolve) => {
+        const config = {
+          headers: {
+            id_user: this.userId,
+          },
+        };
+        axios.get('/items', config)
+          .then(({ data: userItems }) => {
+            this.profileItems = userItems;
+            resolve('done!');
+          });
+      });
     },
     mainMenu() {
       this.$router.push({ path: '/main' });
@@ -86,8 +89,11 @@ export default {
           items: this.profileItems.map(item => item.id),
         },
       };
+      console.log(config);
       axios.get('/users', config)
-        .then(console.log);
+        .then((items) => {
+          this.tradeOffers = items.data;
+        });
     },
     removeListing(index) {
       const config = {
@@ -108,8 +114,8 @@ export default {
     },
   },
   mounted() {
-    this.getUserItems();
-    this.getTradeOffers();
+    this.getUserItems()
+    .then(this.getTradeOffers);
   },
 };
 </script>
