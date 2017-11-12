@@ -65,20 +65,20 @@ export default {
     newItem({ data: newItem }) {
       this.profileItems.push(newItem);
     },
-    getTradeOffers() {
-      const config = {
-        headers: {
-          id: this.userId,
-          items: this.profileItems
-        },
-      };
-      axios.get('/users', config)
-        .then((trades) => {
-          console.log(trades);
-          this.tradeOffers = trades.data;
-          // trades.forEach(item => this.tradeOffers.push(item));
-        });
-    },
+    // getTradeOffers() {
+    //   const config = {
+    //     headers: {
+    //       id: this.userId,
+    //       items: this.profileItems.map(item => item.id),
+    //     },
+    //   };
+    //   axios.get('/users', config)
+    //     .then((trades) => {
+    //       console.log(trades);
+    //       this.tradeOffers = trades.data;
+    //       // trades.forEach(item => this.tradeOffers.push(item));
+    //     });
+    // },
     getItems() {
       const config = {
         headers: {
@@ -113,7 +113,7 @@ export default {
   },
   mounted() {
     this.getItems();
-    this.getTradeOffers(this.userId);
+    // this.getTradeOffers(this.userId);
   },
 };
 </script>
