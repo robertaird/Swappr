@@ -39,7 +39,7 @@ const getSeenItems = (userId, itemArray) =>
         id_item_desired: desiredItem,
         id_item_offered: offeredItem,
       }) => {
-        if (transactionUser === userId) {
+        if (`${transactionUser}` === userId) {
           return desiredItem;
         }
         return offeredItem;
