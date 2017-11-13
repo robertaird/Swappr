@@ -18,7 +18,6 @@ const auth = new AuthService();
 
 const { authenticated, authNotifier } = auth;
 
-
 export default {
   name: 'app',
   data() {

@@ -1,36 +1,54 @@
   <template>
-  <div class="hello">
+  <div class="container main-container">
       <nav class="navbar">
-        <button class="btn" @click="auth.logout">Sign Out</button>
-        <button class="btn" @click="profilePage">Profile Page</button>
-      </nav>
-      <modal name="itemModal">
-        <div class="modal-header">
-          <button class="close" @click="hide">&times;</button>
-          <h4 class="modal-title">Your Offer</h4>
+        <h3 class="logo">Swappr</h3>
+        <button class="btn btn-info ml-auto pending-btn" @click="tradeView">Pending Trades</button>
+        <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
+        <div style="width: 7em;">
+          <button class="btn btn-primary btn-block" @click="profilePage">Profile Page</button>
         </div>
-       <ul>
-         <li v-for="(item,index) in userItems" :key='index'>
-           <div class="card" style="border-style: outset; width: 15rem;">
-             <div class="card-block">
-               <h3 class="card-title">{{item.name}}</h3>
-               <p class="card-text">{{item.description}}</p>
-               <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary">Offer</a>
-             </div>
-           </div>
-         </li>
-       </ul>
-      </modal>
-      <div class="well">
-        <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
-        <div class="card" style="border-style: outset; width: 15rem;">
-          <div class="card-block">
-            <h3 class="card-title">{{currentTradeItem.name}}</h3>
-            <p class="card-text">{{currentTradeItem.description}}</p>
+      </nav>
+      <b-modal ref="itemModal">
+        <div slot="modal-header" class="w-100">
+          <button class="close float-right" @click="hide">&times;</button>
+          <h4 class="modal-title float-left">Your Offer</h4>
+        </div>
+        <div class="container-fluid">
+          <div v-for="(item,index) in profileItems" :key='index' class="container-fluid card w-100 m-1" style="border-style: outset; height: 5rem;">
+            <div class="card-block w-100 row">
+              <h5 class="text-left">{{item.name}}</h5>
+              <div class="col">
+                <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
+                </p>
+              </div>
+              <div class="col-2">
+                <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary btn-sm">Offer</a>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </b-modal>
+      <div class="card container inner-container" style="background-color: #E5E7E9;">
+        <div class="row">
+          <div class="col-3">
+            <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
+          </div>
+          <div class="col" style="min-height: 14rem;">
+            <div class="card w-100 h-100" style="border-style: outset;">
+              <div class="card-block">
+                <h3 class="card-title">{{currentTradeItem.name}}</h3>
+                <p class="card-text">{{currentTradeItem.description}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
           </div>
         </div>
-        <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
+      <nav class="footer">
+        <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
+      </nav>
   </div>
 </template>
 
@@ -43,7 +61,8 @@ export default {
   data() {
     return {
       currentTradeItem: {},
-      userItems: [],
+      profileItems: [],
+      tradeOffers: [],
     };
   },
   methods: {
@@ -53,14 +72,31 @@ export default {
           id_user: this.userId,
         },
       };
-      axios.get('/items', config)
-        .then(({ data: userItems }) => {
-          userItems.forEach((item) => {
-            this.userItems.push(item);
+      return axios.get('/items', config)
+      .then(({ data: userItems }) => {
+        this.profileItems = userItems;
+      })
+      .catch(err => console.log(err));
+    },
+    getTradeOffers() {
+      if (!this.profileItems.length) {
+        return;
+      }
+      const config = {
+        headers: {
+          id: this.userId,
+          items: this.profileItems.map(item => item.id),
+        },
+      };
+      axios.get('/users', config)
+        .then((items) => {
+          const sorted = items.data.map((offer) => {
+            if (offer.id_user.toString() === this.userId) {
+              return { myItem: offer.offered, theirItem: offer.desired };
+            }
+            return { myItem: offer.desired, theirItem: offer.offered };
           });
-          if (!this.userItems.length) {
-            console.log('cannot trade');
-          }
+          this.tradeOffers = sorted;
         });
     },
     getTradeItem() {
@@ -75,16 +111,19 @@ export default {
       });
     },
     show() {
-      this.$modal.show('itemModal');
+      this.$refs.itemModal.show();
     },
     hide() {
-      this.$modal.hide('itemModal');
+      this.$refs.itemModal.hide();
     },
     profilePage() {
       this.$router.push({ path: '/profile' });
     },
     ready() {
       this.getUserItems(this.userId);
+    },
+    tradeView() {
+      this.$refs.pendingTrades.show();
     },
     rejectTradeItem() {
       const config = {
@@ -120,7 +159,8 @@ export default {
   },
   mounted() {
     this.getTradeItem();
-    this.getUserItems();
+    this.getUserItems()
+    .then(this.getTradeOffers);
   },
 };
 </script>
@@ -134,6 +174,10 @@ h2 {
 
 .well * {
   display: inline-block;
+}
+
+.btn {
+  margin: 1px;
 }
 
 li {

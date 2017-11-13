@@ -8,7 +8,6 @@ const Op = Sequelize.Op;
 
 app.use(express.json());
 
-
 app.get('/users/single', (req, res) => {
   const { id } = req.headers;
   db.User.findOne({ where: { id } })
