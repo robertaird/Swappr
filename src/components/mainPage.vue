@@ -9,24 +9,30 @@
         </div>
       </nav>
       <b-modal ref="itemModal">
+        <b-form @submit="onSubmit">
         <div slot="modal-header" class="w-100">
           <button class="close float-right" @click="hide">&times;</button>
-          <h4 class="modal-title float-left">Your Offer</h4>
+          <h4 class="modal-title float-left">Your Stash</h4>
         </div>
         <div class="container-fluid item-offers">
-          <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
-            <h5 class="card-title text-left m-1">{{item.name}}</h5>
-            <div class="row">
-              <div class="col">
-                <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
-                </p>
+            <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
+              <h5 class="card-title text-left m-1">{{item.name}}</h5>
+              <div class="row">
+                <div class="col">
+                  <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
+                  </p>
+                </div>
+                <div class="col-3 mr-2">
+                  <b-form-checkbox v-model="offeredItems" :id="`${item.id}`" :value="item.id">Offer?</b-form-checkbox>
+                </div>
               </div>
-              <div class="col-3 mr-2">
-                <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary btn-sm">Offer</a>
-              </div>
-            </div>
-          </div>          
+            </div>          
         </div>
+          <div slot="modal-footer" class="w-100">
+            <b-btn class="float-left" variant="primary" @click="hide">Close</b-btn>
+            <b-button @click="onSubmit" type="reset" class="btn btn-primary float-right">Offer Items</b-button>
+          </div>
+          </b-form>
       </b-modal>
       <div class="card inner-container p-2" style="background-color: #E5E7E9;">
         <div class="container">          
@@ -65,9 +71,14 @@ export default {
       currentTradeItem: {},
       profileItems: [],
       tradeOffers: [],
+      offeredItems: [],
     };
   },
   methods: {
+    onSubmit() {
+      console.log(this.offeredItems);
+      this.offeredItems = [];
+    },
     getUserItems() {
       const config = {
         headers: {
