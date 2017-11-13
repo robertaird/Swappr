@@ -149,9 +149,8 @@ export default {
         accepted: false,
       };
       axios.post('/transactions', config)
-      .then(() => {
-        this.getTradeItem();
-      }).catch((error) => {
+      .then(this.getTradeItem)
+      .catch((error) => {
         console.error(error);
       });
     },
