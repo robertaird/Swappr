@@ -1,26 +1,56 @@
 const express = require('express');
-const sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 const db = require('../../app/db');
 
 const app = express();
 
+const Op = Sequelize.Op;
+
 app.use(express.json());
 
-app.get('/users', (req, res) => {
-  // ! Verification will probably need to happen in here!
-  const { id_facebook } = req.headers;
-  db.User.findOne({ where: { id_facebook } })
-    .then((foundUser) => {
-      if (foundUser) {
-        res.send(foundUser);
-      } else {
-        res.send('Please sign up!');
-      }
+
+app.get('/users/single', (req, res) => {
+  const { id } = req.headers;
+  db.User.findOne({ where: { id } })
+    .then((data) => {
+      res.send(data);
     })
     .catch((err) => {
-      console.log(err);
-      res.send(500, 'something went wrong!');
+      console.error(err);
+      res.send(err);
     });
+});
+
+app.get('/users', (req, res) => {
+  const { id, items } = req.headers;
+  const itemArray = items.split(',');
+  db.Transaction.findAll({
+    where: {
+      [Op.or]:
+      [
+        { id_user: id },
+        { id_item_desired: {
+          [Op.in]: itemArray,
+        } },
+      ],
+      accepted: true,
+    },
+    include: [{
+      model: db.Item,
+      as: 'desired',
+    },
+    {
+      model: db.Item,
+      as: 'offered',
+    }],
+  })
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(err);
+  });
 });
 
 app.post('/users', (req, res) => {
@@ -46,7 +76,7 @@ app.post('/users', (req, res) => {
     }
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
     res.send(500, err);
   });
 });

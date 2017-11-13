@@ -36,7 +36,7 @@ db.Sequelize = Sequelize;
 sequelize.authenticate().then(() => {
   console.log('Success!');
 }).catch((err) => {
-  console.log(err);
+  console.error(err);
 });
 
 module.exports = db;

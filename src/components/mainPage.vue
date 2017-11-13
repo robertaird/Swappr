@@ -64,7 +64,6 @@ export default {
         });
     },
     getTradeItem() {
-      console.log(this.userId);
       const config = {
         headers: {
           id_user: this.userId,
@@ -99,7 +98,7 @@ export default {
       .then(() => {
         this.getTradeItem();
       }).catch((error) => {
-        console.log(error);
+        console.error(error);
       });
     },
     acceptTradeItem(userItem) {
@@ -115,7 +114,7 @@ export default {
         this.hide();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
     },
   },

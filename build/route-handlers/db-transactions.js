@@ -13,7 +13,7 @@ const createTransaction = (res, newTransaction) =>
     .then(createdTransaction =>
       res.send(createdTransaction))
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.send(500, 'something went wrong!');
     });
 
@@ -22,7 +22,7 @@ const getSeenItems = userId =>
     .then(items =>
       items.map(({ id_item_desired: itemId }) => itemId))
     .catch(err =>
-      console.log(err));
+      console.error(err));
 
 app.get('/transactions', (req, res) => {
   const { id_user: userId } = req.headers;
@@ -38,11 +38,10 @@ app.get('/transactions', (req, res) => {
       },
     })
     .then((item) => {
-      console.log(item);
       res.send(item);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.send(500);
     });
   });
@@ -69,7 +68,7 @@ app.post('/transactions', (req, res) => {
         createTransaction(res, newTransaction);
       }
     }).catch(err =>
-    console.log(err));
+    console.error(err));
 });
 
 module.exports = app;
