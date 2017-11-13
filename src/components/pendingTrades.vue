@@ -7,23 +7,29 @@
         <h4 class="modal-title float-left">Accepted Trades</h4>
         <button class="close" @click="closeTradeView">&times;</button>
       </div>
-      <ul>
-        <li v-for="(trade,index) in tradeOffers" :key='index'>
-          <div class="card" style="border-style: outset; width: 15rem;">
-            <div class="card-block">
-              <h3 class="card-title">{{trade.theirItem.name}}</h3>
-              <p class="card-text">{{trade.theirItem.description}}</p>
-              <h3 class="card-title">For Your {{trade.myItem.name}}</h3>
-              <a href="#" @click="acceptOffer(index)" class="btn btn-primary">Accept</a>
+      <div class="container-fluid">
+        <div class="card-block row">
+          <div v-for="(trade,index) in tradeOffers" :key='index' class="card p-1 w-100" style="border-style: outset;">
+            <div class="float-left">
+              <p>
+              {{trade.theirItem.name}}
+              for your {{trade.myItem.name}}
+              </p>
+            </div>
+            <div class="float-right">
+              <a href="#" @click="acceptOffer(index)" class="btn btn-primary">More Info</a>
             </div>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </b-modal>
     <b-modal ref="tradeInfo">
-      <div class="modal-header">
+      <div slot="modal-header" class="w-100">
         <button class="close" @click="closeOfferView">&times;</button>
-        <h4 class="modal-title">Trade Info</h4>
+        <h4 class="modal-title float-left">{{acceptedTrade.itemName}}</h4>
+      </div>
+      <div>
+        <h5>Description: {{acceptedTrade.description}}</h5>
         <h5>Please contact: {{acceptedTrade.name}}</h5>
         <h5>At: {{acceptedTrade.email}}</h5>
       </div>
@@ -47,33 +53,32 @@ export default {
   },
   methods: {
     acceptOffer(index) {
+      const { theirItem: { id_user, description, name } } = this.tradeOffers[index];
       const config = {
         headers: {
-          id: this.tradeOffers[index].theirItem.id_user,
+          id: id_user,
         },
       };
       axios.get('/users/single', config)
         .then((trader) => {
           this.acceptedTrade = trader.data;
+          this.acceptedTrade.description = description;
+          this.acceptedTrade.itemName = name;
           return 'changed';
         })
         .then(() => {
-          this.$modal.show('tradeInfo');
+          this.$refs.tradeInfo.show();
         })
         .catch(err => console.log(err));
     },
     show() {
-      console.log(this.tradeOffers);
       this.$refs.acceptedTrades.show();
     },
-    hide() {
-      // this.$refs[this.item.id].hide();
-    },
     closeTradeView() {
-      this.$modal.hide('acceptedTrades');
+      this.$refs.acceptedTrades.hide();
     },
     closeOfferView() {
-      this.$modal.hide('tradeInfo');
+      this.$refs.tradeInfo.hide();
     },
   },
 };
