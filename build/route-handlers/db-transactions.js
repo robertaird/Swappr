@@ -68,7 +68,7 @@ app.post('/transactions', (req, res) => {
       if (rows > 0) {
         res.send(updatedTransaction);
       } else {
-        createTransaction(res, newTransaction);
+        return createTransaction(res, newTransaction);
       }
     }).catch(err =>
     console.error(err));

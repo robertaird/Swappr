@@ -78,7 +78,7 @@ export default {
       .then(({ data: userItems }) => {
         this.profileItems = userItems;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
     },
     getTradeOffers() {
       if (!this.profileItems.length) {
@@ -109,7 +109,16 @@ export default {
       };
       axios.get('/transactions', config)
       .then(({ data: tradeItem }) => {
-        this.currentTradeItem = tradeItem;
+        if (typeof tradeItem === 'string') {
+          const noItemResponse = {
+            name: 'Sorry!',
+            description: 'No more trade items can be found at this time, check back later or select "No Thanks" to refresh',
+            id: null,
+          };
+          this.currentTradeItem = noItemResponse;
+        } else {
+          this.currentTradeItem = tradeItem;
+        }
       });
     },
     show() {
@@ -128,6 +137,10 @@ export default {
       this.$refs.pendingTrades.show();
     },
     rejectTradeItem() {
+      if (!this.currentTradeItem.id) {
+        this.getTradeItem();
+        return;
+      }
       const config = {
         id_user: this.userId,
         id_item_offered: this.currentTradeItem.id,
@@ -136,13 +149,16 @@ export default {
         accepted: false,
       };
       axios.post('/transactions', config)
-      .then(() => {
-        this.getTradeItem();
-      }).catch((error) => {
+      .then(this.getTradeItem)
+      .catch((error) => {
         console.error(error);
       });
     },
     acceptTradeItem(userItem) {
+      if (!this.currentTradeItem.id) {
+        this.hide();
+        return;
+      }
       const config = {
         id_user: this.userId,
         id_item_offered: userItem.id,
