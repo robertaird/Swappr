@@ -105,6 +105,7 @@ export default {
       const config = {
         headers: {
           id_user: this.userId,
+          items: this.profileItems.map(item => item.id),
         },
       };
       axios.get('/transactions', config)
@@ -176,8 +177,8 @@ export default {
     },
   },
   mounted() {
-    this.getTradeItem();
     this.getUserItems()
+    .then(this.getTradeItem)
     .then(this.getTradeOffers);
   },
 };
