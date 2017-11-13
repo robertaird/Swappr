@@ -34,7 +34,17 @@ const getSeenItems = (userId, itemArray) =>
     },
     raw: true })
     .then(items =>
-      items.map(({ id_item_desired: itemId }) => itemId))
+      items.map(({
+        id_user: transactionUser,
+        id_item_desired: desiredItem,
+        id_item_offered: offeredItem,
+      }) => {
+        if (transactionUser === userId) {
+          return desiredItem;
+        }
+        return offeredItem;
+      }),
+    )
     .catch(err =>
       console.error(err));
 
