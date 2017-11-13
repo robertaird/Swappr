@@ -17,6 +17,9 @@ const createTransaction = (res, newTransaction) =>
       res.send(500, 'something went wrong!');
     });
 
+// Find items where either the id_user is users id OR the item_desired is in their item list
+// and accepted is true.
+
 const getSeenItems = userId =>
   db.Transaction.findAll({ where: { id_user: userId }, raw: true })
     .then(items =>
