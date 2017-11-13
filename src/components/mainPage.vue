@@ -127,6 +127,7 @@ export default {
             id: null,
           };
           this.currentTradeItem = noItemResponse;
+          this.categoryPic = '';
         } else {
           this.currentTradeItem = tradeItem;
           this.getCategoryPic();
