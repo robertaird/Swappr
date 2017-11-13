@@ -20,13 +20,16 @@
 @media (max-width: 576px) {
   .container-fluid {
     width: 28rem;
-    height: 75vh;
+    height: 80vh;
   }
   .fa-stack[data-count]:after{
     right:30%;
   }
   .inner-container {
-    height: 75vh;
+    height: 78vh;
+  }
+  .item-box {
+    width: 25rem;
   }
 
 }
@@ -45,6 +48,8 @@ html {
 
 .item-box {
   height: 65vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .fa-stack[data-count]:after{
