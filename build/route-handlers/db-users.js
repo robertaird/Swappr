@@ -8,12 +8,20 @@ const Op = Sequelize.Op;
 
 app.use(express.json());
 
-// db.User.belongsToMany(db.Transaction, { through: 'Initiated-Transaction' });
-// db.Transaction.belongsToMany(db.User, { through: 'user_transaction' });
+app.get('/users/single', (req, res) => {
+  const { id } = req.headers;
+  db.User.findOne({ where: { id } })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
 
 app.get('/users', (req, res) => {
   const { id, items } = req.headers;
-  console.log(items);
   const itemArray = items.split(',');
   db.Transaction.findAll({
     where: {
@@ -39,7 +47,7 @@ app.get('/users', (req, res) => {
     res.send(data);
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
     res.send(err);
   });
 });
@@ -67,7 +75,7 @@ app.post('/users', (req, res) => {
     }
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
     res.send(500, err);
   });
 });
