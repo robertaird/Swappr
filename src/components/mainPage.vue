@@ -30,15 +30,23 @@
          </div>
         </div>
       </b-modal>
-      <div class="card p-1 col-12 inner-container" style="background-color: #E5E7E9;">
-        <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
-        <div class="card" style="border-style: outset; width: 15rem; height: 14rem;">
-          <div class="card-block">
-            <h3 class="card-title">{{currentTradeItem.name}}</h3>
-            <p class="card-text">{{currentTradeItem.description}}</p>
+      <div class="card p-1 col-12 container-fluid inner-container" style="background-color: #E5E7E9;">
+        <div class="row">
+          <div class="col-3 px-auto mx-auto">
+            <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
+          </div>
+          <div class="col-5 p-1 mx-0" style="min-height: 14rem;">
+            <div class="card w-100 h-100" style="border-style: outset;">
+              <div class="card-block">
+                <h3 class="card-title">{{currentTradeItem.name}}</h3>
+                <p class="card-text">{{currentTradeItem.description}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 px-auto mr-auto ml-0">
+            <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
           </div>
         </div>
-        <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
       <nav class="footer">
         <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
