@@ -90,7 +90,8 @@ export default {
       };
       axios.delete('/items', config)
         .then(() => {
-          this.getUserItems();
+          this.getUserItems()
+          .then(this.getTradeOffers);
         })
         .catch(err => console.log(err));
     },

@@ -28,7 +28,7 @@
         <button class="close" @click="closeOfferView">&times;</button>
         <h4 class="modal-title float-left">{{acceptedTrade.itemName}}</h4>
       </div>
-      <div>
+      <div style="text-align: left;">
         <h5>Description: {{acceptedTrade.description}}</h5>
         <h5>Please contact: {{acceptedTrade.name}}</h5>
         <h5>At: {{acceptedTrade.email}}</h5>
