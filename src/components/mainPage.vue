@@ -14,7 +14,7 @@
           <h4 class="modal-title float-left">Your Offer</h4>
         </div>
         <div class="container-fluid">       
-         <div class="row">          
+         <div>          
             <div v-for="(item,index) in profileItems" :key='index' class="card w-100 m-1" style="border-style: outset; height: 5rem;">
               <div class="card-block w-100 row">
                 <h5 class="text-left ml-1 col-12">{{item.name}}</h5>
