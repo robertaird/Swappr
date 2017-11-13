@@ -20,16 +20,28 @@ const createTransaction = (res, newTransaction) =>
 // Find items where either the id_user is users id OR the item_desired is in their item list
 // and accepted is true.
 
-const getSeenItems = userId =>
-  db.Transaction.findAll({ where: { id_user: userId }, raw: true })
+const getSeenItems = (userId, itemArray) =>
+  db.Transaction.findAll({
+    where: {
+      [Op.or]: [{
+        id_user: userId },
+      {
+        id_item_desired: {
+          [Op.in]: itemArray,
+        },
+        accepted: true,
+      }],
+    },
+    raw: true })
     .then(items =>
       items.map(({ id_item_desired: itemId }) => itemId))
     .catch(err =>
       console.error(err));
 
 app.get('/transactions', (req, res) => {
-  const { id_user: userId } = req.headers;
-  getSeenItems(userId).then((itemIds) => {
+  const { id_user: userId, items } = req.headers;
+  const itemArray = items.split(',');
+  getSeenItems(userId, itemArray).then((itemIds) => {
     db.Item.find({
       where: {
         id: {
