@@ -28,23 +28,6 @@ export default class AuthService {
   login() {
     this.auth0.authorize();
   }
-  // ...
-  handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-        setTimeout(() => {
-          router.replace('main');
-        }, 1000);
-      } else if (err) {
-        setTimeout(() => {
-          router.replace('main');
-          console.error(err);
-        }, 1000);
-        // alert(`Error: ${err.error}. Check the console for further details.`);
-      }
-    });
-  }
 
   setSession(authResult) {
     // Set the time that the access token will expire at
@@ -68,12 +51,25 @@ export default class AuthService {
       userService.createUser(user)
       .then(({ data: { id } }) => {
         localStorage.setItem('userId', id);
-      })
-      .catch((error) => {
-        console.error(error);
+        this.authNotifier.emit('authChange', { authenticated: true });
+      }).then(() => {
+        router.replace('main');
+      }).catch((err) => {
+        console.error(err);
+        router.replace('main');
       });
     });
-    this.authNotifier.emit('authChange', { authenticated: true });
+  }
+
+  handleAuthentication() {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        router.replace('main');
+        console.error(err);
+      }
+    });
   }
 
   logout() {
