@@ -13,7 +13,7 @@
           <button class="close float-right" @click="hide">&times;</button>
           <h4 class="modal-title float-left">Your Stash</h4>
         </div>
-        <b-form @submit="onSubmit">
+        <b-form @submit="acceptTradeItem">
         <div class="container-fluid item-offers">
             <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
               <h5 class="card-title text-left m-1">{{item.name}}</h5>
@@ -30,7 +30,7 @@
         </div>
           <div slot="modal-footer" class="w-100">
             <b-btn class="float-left" variant="primary" @click="hide">Close</b-btn>
-            <b-button @click="onSubmit" type="reset" variant="primary" class="btn btn-primary float-right">Offer Items</b-button>
+            <b-button @click="acceptTradeItem" type="reset" variant="primary" class="btn btn-primary float-right">Offer Items</b-button>
           </div>
           </b-form>
           <div slot="modal-footer"></div>
@@ -76,10 +76,6 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log(this.offeredItems);
-      this.offeredItems = [];
-    },
     getUserItems() {
       const config = {
         headers: {
@@ -155,13 +151,15 @@ export default {
         this.getTradeItem();
         return;
       }
-      const config = {
-        id_user: this.userId,
-        id_item_offered: this.currentTradeItem.id,
-        id_item_desired: this.currentTradeItem.id,
-        pending: false,
-        accepted: false,
-      };
+      const config = { data: [
+        {
+          id_user: this.userId,
+          id_item_offered: this.currentTradeItem.id,
+          id_item_desired: this.currentTradeItem.id,
+          pending: false,
+          accepted: false,
+        },
+      ] };
       axios.post('/transactions', config)
       .then(this.getTradeItem)
       .catch((error) => {
@@ -174,7 +172,7 @@ export default {
         this.hide();
         return;
       }
-      const userItemsObj = this.offeredItems.map((item) => {
+      const userItemsArray = this.offeredItems.map((item) => {
         const config = {
           id_user: this.userId,
           id_item_offered: item,
@@ -183,7 +181,9 @@ export default {
         };
         return config;
       });
-      axios.post('/transactions', userItemsObj)
+      const config = { data: userItemsArray };
+      console.log(config);
+      axios.post('/transactions', config)
       .then(() => {
         this.offeredItems = [];
         this.getTradeItem();

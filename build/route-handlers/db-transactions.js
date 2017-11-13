@@ -1,5 +1,6 @@
 const express = require('express');
 const Sequelize = require('sequelize');
+const Promise = require('bluebird');
 const db = require('../../app/db');
 
 const Op = Sequelize.Op;
@@ -11,10 +12,9 @@ app.use(express.json());
 const createTransaction = (res, newTransaction) =>
   db.Transaction.create(newTransaction)
     .then(createdTransaction =>
-      res.send(createdTransaction))
+      createdTransaction)
     .catch((err) => {
       console.error(err);
-      res.send(500, 'something went wrong!');
     });
 
 // Find items where either the id_user is users id OR the item_desired is in their item list
@@ -63,6 +63,7 @@ app.get('/transactions', (req, res) => {
       },
     })
     .then((item) => {
+      console.log(item);
       res.send(item);
     })
     .catch((err) => {
@@ -73,27 +74,34 @@ app.get('/transactions', (req, res) => {
 });
 
 app.post('/transactions', (req, res) => {
-  const newTransaction = req.body;
-  const { id_item_offered, id_item_desired } = newTransaction;
-  db.Transaction.update(
-    {
-      pending: false,
-      accepted: true,
-    },
-    {
-      where: {
-        id_item_desired: id_item_offered,
-        id_item_offered: id_item_desired,
+  const { data: itemArray } = req.body;
+  const promises = itemArray.map((item) => {
+    const { id_item_offered, id_item_desired } = item;
+    return db.Transaction.update(
+      {
+        pending: false,
+        accepted: true,
       },
-      returning: true,
-    }).then(([rows, updatedTransaction]) => {
-      if (rows > 0) {
-        res.send(updatedTransaction);
-      } else {
-        return createTransaction(res, newTransaction);
-      }
-    }).catch(err =>
-    console.error(err));
+      {
+        where: {
+          id_item_desired: id_item_offered,
+          id_item_offered: id_item_desired,
+        },
+        returning: true,
+      }).then(([rows, updatedTransaction]) => {
+        if (rows > 0) {
+          return updatedTransaction;
+        }
+        return createTransaction(res, item);
+      }).catch(err =>
+        console.error(err));
+  });
+  Promise.all(promises)
+    .then(results => res.send(results))
+    .catch((err) => {
+      console.error(err);
+      res.send(500, 'we screwed up');
+    });
 });
 
 module.exports = app;
