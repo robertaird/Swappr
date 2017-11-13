@@ -31,18 +31,18 @@
       <div class="card inner-container p-2" style="background-color: #E5E7E9;">
         <div class="container">          
           <div class="row">
-            <div class="col">
+            <div class="col order-2 my-1 order-md-1 align-self-center">
               <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
             </div>
-            <div class="col" style="min-height: 14rem;">
-              <div class="card w-100 h-100" style="border-style: outset;">
+            <div class="col-12 order-first order-md-2 col-md-5" style="min-height: 14rem;">
+              <div class="card w-100 h-100" style="max-width: 15rem; border-style: outset;">
                 <div class="card-block">
                   <h3 class="card-title">{{currentTradeItem.name}}</h3>
                   <p class="card-text">{{currentTradeItem.description}}</p>
                 </div>
               </div>
             </div>
-            <div class="col">
+            <div class="col order-3 my-1 align-self-center">
               <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
             </div>
           </div>
