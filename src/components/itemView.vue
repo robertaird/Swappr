@@ -1,6 +1,6 @@
   <template>
   <div :class="item.id">
-      <div class="card col-12 mx-1 ml-sm-4 ml-md-4" @click="show" style="margin: 5px; border-style: outset; width: 10rem; height: 9rem;">
+      <div class="item-card card col-12 mx-1 ml-sm-4 ml-md-4" @click="show" style="margin: 5px; border-style: outset; width: 10rem; height: 9rem;">
         <div class="card-body">
         </div>
         <div class="card-footer bg-transparent border-white">
@@ -66,6 +66,10 @@ h2 {
 
 .btn-danger {
   display: inline-block;
+}
+
+.item-card {
+  cursor: pointer;
 }
 
 .card {
