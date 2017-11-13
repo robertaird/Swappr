@@ -56,7 +56,7 @@ export default {
       .then(({ data: userItems }) => {
         this.profileItems = userItems;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
     },
     getTradeOffers() {
       if (!this.profileItems.length) {
@@ -89,11 +89,9 @@ export default {
         },
       };
       axios.delete('/items', config)
-        .then(() => {
-          this.getUserItems()
-          .then(this.getTradeOffers);
-        })
-        .catch(err => console.log(err));
+        .then(this.getUserItems)
+          .then(this.getTradeOffers)
+        .catch(err => console.error(err));
     },
     tradeView() {
       this.$refs.pendingTrades.show();
