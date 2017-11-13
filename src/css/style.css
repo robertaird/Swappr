@@ -1,6 +1,7 @@
 @media (min-width: 768px) {
   .container-fluid {
     max-width: 43rem;
+    height: 80vh;
   }
   .fa-stack[data-count]:after{
     right:19%;
@@ -19,6 +20,7 @@
 @media (max-width: 576px) {
   .container-fluid {
     width: 28rem;
+    height: 75vh;
   }
   .fa-stack[data-count]:after{
     right:30%;
@@ -39,8 +41,12 @@ html {
 
 .pending-btn {
   float: right;
-  
 }
+
+.item-box {
+  height: 65vh;
+}
+
 .fa-stack[data-count]:after{
   position:absolute;
   top:1%;

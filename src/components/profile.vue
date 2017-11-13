@@ -118,9 +118,6 @@ h2 {
   margin: 1px;
 }
 
-.item-box {
-  height: 31em;
-}
 li {
   display: inline-block;
 }
