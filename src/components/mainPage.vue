@@ -31,7 +31,7 @@
       <div class="card container inner-container" style="background-color: #E5E7E9;">
         <div class="row">
           <div class="col-3">
-            <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
+            <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
           </div>
           <div class="col" style="min-height: 14rem;">
             <div class="card w-100 h-100" style="border-style: outset;">
