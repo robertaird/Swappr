@@ -1,5 +1,5 @@
   <template>
-  <div class="container-fluid main-container">
+  <div class="container main-container">
       <nav class="navbar">
         <h3 class="logo">Swappr</h3>
         <button class="btn btn-info ml-auto pending-btn" @click="tradeView">Pending Trades</button>
@@ -16,7 +16,7 @@
         <div class="container-fluid">
           <div v-for="(item,index) in profileItems" :key='index' class="container-fluid card w-100 m-1" style="border-style: outset; height: 5rem;">
             <div class="card-block w-100 row">
-              <h5 class="text-left ml-1 col-12">{{item.name}}</h5>
+              <h5 class="text-left">{{item.name}}</h5>
               <div class="col">
                 <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
                 </p>
@@ -28,12 +28,12 @@
           </div>          
         </div>
       </b-modal>
-      <div class="card p-1 col-12 container-fluid inner-container" style="background-color: #E5E7E9;">
+      <div class="card container inner-container" style="background-color: #E5E7E9;">
         <div class="row">
-          <div class="col-3 px-auto mx-auto">
+          <div class="col-3">
             <button class="btn-warning btn-lg" @click="getTradeItem">No Thanks</button>
           </div>
-          <div class="col-5 p-1 mx-0" style="min-height: 14rem;">
+          <div class="col" style="min-height: 14rem;">
             <div class="card w-100 h-100" style="border-style: outset;">
               <div class="card-block">
                 <h3 class="card-title">{{currentTradeItem.name}}</h3>
@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          <div class="col-3 px-auto mr-auto ml-0">
+          <div class="col-3">
             <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
           </div>
         </div>
