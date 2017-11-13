@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <nav class="footer">
+      <nav class="navbar">
         <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
       </nav>
   </div>
