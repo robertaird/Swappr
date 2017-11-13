@@ -46,6 +46,7 @@
                 <div class="card-block">
                   <h3 class="card-title">{{currentTradeItem.name}}</h3>
                   <p class="card-text">{{currentTradeItem.description}}</p>
+                  <img v-bind:src="categoryPic"/>
                 </div>
               </div>
             </div>
@@ -66,13 +67,14 @@ import axios from 'axios';
 
 export default {
   name: 'mainPage',
-  props: ['auth', 'authentication', 'userId'],
+  props: ['auth', 'authentication', 'userId', 'categories'],
   data() {
     return {
       currentTradeItem: {},
       profileItems: [],
       tradeOffers: [],
       offeredItems: [],
+      categoryPic: '',
     };
   },
   methods: {
@@ -127,6 +129,7 @@ export default {
           this.currentTradeItem = noItemResponse;
         } else {
           this.currentTradeItem = tradeItem;
+          this.getCategoryPic();
         }
         this.getTradeOffers();
       });
@@ -192,6 +195,12 @@ export default {
       .catch((error) => {
         console.error(error);
       });
+    },
+    getCategoryPic() {
+      const categoryID = this.currentTradeItem.id_category;
+      const categoryPicArray = this.categories.filter(category =>
+        categoryID === category.id)[0].url_img.split('cats');
+      this.categoryPic = `../static/cats/${categoryPicArray[1]}`;
     },
   },
   mounted() {
