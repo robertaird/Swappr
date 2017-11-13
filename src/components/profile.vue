@@ -100,21 +100,10 @@ export default {
     tradeView() {
       this.$refs.pendingTrades.show();
     },
-    getCategories() {
-      axios.get('/categories')
-      .then(({ data: categories }) => {
-        this.categories = categories;
-        console.log(this.categories);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    },
   },
   mounted() {
     this.getUserItems()
     .then(this.getTradeOffers);
-    this.getCategories();
   },
 };
 </script>

@@ -40,7 +40,9 @@ const allRoutes = new Router({
 });
 allRoutes.beforeEach((to, from, next) => {
   if (to.name === 'Callback' || to.name === 'loginScreen'
-|| Number(localStorage.getItem('userId')) || to.name === 'mainPage' || to.name === 'profile') {
+|| Number(localStorage.getItem('userId'))
+|| to.name === 'mainPage' || to.name === 'profile'
+) {
     next();
   } else {
     next('/');

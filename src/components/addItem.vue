@@ -8,6 +8,13 @@
             </div>
             <div class="modal-body">
               <div>
+                <div>
+                  <b-dropdown id="ddown1" :text="selectedCategory" class="m-md-2">
+                    <div class="scrollable-menu">
+                      <b-dropdown-item v-for="(category,index) in categories" :category='category' :key='index' @click="dropdownClick(category)">{{ category.name }}</b-dropdown-item>
+                    </div>
+                  </b-dropdown>
+                </div>
                 <form>
                   <div class="form-group">
                     <label for="titleArea">Item Name</label>
@@ -39,6 +46,9 @@ export default {
       newItem: null,
       name: '',
       description: '',
+      categories: [],
+      selectedCategory: 'Categories',
+      categoryId: null,
     };
   },
   methods: {
@@ -54,6 +64,7 @@ export default {
           name: this.name,
           description: this.description,
           id_user: this.userId,
+          id_category: this.categoryId,
         };
         this.hideModal();
         axios.post('/items', config)
@@ -61,10 +72,29 @@ export default {
             this.name = '';
             this.description = '';
             this.$emit('new-item', item);
+            this.categoryId = null;
+            this.selectedCategory = 'Categories';
           })
           .catch(err => console.log(err));
       }
     },
+    getCategories() {
+      axios.get('/categories')
+      .then(({ data: categories }) => {
+        this.categories = categories;
+        console.log(this.categories);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+    dropdownClick({ id, name }) {
+      this.selectedCategory = name;
+      this.categoryId = id;
+    },
+  },
+  mounted() {
+    this.getCategories();
   },
 };
 </script>
@@ -95,5 +125,10 @@ textarea {
 
 li {
   display: inline-block;
+}
+.scrollable-menu {
+    height: auto;    
+    max-height: 300px;
+    overflow-x: hidden;
 }
 </style>
