@@ -98,7 +98,6 @@ export default {
     tradeView() {
       this.$refs.pendingTrades.show();
     },
-
   },
   mounted() {
     this.getUserItems()
