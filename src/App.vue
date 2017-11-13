@@ -4,14 +4,15 @@
       <router-view 
         :userId="userId"
         :auth="auth" 
-        :authenticated="authenticated">
+        :authenticated="authenticated"
+        :categories="categories">
       </router-view>
     </div>
   </div>
 </template>
 
 <script>
-
+import axios from 'axios';
 import AuthService from './Auth/AuthService';
 
 const auth = new AuthService();
@@ -29,7 +30,23 @@ export default {
       auth,
       authenticated,
       userId: localStorage.getItem('userId'),
+      categories: [],
     };
+  },
+  methods: {
+    getCategories() {
+      axios.get('/categories')
+      .then(({ data: categories }) => {
+        this.categories = categories;
+        console.log(this.categories);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+  },
+  mounted() {
+    this.getCategories();
   },
 };
 </script>

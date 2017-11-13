@@ -26,6 +26,7 @@ export default class AuthService {
     scope: 'openid profile email',
   })
   login() {
+    debugger;
     this.auth0.authorize();
   }
 
