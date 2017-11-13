@@ -5,6 +5,9 @@
   .fa-stack[data-count]:after{
     right:19%;
   }
+  .inner-container {
+    height: 75vh;
+  }
 }
 
 @media (max-width: 768px) {
@@ -20,15 +23,14 @@
   .fa-stack[data-count]:after{
     right:30%;
   }
+  .inner-container {
+    height: 60vh;
+  }
 
 }
 
 html {
   margin: auto;
-}
-
-.inner-container {
-  height: 75vh;
 }
 
 .signout {
