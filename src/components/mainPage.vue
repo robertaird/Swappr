@@ -168,19 +168,24 @@ export default {
         console.error(error);
       });
     },
-    acceptTradeItem(userItem) {
+    acceptTradeItem() {
       if (!this.currentTradeItem.id) {
+        this.offeredItems = [];
         this.hide();
         return;
       }
-      const config = {
-        id_user: this.userId,
-        id_item_offered: userItem.id,
-        id_item_desired: this.currentTradeItem.id,
-        pending: true,
-      };
-      axios.post('/transactions', config)
+      const userItemsObj = this.offeredItems.map((item) => {
+        const config = {
+          id_user: this.userId,
+          id_item_offered: item,
+          id_item_desired: this.currentTradeItem.id,
+          pending: true,
+        };
+        return config;
+      });
+      axios.post('/transactions', userItemsObj)
       .then(() => {
+        this.offeredItems = [];
         this.getTradeItem();
         this.hide();
       })
