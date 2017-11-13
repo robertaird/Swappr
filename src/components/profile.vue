@@ -8,12 +8,14 @@
           <button class="btn btn-primary btn-block" @click="mainMenu">Swap!</button>
         </div>
       </nav>
-      <div class="card py-1 col-12 inner-container" style="min-height: 10em; background-color: #E5E7E9;">
-        <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
-        <div class="card my-1 pl-4 w-100 item-box" style="background-color: #F0F3F4; min-height: 10em;">
-          <div class="container-fluid">
-            <div class="row">
-              <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getUserItems"></item-view>
+      <div class=row>
+        <div class="card py-1 col-12 inner-container" style="min-height: 10em; background-color: #E5E7E9;">
+          <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
+          <div class="card my-1 pl-4 w-100 item-box" style="background-color: #F0F3F4; min-height: 10em;">
+            <div class="container-fluid">
+              <div class="row">
+                <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getUserItems"></item-view>
+              </div>
             </div>
           </div>
         </div>

@@ -13,21 +13,19 @@
           <button class="close float-right" @click="hide">&times;</button>
           <h4 class="modal-title float-left">Your Offer</h4>
         </div>
-        <div class="container-fluid">       
-         <div>          
-            <div v-for="(item,index) in profileItems" :key='index' class="card w-100 m-1" style="border-style: outset; height: 5rem;">
-              <div class="card-block w-100 row">
-                <h5 class="text-left ml-1 col-12">{{item.name}}</h5>
-                <div class="col">
-                  <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
-                  </p>
-                </div>
-                <div class="col-2">
-                  <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary btn-sm">Offer</a>
-                </div>
+        <div class="container-fluid">
+          <div v-for="(item,index) in profileItems" :key='index' class="container-fluid card w-100 m-1" style="border-style: outset; height: 5rem;">
+            <div class="card-block w-100 row">
+              <h5 class="text-left ml-1 col-12">{{item.name}}</h5>
+              <div class="col">
+                <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
+                </p>
               </div>
-            </div>          
-         </div>
+              <div class="col-2">
+                <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary btn-sm">Offer</a>
+              </div>
+            </div>
+          </div>          
         </div>
       </b-modal>
       <div class="card p-1 col-12 container-fluid inner-container" style="background-color: #E5E7E9;">
