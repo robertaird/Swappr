@@ -15,6 +15,7 @@
                     </div>
                   </b-dropdown>
                 </div>
+                <br>
                 <form>
                   <div class="form-group">
                     <label for="titleArea">Item Name</label>
