@@ -120,6 +120,7 @@ export default {
         } else {
           this.currentTradeItem = tradeItem;
         }
+        this.getTradeOffers();
       });
     },
     show() {
