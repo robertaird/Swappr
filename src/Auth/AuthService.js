@@ -66,21 +66,12 @@ export default class AuthService {
         email,
       };
       userService.createUser(user)
-<<<<<<< HEAD
-        .then(({ data: { id } }) => {
-          localStorage.setItem('userId', id);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-=======
       .then(({ data: { id } }) => {
         localStorage.setItem('userId', id);
       })
       .catch((error) => {
         console.error(error);
       });
->>>>>>> 85d9faefb662e1c9e6d44f0429ef2bebfd94f3e0
     });
     this.authNotifier.emit('authChange', { authenticated: true });
   }

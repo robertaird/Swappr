@@ -40,11 +40,12 @@
           <div class="card my-1 pl-4 w-100" style="background-color: #F0F3F4; min-height: 10em;">
             <div class="container-fluid">
               <div class="row">
-                <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getItems"></item-view>
+                <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getUserItems"></item-view>
               </div>
             </div>
         </div>
-   </div>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -75,35 +76,27 @@ export default {
           id: this.tradeOffers[index].theirItem.id_user,
         },
       };
-<<<<<<< HEAD
-      axios.get('/items', config)
-        .then(({ data: userItems }) => {
-          this.profileItems = userItems;
-        })
-        .catch(err => console.log(err));
-=======
       axios.get('/users/single', config)
         .then((trader) => {
           this.acceptedTrade = trader.data;
           return 'changed';
-        }).then(() => {
+        })
+        .then(() => {
           this.$modal.show('tradeInfo');
-        });
->>>>>>> 85d9faefb662e1c9e6d44f0429ef2bebfd94f3e0
+        })
+        .catch(err => console.log(err));
     },
     getUserItems() {
-      return new Promise((resolve) => {
-        const config = {
-          headers: {
-            id_user: this.userId,
-          },
-        };
-        axios.get('/items', config)
-          .then(({ data: userItems }) => {
-            this.profileItems = userItems;
-            resolve('done!');
-          });
-      });
+      const config = {
+        headers: {
+          id_user: this.userId,
+        },
+      };
+      return axios.get('/items', config)
+      .then(({ data: userItems }) => {
+        this.profileItems = userItems;
+      })
+      .catch(err => console.log(err));
     },
     mainMenu() {
       this.$router.push({ path: '/main' });
@@ -138,7 +131,7 @@ export default {
       };
       axios.delete('/items', config)
         .then(() => {
-          this.getItems(this.userId);
+          this.getUserItems();
         })
         .catch(err => console.log(err));
     },
