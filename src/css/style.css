@@ -1,12 +1,12 @@
 @media (min-width: 768px) {
-  .container-fluid {
+  .main-container {
     max-width: 43rem;
-    height: 80vh;
   }
   .fa-stack[data-count]:after{
     right:19%;
   }
   .inner-container {
+    width: 40rem;
     height: 75vh;
   }
   .item-box {
@@ -21,14 +21,14 @@
 }
 
 @media (max-width: 576px) {
-  .container-fluid {
+  .main-container {
     width: 28rem;
-    height: 80vh;
   }
   .fa-stack[data-count]:after{
     right:30%;
   }
   .inner-container {
+    width: 26rem;
     height: 78vh;
   }
   .item-box {

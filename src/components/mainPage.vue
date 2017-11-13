@@ -13,36 +13,38 @@
           <button class="close float-right" @click="hide">&times;</button>
           <h4 class="modal-title float-left">Your Offer</h4>
         </div>
-        <div class="container-fluid">
-          <div v-for="(item,index) in profileItems" :key='index' class="container-fluid card w-100 m-1" style="border-style: outset; height: 5rem;">
-            <div class="card-block w-100 row">
-              <h5 class="text-left">{{item.name}}</h5>
+        <div class="container-fluid item-offers">
+          <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
+            <h5 class="card-title text-left m-1">{{item.name}}</h5>
+            <div class="row">
               <div class="col">
                 <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
                 </p>
               </div>
-              <div class="col-2">
+              <div class="col-3 mr-2">
                 <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary btn-sm">Offer</a>
               </div>
             </div>
           </div>          
         </div>
       </b-modal>
-      <div class="card container inner-container" style="background-color: #E5E7E9;">
-        <div class="row">
-          <div class="col-3">
-            <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
-          </div>
-          <div class="col" style="min-height: 14rem;">
-            <div class="card w-100 h-100" style="border-style: outset;">
-              <div class="card-block">
-                <h3 class="card-title">{{currentTradeItem.name}}</h3>
-                <p class="card-text">{{currentTradeItem.description}}</p>
+      <div class="card inner-container p-2" style="background-color: #E5E7E9;">
+        <div class="container">          
+          <div class="row">
+            <div class="col">
+              <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
+            </div>
+            <div class="col" style="min-height: 14rem;">
+              <div class="card w-100 h-100" style="border-style: outset;">
+                <div class="card-block">
+                  <h3 class="card-title">{{currentTradeItem.name}}</h3>
+                  <p class="card-text">{{currentTradeItem.description}}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-3">
-            <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
+            <div class="col">
+              <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
+            </div>
           </div>
         </div>
       </div>
@@ -174,6 +176,11 @@ h2 {
 
 .well * {
   display: inline-block;
+}
+
+.item-offers {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .btn {

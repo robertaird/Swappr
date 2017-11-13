@@ -1,5 +1,5 @@
   <template>
-  <div class="container-fluid main-container">
+  <div class="container main-container">
       <nav class="navbar">
         <h3 class="logo">Swappr</h3>
         <button class="btn btn-info ml-auto pending-btn" @click="tradeView">Pending Trades</button>
@@ -8,18 +8,16 @@
           <button class="btn btn-primary btn-block" @click="mainMenu">Swap!</button>
         </div>
       </nav>
-      <div class=row>
-        <div class="card py-1 col-12 inner-container" style="min-height: 10em; background-color: #E5E7E9;">
+        <div class="card inner-container p-2" style="min-height: 10em; background-color: #E5E7E9;">
           <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
-          <div class="card my-1 pl-4 w-100 item-box" style="background-color: #F0F3F4; min-height: 10em;">
-            <div class="container-fluid">
+          <div class="card pl-3 my-1 w-100 item-box" style="background-color: #F0F3F4;">
+            <div class="container">
               <div class="row">
                 <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getUserItems"></item-view>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <nav class="footer">
         <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
       </nav>
