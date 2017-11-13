@@ -4,7 +4,7 @@
         <div class="card-body">
         </div>
         <div class="card-footer bg-transparent border-white">
-          <h5 class="card-title">{{ item.name }}</h5>
+          <h6 class="card-title">{{ item.name }}</h6>
         </div>
       </div>
       <b-modal :ref="item.id">

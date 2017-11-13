@@ -21,8 +21,8 @@
               </div>
             </div>
             <div slot="modal-footer" class="w-100">
-              <button @click="addItem" type='button' class="btn btn-primary float-left">Add Item</button>
-              <b-btn class="float-right" variant="primary" @click="hideModal">Close</b-btn>
+              <b-btn class="float-left" variant="primary" @click="hideModal">Close</b-btn>
+              <button @click="addItem" type='button' class="btn btn-primary float-right">Add Item</button>
             </div>
       </b-modal>          
    </div>
