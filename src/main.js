@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import App from './App';
 import './css/style.css';
 import addItem from './components/addItem.vue';
+import pendingTrades from './components/pendingTrades.vue';
 import itemView from './components/itemView.vue';
 import router from './router';
 
@@ -15,6 +16,7 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 Vue.component('add-item', addItem);
+Vue.component('pending-trades', pendingTrades);
 Vue.component('item-view', itemView);
 /* eslint-disable no-new */
 new Vue({

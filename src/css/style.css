@@ -26,10 +26,19 @@
 html {
   margin: auto;
 }
+
 .inner-container {
   height: 75vh;
 }
 
+.signout {
+  float: left;
+}
+
+.pending-btn {
+  float: right;
+  
+}
 .fa-stack[data-count]:after{
   position:absolute;
   top:1%;

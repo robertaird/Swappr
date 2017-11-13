@@ -1,7 +1,9 @@
   <template>
   <div class="container-fluid main-container">
       <nav class="navbar">
-        <button class="btn btn-warning" @click="auth.logout">Sign Out</button>
+        <h3 class="logo">Swappr</h3>
+        <button class="btn btn-info ml-auto pending-btn" @click="tradeView">Pending Trades</button>
+        <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
         <div style="width: 7em;">
           <button class="btn btn-primary btn-block" @click="profilePage">Profile Page</button>
         </div>
@@ -12,7 +14,7 @@
           <h4 class="modal-title">Your Offer</h4>
         </div>
        <ul>
-         <li v-for="(item,index) in userItems" :key='index'>
+         <li v-for="(item,index) in profileItems" :key='index'>
            <div class="card" style="border-style: outset; width: 15rem;">
              <div class="card-block">
                <h3 class="card-title">{{item.name}}</h3>
@@ -33,6 +35,9 @@
         </div>
         <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
       </div>
+      <nav class="footer">
+        <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
+      </nav>
   </div>
 </template>
 
@@ -45,7 +50,8 @@ export default {
   data() {
     return {
       currentTradeItem: {},
-      userItems: [],
+      profileItems: [],
+      tradeOffers: [],
     };
   },
   methods: {
@@ -55,16 +61,32 @@ export default {
           id_user: this.userId,
         },
       };
-      axios.get('/items', config)
-        .then(({ data: userItems }) => {
-          userItems.forEach((item) => {
-            this.userItems.push(item);
+      return axios.get('/items', config)
+      .then(({ data: userItems }) => {
+        this.profileItems = userItems;
+      })
+      .catch(err => console.log(err));
+    },
+    getTradeOffers() {
+      if (!this.profileItems.length) {
+        return;
+      }
+      const config = {
+        headers: {
+          id: this.userId,
+          items: this.profileItems.map(item => item.id),
+        },
+      };
+      axios.get('/users', config)
+        .then((items) => {
+          const sorted = items.data.map((offer) => {
+            if (offer.id_user.toString() === this.userId) {
+              return { myItem: offer.offered, theirItem: offer.desired };
+            }
+            return { myItem: offer.desired, theirItem: offer.offered };
           });
-          if (!this.userItems.length) {
-            console.log('cannot trade');
-          }
-        })
-        .catch(err => console.log(err));
+          this.tradeOffers = sorted;
+        });
     },
     getTradeItem() {
       const config = {
@@ -88,6 +110,9 @@ export default {
     },
     ready() {
       this.getUserItems(this.userId);
+    },
+    tradeView() {
+      this.$refs.pendingTrades.show();
     },
     rejectTradeItem() {
       const config = {
@@ -123,7 +148,8 @@ export default {
   },
   mounted() {
     this.getTradeItem();
-    this.getUserItems();
+    this.getUserItems()
+    .then(this.getTradeOffers);
   },
 };
 </script>
