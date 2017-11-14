@@ -130,7 +130,11 @@ export default {
           this.categoryPic = '';
         } else {
           this.currentTradeItem = tradeItem;
-          this.getCategoryPic();
+          if (tradeItem.url_img) {
+            this.categoryPic = tradeItem.url_img;
+          } else {
+            this.getCategoryPic();
+          }
         }
         this.getTradeOffers();
       });
