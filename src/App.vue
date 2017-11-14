@@ -1,13 +1,11 @@
 <template>
   <div id='app'>
-    <div class="container">
-      <router-view 
-        :userId="userId"
-        :auth="auth" 
-        :authenticated="authenticated"
-        :categories="categories">
-      </router-view>
-    </div>
+    <router-view 
+      :userId="userId"
+      :auth="auth" 
+      :authenticated="authenticated"
+      :categories="categories">
+    </router-view>
   </div>
 </template>
 
@@ -61,6 +59,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
