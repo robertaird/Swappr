@@ -25,6 +25,10 @@
                     <label for="descriptionArea">Description</label>
                     <textarea v-model="description" v-on:keyup.enter="addItem" type="text" class="form-control" id="descriptionArea" placeholder="description"></textarea>
                   </div>
+                  <div class="form-group">
+                    <label for="descriptionArea">Image URL (optional)</label>
+                    <input v-model="imageUrl" type="text" class="form-control" id="urlArea" placeholder="image URL (optional)"></input>
+                  </div>
                 </form>
               </div>
             </div>
@@ -50,6 +54,7 @@ export default {
       categories: [],
       selectedCategory: 'Categories',
       categoryId: null,
+      imageUrl: '',
     };
   },
   methods: {
@@ -66,6 +71,7 @@ export default {
           description: this.description,
           id_user: this.userId,
           id_category: this.categoryId,
+          url_img: this.imageUrl,
         };
         this.hideModal();
         axios.post('/items', config)
@@ -76,17 +82,16 @@ export default {
             this.categoryId = null;
             this.selectedCategory = 'Categories';
           })
-          .catch(err => console.log(err));
+          .catch(err => console.error(err));
       }
     },
     getCategories() {
       axios.get('/categories')
       .then(({ data: categories }) => {
         this.categories = categories;
-        console.log(this.categories);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
     },
     dropdownClick({ id, name }) {
