@@ -71,7 +71,7 @@ export default {
           description: this.description,
           id_user: this.userId,
           id_category: this.categoryId,
-          url_img: this.imageUrl,
+          url_img: this.imageUrl.length ? this.imageUrl : null,
         };
         this.hideModal();
         axios.post('/items', config)
