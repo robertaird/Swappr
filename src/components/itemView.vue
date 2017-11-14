@@ -67,7 +67,7 @@ h2 {
 
 .item-img {
   height: 7rem;
-  width: 10rem;
+  width: 9.9rem;
   object-fit: cover;
 }
 .btn-danger {
