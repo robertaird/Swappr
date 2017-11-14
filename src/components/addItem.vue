@@ -65,7 +65,7 @@ export default {
       this.$refs.addItemModal.hide();
     },
     addItem() {
-      if (this.name.length !== 0 && this.description.length !== 0) {
+      if (this.name.length !== 0 && this.description.length !== 0 && this.categoryId !== null) {
         const config = {
           name: this.name,
           description: this.description,
@@ -78,6 +78,7 @@ export default {
           .then((item) => {
             this.name = '';
             this.description = '';
+            this.imageUrl = '';
             this.$emit('new-item', item);
             this.categoryId = null;
             this.selectedCategory = 'Categories';
