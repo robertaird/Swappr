@@ -240,4 +240,8 @@ li {
   display: inline-block;
 }
 
+img {
+  width: 100%
+}
+
 </style>
