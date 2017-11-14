@@ -63,7 +63,6 @@ app.get('/transactions', (req, res) => {
       },
     })
     .then((item) => {
-      console.log(item);
       res.send(item);
     })
     .catch((err) => {
