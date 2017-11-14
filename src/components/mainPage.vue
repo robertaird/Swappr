@@ -53,29 +53,27 @@
         </b-modal>
         <div class="card inner-container p-2">
             <div style="height: 3rem;"></div>
-          <div class="card pl-3 my-1 w-100 item-box">
-            <div class="container">          
+            <div class="container-fluid">          
               <div class="row">
-                <div class="col order-2 my-1 order-md-1 align-self-center">
-                  <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
-                </div>
-                <div class="col-12 order-first order-md-2 col-md-5" style="min-height: 14rem;">
-                  <div class="card w-100 h-100" style="max-width: 15rem; border-style: outset;">
-                    <div class="card-block">
-                      <img v-bind:src="categoryPic"/>
-                      <h1 class="card-title">{{currentTradeItem.name}}</h1>
+                <div class="col-12 pb-3" style="min-height: 14rem;">
+                  <div class="item-card card px-0 w-100 h-100" style="border-style: outset;">
+                    <div class="card-block px-0">
+                      <img class="trade-photo rounded" v-bind:src="categoryPic"/>
+                      <h2 class="card-title">{{currentTradeItem.name}}</h2>
                     </div>
                   </div>
+                </div>
+                <div class="col order-2 my-1 align-self-center">
+                  <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
                 </div>
                 <div class="col order-3 my-1 align-self-center">
                   <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
                 </div>
               </div>
             </div>
-          </div>
         </div>
     </div>
-    <nav class="navbar">
+    <nav class="navbar" style="position: absolute; bottom: 0; height: 3em;">
       <div class="nav-contents container">
         <h6 class="created-by pt-1">Created by HoneyBadgerHackers</h6>
       </div>
@@ -252,10 +250,11 @@ h2 {
   overflow-y: scroll;
 }
 
-/* .item-offers {
-  overflow-y: scroll;
-  overflow-x: hidden;
-} */
+.trade-photo {
+  width: 36.7rem;
+  height: 27rem;
+  object-fit: cover;
+}
 
 .btn {
   margin: 1px;

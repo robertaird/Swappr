@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <nav class="navbar">
+    <nav class="navbar" style="position: absolute; bottom: 0; height: 3em;">
       <div class="nav-contents container">
         <h6 class="created-by pt-1">Created by HoneyBadgerHackers</h6>
       </div>
