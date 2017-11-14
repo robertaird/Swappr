@@ -11,22 +11,29 @@
       <b-modal ref="itemModal">
         <div slot="modal-header" class="w-100">
           <button class="close float-right" @click="hide">&times;</button>
-          <h4 class="modal-title float-left">Your Offer</h4>
+          <h4 class="modal-title float-left">Your Stash</h4>
         </div>
+        <b-form @submit="acceptTradeItem">
         <div class="container-fluid item-offers">
-          <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
-            <h5 class="card-title text-left m-1">{{item.name}}</h5>
-            <div class="row">
-              <div class="col">
-                <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
-                </p>
+            <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
+              <h5 class="card-title text-left m-1">{{item.name}}</h5>
+              <div class="row">
+                <div class="col">
+                  <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
+                  </p>
+                </div>
+                <div class="col-3 mr-2">
+                  <b-form-checkbox v-model="offeredItems" :id="`${item.id}`" :value="item.id">Offer?</b-form-checkbox>
+                </div>
               </div>
-              <div class="col-3 mr-2">
-                <a href="#" @click="acceptTradeItem(item)" class="btn btn-primary btn-sm">Offer</a>
-              </div>
-            </div>
-          </div>          
+            </div>          
         </div>
+          <div slot="modal-footer" class="w-100">
+            <b-btn class="float-left" variant="primary" @click="hide">Close</b-btn>
+            <b-button @click="acceptTradeItem" type="reset" variant="primary" class="btn btn-primary float-right">Offer Items</b-button>
+          </div>
+          </b-form>
+          <div slot="modal-footer"></div>
       </b-modal>
       <div class="card inner-container p-2" style="background-color: #E5E7E9;">
         <div class="container">          
@@ -66,6 +73,7 @@ export default {
       currentTradeItem: {},
       profileItems: [],
       tradeOffers: [],
+      offeredItems: [],
       categoryPic: '',
     };
   },
@@ -107,6 +115,7 @@ export default {
       const config = {
         headers: {
           id_user: this.userId,
+          items: this.profileItems.map(item => item.id),
         },
       };
       axios.get('/transactions', config)
@@ -118,10 +127,12 @@ export default {
             id: null,
           };
           this.currentTradeItem = noItemResponse;
+          this.categoryPic = '';
         } else {
           this.currentTradeItem = tradeItem;
           this.getCategoryPic();
         }
+        this.getTradeOffers();
       });
     },
     show() {
@@ -144,38 +155,47 @@ export default {
         this.getTradeItem();
         return;
       }
-      const config = {
-        id_user: this.userId,
-        id_item_offered: this.currentTradeItem.id,
-        id_item_desired: this.currentTradeItem.id,
-        pending: false,
-        accepted: false,
-      };
+      const config = { data: [
+        {
+          id_user: this.userId,
+          id_item_offered: this.currentTradeItem.id,
+          id_item_desired: this.currentTradeItem.id,
+          pending: false,
+          accepted: false,
+        },
+      ] };
       axios.post('/transactions', config)
       .then(this.getTradeItem)
       .catch((error) => {
         console.error(error);
       });
     },
-    acceptTradeItem(userItem) {
+    acceptTradeItem() {
       if (!this.currentTradeItem.id) {
+        this.offeredItems = [];
         this.hide();
         return;
       }
-      const config = {
-        id_user: this.userId,
-        id_item_offered: userItem.id,
-        id_item_desired: this.currentTradeItem.id,
-        pending: true,
-      };
+      const userItemsArray = this.offeredItems.map((item) => {
+        const config = {
+          id_user: this.userId,
+          id_item_offered: item,
+          id_item_desired: this.currentTradeItem.id,
+          pending: true,
+        };
+        return config;
+      });
+      const config = { data: userItemsArray };
+      console.log(config);
       axios.post('/transactions', config)
-        .then(() => {
-          this.getTradeItem();
-          this.hide();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      .then(() => {
+        this.offeredItems = [];
+        this.getTradeItem();
+        this.hide();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     },
     getCategoryPic() {
       const categoryID = this.currentTradeItem.id_category;
@@ -185,8 +205,8 @@ export default {
     },
   },
   mounted() {
-    this.getTradeItem();
     this.getUserItems()
+    .then(this.getTradeItem)
     .then(this.getTradeOffers);
   },
 };
