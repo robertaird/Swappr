@@ -8,17 +8,17 @@
           </div>
          <div class="col-2">
             <div style="width: 7em;">
-              <button class="btn btn-primary btn-block float-right" @click="mainMenu">Swap!</button>
+              <button class="btn btn-test btn-block float-right" @click="mainMenu">Swap!</button>
             </div>
           </div>
           <div class="col-3 px-0">
             <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
-              <button class="btn btn-primary ml-auto pending-btn float-right" @click="tradeView">Pending Trades</button>
+              <button class="btn btn-test ml-auto pending-btn float-right" @click="tradeView">Pending Trades</button>
               <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
             </span>
           </div>
           <div class="col-2">
-            <button class="btn btn-primary signout float-right" @click="auth.logout">Sign Out</button>
+            <button class="btn btn-test signout float-right" @click="auth.logout">Sign Out</button>
             </button>
           </div>
         </div>
@@ -26,6 +26,7 @@
     </nav>
     <div class="container main-container">
       <div class="card inner-container p-2" style="min-height: 10em;">
+        <div class="float-right" style="height: 3rem;"></div>
         <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
         <div class="card pl-3 my-1 w-100 item-box">
           <div class="container">
@@ -38,7 +39,7 @@
     </div>
     <nav class="navbar">
       <div class="nav-contents container">
-        <h6 class="pt-1">Created by HoneyBadgerHackers</h6>
+        <h6 class="created-by pt-1">Created by HoneyBadgerHackers</h6>
       </div>
     </nav>
   </div>

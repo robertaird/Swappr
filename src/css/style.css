@@ -56,22 +56,35 @@ nav {
 h6 {
   color: #333A56;
 }
+
+.created-by {
+  color: #f0ffff;
+}
+
 .signout {
   float: left;
 }
 
-.btn-add-item {
-  background-color: #029ba1;
+.btn-test {
+  background-color: #e27d5f;
   color: #f0ffff;
+  border-color: #e2807e;
 }
 
-.btn-add-item:hover {
-  background-color: #028489;
+.btn-test:hover {
+  background-color: #d16244;
   color: #f0ffff;
+  border-color: #e2807e;
 }
 
-.btn-add-item:active {
-  background-color: #359486;
+.btn-test:active {
+  background-color: #9b5452;
+  border-color: #e2807e;
+}
+
+.btn-test:focus {
+  background-color: #8d4948;
+  box-shadow: 0 0 0 0.2rem rgba(255, 139, 139, 0.5);
 }
 
 .pending-btn {
@@ -87,7 +100,7 @@ h6 {
 }
 /* really nice salmon  #e2807e; */
 .item-card {
-  background-color: #E8E8E8;
+  background-color: #f6f6e6;
   color: white;
 }
 .item-box {
@@ -101,15 +114,15 @@ h6 {
 
 .fa-stack[data-count]:after{
   position:absolute;
-  top:1%;
-  right:0%;
+  top:-5%;
+  right:-1%;
   content: attr(data-count);
   font-size:70%;
   padding:.6em;
   border-radius:999px;
   line-height:.75em;
   color: white;
-  background:rgba(255,0,0,.85);
+  background:#028489;
   text-align:center;
   min-width:2em;
   font-weight:bold;

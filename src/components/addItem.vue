@@ -1,6 +1,6 @@
   <template>
   <div class="addItem">
-      <b-button @click="showModal" class="btn btn-lg btn-outline-info btn-add-item">Add New Item</b-button>
+      <b-button @click="showModal" class="btn btn-lg btn-test float-left">Add New Item</b-button>
       <b-modal ref="addItemModal" class="mt-10">
             <div slot="modal-header" class="w-100">
               <h3 class="float-left">Add New Item</h3>
