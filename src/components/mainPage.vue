@@ -58,7 +58,7 @@
                 <div class="col-12 pb-3" style="min-height: 14rem;">
                   <div class="item-card card px-0 w-100 h-100" style="border-style: outset;">
                     <div class="card-block px-0">
-                      <img class="trade-photo rounded" v-bind:src="categoryPic"/>
+                      <img v-b-popover.hover.bottom="currentTradeItem.description" :title="currentTradeItem.name" class="trade-photo rounded" v-bind:src="categoryPic"/>
                       <h2 class="card-title">{{currentTradeItem.name}}</h2>
                     </div>
                   </div>
