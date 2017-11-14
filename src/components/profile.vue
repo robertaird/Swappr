@@ -17,24 +17,27 @@
               <button class="btn btn-primary btn-block float-right" @click="mainMenu">Swap!</button>
             </div>
           </div>
-          </div>
+        </div>
       </div>
     </nav>
     <div class="container main-container">
-          <div class="card inner-container p-2" style="min-height: 10em;">
-            <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
-            <div class="card pl-3 my-1 w-100 item-box">
-              <div class="container">
-                <div class="row">
-                  <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getUserItems"></item-view>
-                </div>
-              </div>
+      <div class="card inner-container p-2" style="min-height: 10em;">
+        <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
+        <div class="card pl-3 my-1 w-100 item-box">
+          <div class="container">
+            <div class="row">
+              <item-view v-for="(item,index) in profileItems" :item='item' :key='index' v-on:deleted-item="getUserItems"></item-view>
             </div>
           </div>
-        <nav class="navbar">
-          <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
-        </nav>
+        </div>
+      </div>
     </div>
+      <nav class="navbar">
+        <div class="nav-contents container">
+          <button class="btn btn-primary btn-sm signout" @click="auth.logout">Sign Out</button>
+          </button>
+        </div>
+      </nav>
   </div>
 </template>
 

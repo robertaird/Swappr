@@ -1,6 +1,6 @@
   <template>
   <div class="addItem">
-      <b-button @click="showModal" class="btn btn-info">Add New Item</b-button>
+      <b-button @click="showModal" class="btn btn-lg btn-outline-info btn-add-item">Add New Item</b-button>
       <b-modal ref="addItemModal" class="mt-10">
             <div slot="modal-header" class="w-100">
               <h3 class="float-left">Add New Item</h3>
@@ -133,6 +133,21 @@ textarea {
 li {
   display: inline-block;
 }
+
+.btn-add-item {
+  background-color: #029ba1;
+  color: #f0ffff;
+}
+
+.btn-add-item:hover {
+  background-color: #028489;
+  color: #f0ffff;
+}
+
+.btn-add-item:active {
+  background-color: #359486;
+}
+
 .scrollable-menu {
     height: auto;    
     max-height: 300px;
