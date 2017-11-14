@@ -20,6 +20,10 @@ __Trade Items:__ If someone has approved of the same offer then you’ll get a m
 </object>
 
 
+## Database Schema
+<img src="https://imgur.com/0u8AqVo" alt="Database Schema" width="400" height="400"/>
+
+
 ## Project Set-up
 ### Getting Started
 First thing's first, run `npm install`.
@@ -48,7 +52,7 @@ After the database is initialized, you can `npm start` from the root of the dire
  - [DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
  - [Auth0](https://auth0.com/) - Authentication Service
  
- <img src="https://imgur.com/vfzda0W" width="400" height="400"/>
+ <img src="https://imgur.com/vfzda0W" alt="Tech Stack" width="400" height="400"/>
 
 ## FAQ
 ### Do I need to sign up for an account?
