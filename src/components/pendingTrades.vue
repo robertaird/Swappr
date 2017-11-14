@@ -1,7 +1,5 @@
   <template>
   <div class="pending-btn">
-    <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
-    </span>
     <b-modal ref="acceptedTrades">
       <div slot="modal-header" class="w-100">
         <h4 class="modal-title float-left">Accepted Trades</h4>
