@@ -3,22 +3,25 @@
     <nav class="navbar">
       <div class="nav-contents container">
         <div class="row w-100">
-          <div class="col-6">
+          <div class="col-5">
             <img src="../assets/logo-white.png" class="float-left" style="width: 120px;">
           </div>
-
-          <div class="col-4 pr-1">
+          <div class="col-2">
+            <div style="width: 7em;">
+              <button class="btn btn-primary btn-block float-right" @click="profilePage">Profile View</button>
+            </div>
+          </div>
+          <div class="col-3 px-0">
             <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
-              <button class="btn btn-primary ml-auto pending-btn" @click="tradeView">Pending Trades</button>
+              <button class="btn btn-primary ml-auto pending-btn float-right" @click="tradeView">Pending Trades</button>
               <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
             </span>
           </div>
-          <div class="col-2 px-0">
-            <div style="width: 7em;">
-              <button class="btn btn-primary btn-block float-right" @click="profilePage">Profile Page</button>
-            </div>
+          <div class="col-2">
+            <button class="btn btn-primary signout float-right" @click="auth.logout">Sign Out</button>
+            </button>
           </div>
-          </div>
+        </div>
       </div>
     </nav>
     <div class="container main-container">
@@ -49,30 +52,35 @@
             </div>
         </b-modal>
         <div class="card inner-container p-2">
-          <div class="container">          
-            <div class="row">
-              <div class="col order-2 my-1 order-md-1 align-self-center">
-                <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
-              </div>
-              <div class="col-12 order-first order-md-2 col-md-5" style="min-height: 14rem;">
-                <div class="card w-100 h-100" style="max-width: 15rem; border-style: outset;">
-                  <div class="card-block">
-                    <h3 class="card-title">{{currentTradeItem.name}}</h3>
-                    <p class="card-text">{{currentTradeItem.description}}</p>
-                    <img v-bind:src="categoryPic"/>
+            <h3 class="py-1">SWAP</h3>
+          <div class="card pl-3 my-1 w-100 item-box">
+            <div class="container">          
+              <div class="row">
+                <div class="col order-2 my-1 order-md-1 align-self-center">
+                  <button class="btn-warning btn-lg" @click="rejectTradeItem">No Thanks</button>
+                </div>
+                <div class="col-12 order-first order-md-2 col-md-5" style="min-height: 14rem;">
+                  <div class="card w-100 h-100" style="max-width: 15rem; border-style: outset;">
+                    <div class="card-block">
+                      <h3 class="card-title">{{currentTradeItem.name}}</h3>
+                      <p class="card-text">{{currentTradeItem.description}}</p>
+                      <img v-bind:src="categoryPic"/>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col order-3 my-1 align-self-center">
-                <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
+                <div class="col order-3 my-1 align-self-center">
+                  <button class="btn-success btn-lg" @click="show">Let's Trade!</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <nav class="navbar">
-          <button class="btn btn-secondary btn-sm signout" @click="auth.logout">Sign Out</button>
-        </nav>
     </div>
+    <nav class="navbar">
+      <div class="nav-contents container">
+        <h6 class="pt-1">Created by HoneyBadgerHackers</h6>
+      </div>
+    </nav>
   </div>
 </template>
 

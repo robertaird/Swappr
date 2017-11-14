@@ -3,19 +3,23 @@
     <nav class="navbar">
       <div class="nav-contents container">
         <div class="row w-100">
-          <div class="col-6">
+          <div class="col-5">
             <img src="../assets/logo-white.png" class="float-left" style="width: 120px;">
           </div>
-          <div class="col-4 pr-1">
-            <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
-              <button class="btn btn-primary ml-auto pending-btn" @click="tradeView">Pending Trades</button>
-              <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
-            </span>
-          </div>
-          <div class="col-2 px-0">
+         <div class="col-2">
             <div style="width: 7em;">
               <button class="btn btn-primary btn-block float-right" @click="mainMenu">Swap!</button>
             </div>
+          </div>
+          <div class="col-3 px-0">
+            <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
+              <button class="btn btn-primary ml-auto pending-btn float-right" @click="tradeView">Pending Trades</button>
+              <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
+            </span>
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary signout float-right" @click="auth.logout">Sign Out</button>
+            </button>
           </div>
         </div>
       </div>
@@ -32,12 +36,11 @@
         </div>
       </div>
     </div>
-      <nav class="navbar">
-        <div class="nav-contents container">
-          <button class="btn btn-primary btn-sm signout" @click="auth.logout">Sign Out</button>
-          </button>
-        </div>
-      </nav>
+    <nav class="navbar">
+      <div class="nav-contents container">
+        Created by HoneyBadgerHackers
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -128,6 +131,10 @@ h2 {
   font-weight: normal;
 }
 
+.item-box {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .btn {
   margin: 1px;
 }
