@@ -30,7 +30,6 @@ app.post('/items', (req, res) => {
       console.error(err);
       res.send(500, 'something went wrong!');
     });
-  // res.send();
 });
 
 app.delete('/items', (req, res) => {

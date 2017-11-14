@@ -130,7 +130,11 @@ export default {
           this.categoryPic = '';
         } else {
           this.currentTradeItem = tradeItem;
-          this.getCategoryPic();
+          if (tradeItem.url_img) {
+            this.categoryPic = tradeItem.url_img;
+          } else {
+            this.getCategoryPic();
+          }
         }
         this.getTradeOffers();
       });
@@ -186,7 +190,6 @@ export default {
         return config;
       });
       const config = { data: userItemsArray };
-      console.log(config);
       axios.post('/transactions', config)
       .then(() => {
         this.offeredItems = [];
@@ -234,6 +237,10 @@ h2 {
 
 li {
   display: inline-block;
+}
+
+img {
+  width: 100%
 }
 
 </style>
