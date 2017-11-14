@@ -48,7 +48,7 @@ After the database is initialized, you can `npm start` from the root of the dire
  - [DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
  - [Auth0](https://auth0.com/) - Authentication Service
  
- <img src="https://files.slack.com/files-tmb/T02P3HQD6-F7ZMPR6AE-296f02edd2/pasted_image_at_2017_11_13_06_56_pm_1024.png" width="400" height="400"/>
+ <img src="https://imgur.com/vfzda0W" width="400" height="400"/>
 
 ## FAQ
 ### Do I need to sign up for an account?
