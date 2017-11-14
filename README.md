@@ -47,6 +47,8 @@ After the database is initialized, you can `npm start` from the root of the dire
  - [PostgreSQL](https://www.postgresql.org) – Database that Swappr uses
  - [DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
  - [Auth0](https://auth0.com/) - Authentication Service
+ <img src="https://i.imgur.com/HyT4LZP.png" alt="Tech Stack" width="400" height="400"/>
+
 
 ## FAQ
 ### Do I need to sign up for an account?

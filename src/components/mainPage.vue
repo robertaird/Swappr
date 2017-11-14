@@ -7,6 +7,9 @@
         <div style="width: 7em;">
           <button class="btn btn-primary btn-block" @click="profilePage">Profile Page</button>
         </div>
+        <!-- <div>
+          <button class="btn btn-secondary btn-med signout" @click="auth.logout">Sign Out</button>
+        </div> -->
       </nav>
       <b-modal ref="itemModal">
         <div slot="modal-header" class="w-100">
