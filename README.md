@@ -1,4 +1,7 @@
+<p align="center">
 <img src="https://i.imgur.com/HyT4LZP.png" alt="Drawing" width="400" height="400"/>
+</p>
+
 # Swappr
 ##### *Item trading made easy*
 ## Deployed Site
@@ -12,11 +15,13 @@ __Check Offers:__ After you have your own listings set up, you can now see what 
 __Trade Items:__ If someone has approved of the same offer then you’ll get a message finalizing the trade. If approved by both parties you’ll be given contact information to reach them so you can make the trade.
 
 ## Project Wireframe
-<object data="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">
-        <p><a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">View PDF</a>.</p>
-    </embed>
-</object>
+
+<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/honeybadgerhackers/Swappr/master/docs/swappr-wireframe.pdf">
+<img alt="Wire Frame" src="https://i.imgur.com/OfEprst.png" width="600" height="400">
+</a>
+
+## Database Schema
+<img src="https://i.imgur.com/0u8AqVo.png" alt="Database Schema" width="600" height="400"/>
 
 
 ## Project Set-up
@@ -46,6 +51,8 @@ After the database is initialized, you can `npm start` from the root of the dire
  - [PostgreSQL](https://www.postgresql.org) – Database that Swappr uses
  - [DigitalOcean](https://www.digitalocean.com/) - Where Swappr is deployed currently
  - [Auth0](https://auth0.com/) - Authentication Service
+ 
+ <img src="https://i.imgur.com/vfzda0W.png" alt="Tech Stack" width="600"/>
 
 ## FAQ
 ### Do I need to sign up for an account?
