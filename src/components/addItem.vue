@@ -7,7 +7,6 @@
               <button class="close float-right" @click="hideModal">&times;</button>
             </div>
             <div class="modal-body">
-              <div>
                 <div>
                   <b-dropdown id="ddown1" :text="selectedCategory" class="m-md-2">
                     <div class="scrollable-menu">
@@ -30,7 +29,6 @@
                     <input v-model="imageUrl" type="text" class="form-control" id="urlArea" placeholder="image URL (optional)"></input>
                   </div>
                 </form>
-              </div>
             </div>
             <div slot="modal-footer" class="w-100">
               <b-btn class="float-left" variant="primary" @click="hideModal">Close</b-btn>

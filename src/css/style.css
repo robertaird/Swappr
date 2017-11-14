@@ -46,6 +46,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424c9b98', e
   background-color: #52658f;
 }
 
+body.login {
+  background-color: white;
+}
+
 nav {
   background: #333A56;
   margin: 0 0 0 0;
@@ -55,6 +59,12 @@ nav {
 
 h6 {
   color: #333A56;
+}
+
+.item-offers {
+  max-height: 70vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .created-by {

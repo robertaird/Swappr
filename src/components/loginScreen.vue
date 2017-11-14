@@ -18,11 +18,15 @@ export default {
       msg: 'Welcome to Swappr',
     };
   },
+  beforeCreate() {
+    document.body.className = 'login';
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 h1,
 h2 {
   font-weight: normal;
@@ -30,6 +34,7 @@ h2 {
 .hello {
   text-align: center;
 }
+
 
 img {
   width: 400px;

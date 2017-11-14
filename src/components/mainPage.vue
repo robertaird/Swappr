@@ -62,9 +62,8 @@
                 <div class="col-12 order-first order-md-2 col-md-5" style="min-height: 14rem;">
                   <div class="card w-100 h-100" style="max-width: 15rem; border-style: outset;">
                     <div class="card-block">
-                      <h3 class="card-title">{{currentTradeItem.name}}</h3>
-                      <p class="card-text">{{currentTradeItem.description}}</p>
                       <img v-bind:src="categoryPic"/>
+                      <h1 class="card-title">{{currentTradeItem.name}}</h1>
                     </div>
                   </div>
                 </div>
