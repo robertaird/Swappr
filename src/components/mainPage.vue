@@ -190,7 +190,6 @@ export default {
         return config;
       });
       const config = { data: userItemsArray };
-      console.log(config);
       axios.post('/transactions', config)
       .then(() => {
         this.offeredItems = [];
