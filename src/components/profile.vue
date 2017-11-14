@@ -38,7 +38,7 @@
     </div>
     <nav class="navbar">
       <div class="nav-contents container">
-        Created by HoneyBadgerHackers
+        <h6 class="pt-1">Created by HoneyBadgerHackers</h6>
       </div>
     </nav>
   </div>
