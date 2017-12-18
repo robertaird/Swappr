@@ -6,16 +6,26 @@
         <button class="close" @click="closeTradeView">&times;</button>
       </div>
       <div class="container-fluid">
-        <div class="card-block row">
+        <div class="card-block">
           <div v-for="(trade,index) in tradeOffers" :key='index' class="card p-1 w-100" style="border-style: outset;">
-            <div class="float-left">
-              <p>
-              {{trade.theirItem.name}}
-              for your {{trade.myItem.name}}
-              </p>
-            </div>
-            <div class="float-right">
-              <a href="#" @click="acceptOffer(index)" class="btn btn-primary">More Info</a>
+            <div class="row">
+              <div class="col-2">
+                <img class="pending-item-img rounded float-left" :src="trade.theirItem.url_img">
+              </div>
+              <div class="col-7">
+                <p>
+                  <strong>
+                    {{trade.theirItem.name}}
+                  </strong>
+                  for your
+                  <strong>
+                    {{trade.myItem.name}}
+                  </strong>
+                </p>
+              </div>
+              <div class="col-3">
+                <a href="#" @click="acceptOffer(index)" class="btn btn-primary float-right">More Info</a>
+              </div>
             </div>
           </div>
         </div>
@@ -91,6 +101,12 @@ h2 {
 
 .btn-danger {
   display: inline-block;
+}
+
+.pending-item-img {
+  height: 4rem;
+  width: 4.3rem;
+  object-fit: cover;
 }
 
 .card {

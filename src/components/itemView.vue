@@ -2,7 +2,7 @@
     <div :class="item.id">
       <div class="item-card card col-12 mx-1 ml-sm-4 ml-md-4 p-0" @click="show" style="margin: 5px; border-style: outset; width: 10rem; height: 9rem;">
         <div class="card-body p-0 m-0">
-          <img class="item-img rounded-top p-0 m-0" src="../../static/test/test-img.jpg">
+          <img class="item-img rounded-top p-0 m-0" :src="item.url_img">
         </div>
         <div class="card-footer px-0 pt-1 m-0 border-none">
           <h6 class="card-title">{{ item.name }}</h6>
@@ -13,14 +13,15 @@
           <h4 class="modal-title float-left">{{ item.name }}</h4>
           <button class="close float-right" @click="hide">&times;</button>
         </div>
-        <div class="modal-body" style="height: 10rem;">
-          {{ item.description }}<br>
+        <div class="modal-body" style="max-height: 20rem;">
+          <img class="item-img-lg rounded pb-3" :src="item.url_img"><br>
+          {{ item.description }}
         </div>
         <div slot="modal-footer" class="w-100">
           <a href="#" @click="removeListing" class="btn btn-danger  btn-sm float-left">Delete Item</a>
           <a href="#" @click="hide" class="btn btn-primary float-right">Close</a>
         </div>
-      </b-modal>          
+      </b-modal>
    </div>
 </template>
 
@@ -68,6 +69,12 @@ h2 {
 .item-img {
   height: 7rem;
   width: 9.9rem;
+  object-fit: cover;
+}
+
+.item-img-lg {
+  height: 15rem;
+  width: 20rem;
   object-fit: cover;
 }
 .btn-danger {

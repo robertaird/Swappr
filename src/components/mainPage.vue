@@ -19,7 +19,6 @@
           </div>
           <div class="col-2">
             <button class="btn btn-test signout float-right" @click="auth.logout">Sign Out</button>
-            </button>
           </div>
         </div>
       </div>
@@ -32,18 +31,21 @@
           </div>
           <b-form @submit="acceptTradeItem">
           <div slot="modal-body" class="container-fluid item-offers">
-              <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 5rem;">
+              <div v-for="(item,index) in profileItems" :key='index' class="card m-1 w-100" style="border-style: outset; height: 6.5rem;">
                 <h5 class="card-title text-left m-1">{{item.name}}</h5>
                 <div class="row">
+                  <div class="col-2">
+                    <img class="item-img rounded ml-1" :src="item.url_img">
+                  </div>
                   <div class="col">
-                    <p class="text-left ml-1" style="height: 3rem; overflow: hidden;">{{item.description}}
+                    <p class="text-left ml-1" style="height: 5rem; overflow: hidden;">{{item.description}}
                     </p>
                   </div>
                   <div class="col-3 mr-2">
                     <b-form-checkbox v-model="offeredItems" :id="`${item.id}`" :value="item.id">Offer?</b-form-checkbox>
                   </div>
                 </div>
-              </div>          
+              </div>
           </div>
             </b-form>
             <div slot="modal-footer" class="w-100">
@@ -53,7 +55,7 @@
         </b-modal>
         <div class="card inner-container p-2">
             <div style="height: 3rem;"></div>
-            <div class="container-fluid">          
+            <div class="container-fluid">
               <div class="row">
                 <div class="col-12 pb-3" style="min-height: 14rem;">
                   <div class="item-card card px-0 w-100 h-100" style="border-style: outset;">
@@ -248,6 +250,12 @@ h2 {
 .modal-body {
   max-height: 70vh;
   overflow-y: scroll;
+}
+
+.item-img {
+  height: 4rem;
+  width: 4.3rem;
+  object-fit: cover;
 }
 
 .trade-photo {
