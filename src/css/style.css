@@ -142,6 +142,8 @@ nav {
 
 .pending-btn {
   float: right;
+  margin-right: 0px;
+  margin-left: 2px;
 }
 
 .inner-container {
@@ -168,7 +170,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05bddba4', e
 .fa-stack[data-count]:after{
   position:absolute;
   top:-5%;
-  right:-1%;
+  right:-10%;
   content: attr(data-count);
   font-size:70%;
   padding:.6em;
