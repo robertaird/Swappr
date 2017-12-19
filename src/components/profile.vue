@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow: hidden; max-height: 100%;">
     <nav class="navbar">
       <div class="nav-contents container">
         <div class="row w-100">
@@ -27,7 +27,7 @@
     </nav>
     <div class="container main-container">
       <div class="card inner-container p-2" style="min-height: 10em;">
-        <div class="float-right" style="height: 3rem;"></div>
+        <div class="float-right" style="max-height: 3rem;"></div>
         <add-item v-bind="$props" v-on:new-item="newItem"></add-item>
         <div class="card pl-3 my-1 w-100 item-box">
           <div class="container">

@@ -1,5 +1,6 @@
   <template>
-  <div>
+  <div style="overflow: hidden; max-height: 100%;">
+  <!-- <div> -->
     <nav class="navbar">
       <div class="nav-contents container">
         <div class="row w-100 ">
@@ -55,14 +56,14 @@
               <b-button @click="acceptTradeItem" type="reset" variant="primary" class="btn btn-primary float-right">Offer Items</b-button>
             </div>
         </b-modal>
-        <div class="card inner-container p-0 p-sm-2">
-            <div style="height: 3rem;"></div>
+        <div class="card inner-container p-1 p-sm-2 m-0">
+            <div class="p-0 p-sm-4" style="max-height: 3rem;"></div>
             <div class="container-fluid">
               <div class="row">
-                <div class="col-12 px-0 px-sm-2 pb-3" style="min-height: 14rem;">
+                <div class="col-12 px-0 px-sm-2 pb-3">
                   <div class="item-card card px-0 w-100 h-100" style="border-style: outset;">
                     <div class="card-block px-0">
-                      <img v-b-popover.hover.bottom="currentTradeItem.description" :title="currentTradeItem.name" class="trade-photo rounded" v-bind:src="categoryPic"/>
+                      <img v-b-popover.hover.bottom="currentTradeItem.description" :title="currentTradeItem.name" class="trade-photo rounded m-0" v-bind:src="categoryPic"/>
                       <h2 class="card-title">{{currentTradeItem.name}}</h2>
                     </div>
                   </div>

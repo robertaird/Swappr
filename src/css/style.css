@@ -7,15 +7,16 @@
   }
   .inner-container {
     width: 40rem;
-    height: 87vh;
+    height: 90vh;
   }
   .item-box {
-    height: 74vh;
+    /* height: 5rem; */
   }
 
   .trade-photo {
-    width: 36.7rem;
-    height: 27rem;
+    resize: vertical;
+    max-width: 100%;
+    height: auto;
     object-fit: cover;
   }
 }
@@ -23,7 +24,7 @@
 @media (max-width: 768px) {
   .inner-container {
     /* width: 40rem; */
-    height: 87vh;
+    height: 88vh;
   }
   .main-container {
     /* margin-left: 40px; */
@@ -34,12 +35,12 @@
 
     padding-left: 0px;
     padding-right: 0px;
-    width: 42rem;
+    width: 50rem;
   }
 
   .trade-photo {
-    width: 36.7rem;
-    height: 27rem;
+    max-width: 100%;
+    max-height: auto;
     object-fit: cover;
   }
 }
@@ -48,11 +49,11 @@
   .main-container {
     padding: 0px;
     margin: 0px;
-    height: 87vh;
     /* width: 28rem; */
   }
   .inner-container {
     width: 26rem;
+    height: 82vh;
   }
 
   .nav-contents {
@@ -68,8 +69,8 @@
 
   .trade-photo {
     margin: 0px;
-    width: 20rem;
-    /* height: 20rem; */
+    max-width: 20rem;
+    height: auto;
     object-fit: contain;
   }
 
