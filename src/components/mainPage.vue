@@ -2,28 +2,28 @@
   <div>
     <nav class="navbar">
       <div class="nav-contents container">
-        <div class="row w-100">
-          <div class="col-5">
+        <div class="row w-100 ">
+          <div class="col-12 col-sm-4 col-md-5">
             <img src="../assets/logo-white.png" class="float-left" style="width: 120px;">
           </div>
-          <div class="col-2">
+          <div class="col-4 col-sm-3 col-md-2 mx-0">
             <div style="width: 7em;">
-              <button class="btn btn-test btn-block float-right" @click="profilePage">Profile View</button>
+              <button class="btn btn-test btn-block float-right" @click="profilePage">Profile</button>
             </div>
           </div>
-          <div class="col-3 px-0">
+          <div class="col-5 col-sm-3 col-md-3 px-0">
             <span class="fa-stack fa-5x has-badge ml-auto" :data-count="tradeOffers.length">
               <button class="btn btn-test ml-auto pending-btn float-right" @click="tradeView">Pending Trades</button>
               <pending-trades ref="pendingTrades" v-bind="$props" :tradeOffers='tradeOffers'></pending-trades>
             </span>
           </div>
-          <div class="col-2">
+          <div class="col-3 col-sm-2 col-md-2 mx-0 pr-0">
             <button class="btn btn-test signout float-right" @click="auth.logout">Sign Out</button>
           </div>
         </div>
       </div>
     </nav>
-    <div class="container main-container">
+    <div class="container main-container px-sm-0 mx-auto">
         <b-modal ref="itemModal" :class="'item-modal-view'">
           <div slot="modal-header" class="w-100">
             <button class="close float-right" @click="hide">&times;</button>
@@ -53,11 +53,11 @@
               <b-button @click="acceptTradeItem" type="reset" variant="primary" class="btn btn-primary float-right">Offer Items</b-button>
             </div>
         </b-modal>
-        <div class="card inner-container p-2">
+        <div class="card inner-container p-0 p-sm-2">
             <div style="height: 3rem;"></div>
             <div class="container-fluid">
               <div class="row">
-                <div class="col-12 pb-3" style="min-height: 14rem;">
+                <div class="col-12 px-0 px-sm-2 pb-3" style="min-height: 14rem;">
                   <div class="item-card card px-0 w-100 h-100" style="border-style: outset;">
                     <div class="card-block px-0">
                       <img v-b-popover.hover.bottom="currentTradeItem.description" :title="currentTradeItem.name" class="trade-photo rounded" v-bind:src="categoryPic"/>
@@ -255,12 +255,6 @@ h2 {
 .item-img {
   height: 4rem;
   width: 4.3rem;
-  object-fit: cover;
-}
-
-.trade-photo {
-  width: 36.7rem;
-  height: 27rem;
   object-fit: cover;
 }
 
