@@ -28,16 +28,13 @@ const port = process.env.PORT || config.dev.port
 
 const app = express()
 
-// app.get('/callback', (req, res) => {
+// TODO implement web-hot-middleware for hot reloading
+// const hotMiddleware = require('webpack-hot-middleware')(compiler, {
+//   log: false,
+//   heartbeat: 2000
+// })
 
-//   // res.redirect("/");
-//   res.statusCode = 302;
-//   res.setHeader("Location", req.originalUrl);
-//   res.end();
-//   }
-// );
-
-// app.use('/', express.static('dist'));
+// TODO check for NODE_PRODUCTION environmental variable, redirect to src if not production
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static('static'));
 app.use(itemRoutes);
@@ -48,6 +45,8 @@ app.use(categoryRoutes);
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+
+// TODO add /callback handling on server size
 // app.get('/callback',
 //   passport.authenticate('auth0', { failureRedirect: '/login' }),
 //   function (req, res) {
