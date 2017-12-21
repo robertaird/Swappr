@@ -28,12 +28,26 @@ const port = process.env.PORT || config.dev.port
 
 const app = express()
 
-app.use('/', express.static('dist'));
-app.get('/callback', () => {
-    res.redirect("/main");
-  }
-);
+// app.get('/callback', (req, res) => {
 
+//   // res.redirect("/");
+//   res.statusCode = 302;
+//   res.setHeader("Location", req.originalUrl);
+//   res.end();
+//   }
+// );
+
+// app.use('/', express.static('dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static('static'));
+app.use(itemRoutes);
+app.use(transactionRoutes);
+app.use(userRoutes);
+app.use(categoryRoutes);
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 // app.get('/callback',
 //   passport.authenticate('auth0', { failureRedirect: '/login' }),
 //   function (req, res) {
@@ -44,12 +58,6 @@ app.get('/callback', () => {
 //   }
 // );
 
-
-app.use(express.static('static'));
-app.use(itemRoutes);
-app.use(transactionRoutes);
-app.use(userRoutes);
-app.use(categoryRoutes);
 
 app.use(express.urlencoded());
 // serve pure static assets
