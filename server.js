@@ -13,7 +13,7 @@ const itemRoutes = require('./app/route-handlers/db-items');
 const categoryRoutes = require("./app/route-handlers/db-categories");
 const transactionRoutes = require('./app/route-handlers/db-transactions');
 const userRoutes = require('./app/route-handlers/db-users');
-const proxyMiddleware = require('http-proxy-middleware')
+const proxyMiddleware = require('http-proxy-middleware');
 const webpackConfig = (process.env.NODE_ENV === 'testing' || process.env.NODE_ENV === 'production')
   ? require('./build/webpack.prod.conf')
   : require('./build/webpack.dev.conf')
