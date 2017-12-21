@@ -1,13 +1,13 @@
   <template>
-  <div style="overflow: hidden; max-height: 100%;">
+  <div style="overflow: overlay; max-height: 100%;">
   <!-- <div> -->
     <nav class="navbar">
       <div class="nav-contents container">
-        <div class="row w-100 ">
+        <div class="row w-100">
           <div class="col-12 col-sm-3 col-md-5">
             <img src="../assets/logo-white.png" class="float-left" style="width: 120px;">
           </div>
-          <div class="col-12 col-sm-9 col-md-7 px-0" align="right">
+          <div class="col-12 col-sm-9 col-md-7 px-0 nav-buttons" align="right" nowrap>
             <div style="float: right;">
               <button class="btn btn-test signout" @click="auth.logout">Sign Out</button>
             </div>
@@ -56,16 +56,14 @@
               <b-button @click="acceptTradeItem" type="reset" variant="primary" class="btn btn-primary float-right">Offer Items</b-button>
             </div>
         </b-modal>
-        <div class="card inner-container p-1 p-sm-2 m-0">
-            <div class="p-0 p-sm-4" style="max-height: 3rem;"></div>
+        <div class="inner-container p-1 p-sm-2 m-0">
+            <div class="p-4 p-sm-4" style="max-height: 3rem;"></div>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-12 px-0 px-sm-2 pb-3">
-                  <div class="item-card card px-0 w-100 h-100" style="border-style: outset;">
-                    <div class="card-block px-0">
-                      <img v-b-popover.hover.bottom="currentTradeItem.description" :title="currentTradeItem.name" class="trade-photo rounded m-0" v-bind:src="categoryPic"/>
+                  <div class="item-card card px-0">
+                      <img v-b-popover.hover.bottom="currentTradeItem.description" :title="currentTradeItem.name" class="img-fluid rounded m-0" v-bind:src="categoryPic"/>
                       <h2 class="card-title">{{currentTradeItem.name}}</h2>
-                    </div>
                   </div>
                 </div>
                 <div class="col order-2 my-1 align-self-center">
@@ -78,11 +76,6 @@
             </div>
         </div>
     </div>
-    <nav class="navbar" style="position: absolute; bottom: 0; height: 3em;">
-      <div class="nav-contents container">
-        <h6 class="created-by pt-1">Created by HoneyBadgerHackers</h6>
-      </div>
-    </nav>
   </div>
 </template>
 
