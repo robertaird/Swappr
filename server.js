@@ -29,6 +29,22 @@ const port = process.env.PORT || config.dev.port
 const app = express()
 
 app.use('/', express.static('dist'));
+app.get('/callback', () => {
+    res.redirect("/main");
+  }
+);
+
+// app.get('/callback',
+//   passport.authenticate('auth0', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     if (!req.user) {
+//       throw new Error('user null');
+//     }
+//     res.redirect("/");
+//   }
+// );
+
+
 app.use(express.static('static'));
 app.use(itemRoutes);
 app.use(transactionRoutes);
