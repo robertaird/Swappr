@@ -48,13 +48,16 @@ export default class AuthService {
         id_facebook: idGoogle,
         email,
       };
+      console.log('happening?? inside userInfo');
       userService.createUser(user)
       .then(({ data: { id } }) => {
+        console.log('happening?');
         localStorage.setItem('userId', id);
         this.authNotifier.emit('authChange', { authenticated: true });
       }).then(() => {
         router.replace('main');
       }).catch((err) => {
+        console.log('is there an error?');
         console.error(err);
         router.replace('main');
       });

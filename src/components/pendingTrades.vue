@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios';
+import { SERVER_URI } from '../constants';
 
 export default {
   name: 'addItem',
@@ -67,7 +68,7 @@ export default {
           id: id_user,
         },
       };
-      axios.get('/users/single', config)
+      axios.get(`${SERVER_URI}/users/single`, config)
         .then((trader) => {
           this.acceptedTrade = trader.data;
           this.acceptedTrade.description = description;

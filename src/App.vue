@@ -6,17 +6,18 @@
       :authenticated="authenticated"
       :categories="categories">
     </router-view>
-    <nav class="navbar" style="position: absolute; bottom: 0; height: 3em;">
+    <footer class="navbar" style="position: absolute; bottom: 0; height: 3em;">
       <div class="nav-contents container">
         <h6 class="created-by pt-1">Created by HoneyBadgerHackers</h6>
       </div>
-    </nav>
+    </footer>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import AuthService from './Auth/AuthService';
+import { SERVER_URI } from './constants';
 
 const auth = new AuthService();
 
@@ -38,7 +39,7 @@ export default {
   },
   methods: {
     getCategories() {
-      axios.get('/categories')
+      axios.get(`${SERVER_URI}/categories`)
       .then(({ data: categories }) => {
         this.categories = categories;
       })

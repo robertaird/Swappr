@@ -27,6 +27,7 @@
 
 <script>
 import axios from 'axios';
+import { SERVER_URI } from '../constants';
 
 export default {
   name: 'addItem',
@@ -49,7 +50,7 @@ export default {
           id_item: this.item.id,
         },
       };
-      axios.delete('/items', config)
+      axios.delete(`${SERVER_URI}/items`, config)
         .then(() => {
           this.$emit('deleted-item');
         })

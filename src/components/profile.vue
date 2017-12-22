@@ -48,6 +48,7 @@
 
 <script>
 import axios from 'axios';
+import { SERVER_URI } from '../constants';
 
 export default {
   name: 'profile',
@@ -74,7 +75,7 @@ export default {
           id_user: this.userId,
         },
       };
-      return axios.get('/items', config)
+      return axios.get(`${SERVER_URI}/items`, config)
       .then(({ data: userItems }) => {
         this.profileItems = userItems;
       })
@@ -90,7 +91,7 @@ export default {
           items: this.profileItems.map(item => item.id),
         },
       };
-      axios.get('/users', config)
+      axios.get(`${SERVER_URI}/users`, config)
         .then((items) => {
           const sorted = items.data.map((offer) => {
             if (offer.id_user.toString() === this.userId) {
@@ -110,7 +111,7 @@ export default {
           id_item: this.profileItems[index].id,
         },
       };
-      axios.delete('/items', config)
+      axios.delete(`${SERVER_URI}/items`, config)
         .then(this.getUserItems)
           .then(this.getTradeOffers)
         .catch(err => console.error(err));

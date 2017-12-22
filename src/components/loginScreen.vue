@@ -3,7 +3,7 @@
     <modal name="failed">
       <h4>Authentication Failed</h4>
     </modal>
-    <img src="https://i.imgur.com/HyT4LZP.png">
+    <img src="../assets/logofull.png">
     <h1>{{ msg }}</h1>
     <button class="btn" @click="auth.login">Log In</button>
   </div>
@@ -15,7 +15,7 @@ export default {
   props: ['auth'],
   data() {
     return {
-      msg: 'Welcome to Swappr',
+      msg: '',
     };
   },
   beforeCreate() {
@@ -38,6 +38,6 @@ h2 {
 
 img {
   width: 400px;
-  height: 400px;
+  height: auto;
 }
 </style>

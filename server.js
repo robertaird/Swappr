@@ -28,23 +28,26 @@ const port = process.env.PORT || config.dev.port
 
 const app = express()
 
-// TODO implement web-hot-middleware for hot reloading
-// const hotMiddleware = require('webpack-hot-middleware')(compiler, {
-//   log: false,
-//   heartbeat: 2000
-// })
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "id_user, id, items, Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-// TODO check for NODE_PRODUCTION environmental variable, redirect to src if not production
-app.use(express.static(path.join(__dirname, 'dist')));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'dist')));
+}
 app.use(express.static('static'));
 app.use(itemRoutes);
 app.use(transactionRoutes);
 app.use(userRoutes);
 app.use(categoryRoutes);
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
+}
 
 // TODO add /callback handling on server size
 // app.get('/callback',
@@ -83,6 +86,9 @@ portfinder.getPort((err, port) => {
   }
   process.env.PORT = port
   var uri = 'http://localhost:' + port
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('running in DEV mode');
+  }
   console.log('> Listening at ' + uri + '\n')
   server = app.listen(port)
   _resolve()
