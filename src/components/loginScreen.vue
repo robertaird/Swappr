@@ -1,156 +1,139 @@
 <template>
   <div class="hello">
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../assets/logos/logo-white.png" style="width: 130px; height: auto;"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-      <!-- Custom fonts for this template -->
-      <!-- <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-      <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'> -->
-
-      <!-- Custom styles for this template -->
-      <!-- <link href="css/grayscale.min.css" rel="stylesheet"> -->
-
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <!-- Intro Header -->
+    <header class="masthead">
+      <div class="intro-body">
         <div class="container">
-          <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../assets/logos/logo-white.png" style="width: 130px; height: auto;"></a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fa fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <img src="../assets/logos/logofull.png" style="width: 600px; height: auto;">
+              <p class="intro-text">An App For Offloading Your Junk.
+                <br><small>Created by Honey Badger Hackers.</small></p>
+                <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <modal name="failed">
+      <h4>Authentication Failed</h4>
+    </modal>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>What is Swappr?</h2>
+            <p>Swappr is an application for getting rid of your old items in exchange for something new. With our easy-to-use interface, trading is fast and fun.</p>
+            <p> Start with adding items you would like to offer. You'll be greeted with a random item owned by someone else, and you can
+            offer as many or as few of your own items for exchange. If there is a mutual desire for trade, you will be notified and given
+            the other users contact information to work out the details.</p>
+            <p>Swappr is currently in Beta, but feel free to check it out!</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <img class="py-1 screenshot" src="../assets/screenshots/trade-view.png" style="width: 350px; height: auto;">
+          </div>
+          <div class="col">
+            <img class="py-1 screenshot" src="../assets/screenshots/profile-view.png" style="width: 350px; height: auto;">
+          </div>
+          <div class="col">
+            <img class="py-1 screenshot" src="../assets/screenshots/offer-view.png" style="width: 350px; height: auto;">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- The Modal -->
+    <div id="imageModal" class="modal">
+      <img class="modal-content" id="img01">
+    </div>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section content-section text-center">
+      <div class="container">
+        <div class="col-lg-8 mx-auto">
+          <h2>Swappr is Open Source</h2>
+          <p>Check out our repository on Github!</p>
+          <a href="https://github.com/honeybadgerhackers/Swappr" class="btn btn-login btn-lg">
+            <Icon name="github"/>
+            Swappr on Github</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact Us</h2>
+            <p>Get in touch with the developers</p>
+            <ul class="list-inline banner-social-buttons">
+              <li class="list-inline-item">
+                <a href="mailto:gagnierzachary@gmail.com" class="btn btn-default btn-lg">
+                  <span class="network-name">Zach Gagnier</span>
+                </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#download">Github</a>
+              <li class="list-inline-item">
+                <a href="mailto:contact@patrickbrownjr.me" class="btn btn-default btn-lg">
+                  <span class="network-name">Patrick Brown Jr</span>
+                </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <li class="list-inline-item">
+                <a href="mailto:robkaird@gmail.com" class="btn btn-default btn-lg">
+                  <span class="network-name">Robert Aird</span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
-      </nav>
-
-      <!-- Intro Header -->
-      <header class="masthead">
-        <div class="intro-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <img src="../assets/logos/logofull.png" style="width: 600px; height: auto;">
-                <p class="intro-text">An App For Offloading Your Junk.
-                  <br><small>Created by Honey Badger Hackers.</small></p>
-                  <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <modal name="failed">
-        <h4>Authentication Failed</h4>
-      </modal>
-
-      <!-- About Section -->
-      <section id="about" class="content-section text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2>What is Swappr?</h2>
-              <p>Swappr is an application for getting rid of your old items in exchange for something new. With our easy-to-use interface, trading is fast and fun.</p>
-              <p> Start with adding items you would like to offer. You'll be greeted with a random item owned by someone else, and you can
-              offer as many or as few of your own items for exchange. If there is a mutual desire for trade, you will be notified and given
-              the other users contact information to work out the details.</p>
-              <p>Swappr is currently in Beta, but feel free to check it out!</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <img class="py-1 screenshot" src="../assets/screenshots/trade-view.png" style="width: 350px; height: auto;">
-            </div>
-            <div class="col">
-              <img class="py-1 screenshot" src="../assets/screenshots/profile-view.png" style="width: 350px; height: auto;">
-            </div>
-            <div class="col">
-              <img class="py-1 screenshot" src="../assets/screenshots/offer-view.png" style="width: 350px; height: auto;">
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- The Modal -->
-      <div id="imageModal" class="modal">
-        <img class="modal-content" id="img01">
       </div>
+    </section>
 
-      <!-- Download Section -->
-      <section id="download" class="download-section content-section text-center">
-        <div class="container">
-          <div class="col-lg-8 mx-auto">
-            <h2>Swappr is Open Source</h2>
-            <p>Check out our repository on Github!</p>
-            <a href="https://github.com/honeybadgerhackers/Swappr" class="btn btn-login btn-lg">
-              <i class="fa fa-github fa-fw"></i>
-              Swappr on Github</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="content-section text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2>Contact Us</h2>
-              <p>Get in touch with the developers</p>
-              <ul class="list-inline banner-social-buttons">
-                <li class="list-inline-item">
-                  <a href="mailto:gagnierzachary@gmail.com" class="btn btn-default btn-lg">
-                    <span class="network-name">Zach Gagnier</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="mailto:contact@patrickbrownjr.me" class="btn btn-default btn-lg">
-                    <span class="network-name">Patrick Brown Jr</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="mailto:robkaird@gmail.com" class="btn btn-default btn-lg">
-                    <span class="network-name">Robert Aird</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer>
-        <div class="container text-center">
-          <p>Copyright &copy; HoneyBadgerHackers 2017</p>
-        </div>
-      </footer>
-
-      <!-- Bootstrap core JavaScript -->
-      <!-- <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-      <!-- Plugin JavaScript -->
-      <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-      <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-      <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script> -->
-
-      <!-- Custom scripts for this template -->
-      <!-- <script src="js/grayscale.min.js"></script> -->
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; HoneyBadgerHackers 2017</p>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
+import 'vue-awesome/icons/github';
+import Icon from 'vue-awesome/components/Icon';
+
 export default {
   name: 'loginScreen',
   props: ['auth', 'route'],
+  components: {
+    Icon,
+  },
   data() {
     return {
       msg: '',
