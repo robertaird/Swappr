@@ -42,7 +42,7 @@
                 <img src="../assets/logos/logofull.png" style="width: 600px; height: auto;">
                 <p class="intro-text">An App For Offloading Your Junk.
                   <br><small>Created by Honey Badger Hackers.</small></p>
-                  <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-login btn-lg">Login</a>
+                  <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
               </div>
             </div>
           </div>
@@ -305,6 +305,18 @@ a {
       background-color: transparent; }
   @media (min-width: 992px) {
     #mainNav {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      background: black;
+      letter-spacing: 1px; }
+      #mainNav .nav-link.active {
+        /* outline: none; */
+        background-color: rgba(255, 255, 255, 0.3); }
+      #mainNav .nav-link.active:hover {
+        color: white; } }
+
+    /* #mainNav {
       padding-top: 20px;
       padding-bottom: 20px;
       -webkit-transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
@@ -322,8 +334,7 @@ a {
         outline: none;
         background-color: rgba(255, 255, 255, 0.3); }
         #mainNav .nav-link.active:hover {
-          color: white; } }
-
+          color: white; } } */
 .masthead {
   display: table;
   width: 100%;
