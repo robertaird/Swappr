@@ -32,7 +32,7 @@
               <img src="../assets/logos/logofull.png" style="width: 600px; height: auto;">
               <p class="intro-text">An App For Offloading Your Junk.
                 <br><small>Created by Honey Badger Hackers.</small></p>
-                <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
+              <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
         <div class="col-lg-8 mx-auto">
           <h2>Swappr is Open Source</h2>
           <p>Check out our repository on Github!</p>
-          <a href="https://github.com/honeybadgerhackers/Swappr" class="btn btn-login btn-lg">
+          <a href="https://github.com/honeybadgerhackers/Swappr" class="btn btn-github btn-lg">
             <Icon name="github"/>
             Swappr on Github</a>
         </div>
@@ -144,31 +144,6 @@ export default {
   },
 };
 </script>
-
-
-<!-- <script>
-    const modal = document.getElementById('imageModal');
-    const img = document.getElementsByClassName('screenshot');
-    console.log(img)
-    const modalImg = document.getElementById("img01");
-    [].forEach.call(img, image => image.onclick = function () {
-      modal.style.display = "block";
-      modalImg.src = this.src;
-    })
-
-    window.onclick = function (event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      }
-    // Get the <span> element that closes the modal
-    const span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-</script> -->
 
 <!--
 (function($) {
@@ -411,8 +386,18 @@ a {
 .btn-login {
   color: #42DCA3;
   border: 1px solid #42DCA3;
-  background-color: rgba(0,0,0,0.5); }
+  background-color: #42DCA3; }
   .btn-login:focus, .btn-login:hover {
+    color: black;
+    border: 1px solid #42DCA3;
+    outline: none;
+    background-color: rgba(0,0,0,0.5); }
+
+.btn-github {
+  color: #42DCA3;
+  border: 1px solid #42DCA3;
+  background-color: rgba(0,0,0,0.5); }
+  .btn-github:focus, .btn-github:hover {
     color: black;
     border: 1px solid #42DCA3;
     outline: none;
