@@ -26,7 +26,13 @@
                   </div>
                   <div class="form-group">
                     <label for="descriptionArea">Image URL (optional)</label>
-                    <input v-model="imageUrl" type="text" class="form-control" id="urlArea" placeholder="image URL (optional)"></input>
+                    <input
+                      v-model="imageUrl"
+                      type="text"
+                      class="form-control"
+                      id="urlArea"
+                      placeholder="image URL (optional)"
+                    />
                   </div>
                 </form>
             </div>
@@ -34,12 +40,13 @@
               <b-btn class="float-left" variant="primary" @click="hideModal">Close</b-btn>
               <button @click="addItem" type='button' class="btn btn-primary float-right">Add Item</button>
             </div>
-      </b-modal>          
+      </b-modal>
    </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { SERVER_URI } from '../constants';
 
 export default {
   name: 'addItem',
@@ -72,7 +79,7 @@ export default {
           url_img: this.imageUrl.length ? this.imageUrl : null,
         };
         this.hideModal();
-        axios.post('/items', config)
+        axios.post(`${SERVER_URI}/items`, config)
           .then((item) => {
             this.name = '';
             this.description = '';
@@ -85,7 +92,7 @@ export default {
       }
     },
     getCategories() {
-      axios.get('/categories')
+      axios.get(`${SERVER_URI}/categories`)
       .then(({ data: categories }) => {
         this.categories = categories;
       })
@@ -147,7 +154,7 @@ li {
 }
 
 .scrollable-menu {
-    height: auto;    
+    height: auto;
     max-height: 300px;
     overflow-x: hidden;
 }

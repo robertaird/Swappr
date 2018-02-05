@@ -1,6 +1,6 @@
 const express = require('express');
 // const Sequelize = require('sequelize');
-const db = require('../../app/db');
+const db = require('../db');
 
 const app = express();
 // const Op = Sequelize.Op;

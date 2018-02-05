@@ -1,7 +1,7 @@
 const express = require('express');
 const Sequelize = require('sequelize');
 const Promise = require('bluebird');
-const db = require('../../app/db');
+const db = require('../db');
 
 const Op = Sequelize.Op;
 

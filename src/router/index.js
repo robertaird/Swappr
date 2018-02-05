@@ -4,6 +4,7 @@ import Callback from '@/components/Callback';
 import loginScreen from '@/components/loginScreen';
 import mainPage from '@/components/mainPage';
 import profile from '@/components/profile';
+import { EventBus } from '@/constants';
 import VModal from 'vue-js-modal';
 
 Vue.use(Router);
@@ -39,6 +40,11 @@ const allRoutes = new Router({
   ],
 });
 allRoutes.beforeEach((to, from, next) => {
+  if (to.name === 'loginScreen') {
+    EventBus.$emit('showNav', false);
+  } else {
+    EventBus.$emit('showNav', true);
+  }
   if (to.name === 'loginScreen' && Number(localStorage.getItem('userId'))) {
     next('/main');
   } else if (to.name === 'Callback' || to.name === 'loginScreen'

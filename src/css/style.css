@@ -97,11 +97,15 @@ body {
 body.login {
   height: 100%;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#52658f+0,ffffff+49,ffffff+53,52658f+100&0.05+0,0.05+2,0.2+50,0.05+100 */
-  background: -moz-linear-gradient(left, rgba(82,101,143,0.05) 0%, rgba(89,107,148,0.05) 2%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.19) 53%, rgba(82,101,143,0.05) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(82,101,143,0.05) 0%,rgba(89,107,148,0.05) 2%,rgba(255,255,255,0.2) 49%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.19) 53%,rgba(82,101,143,0.05) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(82,101,143,0.05) 0%,rgba(89,107,148,0.05) 2%,rgba(255,255,255,0.2) 49%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.19) 53%,rgba(82,101,143,0.05) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d52658f', endColorstr='#0d52658f',GradientType=1 ); /* IE6-9 */
-  background-color: white;
+  background: -moz-linear-gradient(left, rgba(82,101,143,0.05) 0%, rgba(89,107,148,0.05) 2%, rgba(255,255,255,0.1) 49%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.09) 53%, rgba(82,101,143,0.05) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(82,101,143,0.05) 0%,rgba(89,107,148,0.05) 2%,rgba(255,255,255,0.1) 49%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.09) 53%,rgba(82,101,143,0.05) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(82,101,143,0.05) 0%,rgba(89,107,148,0.05) 2%,rgba(255,255,255,0.1) 49%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.09) 53%,rgba(82,101,143,0.05) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d52658f', endColorstr='#0d52658f',GradientType=1 );
+  /* IE6-9 */
+  background-color: black;
 }
 
 nav {
@@ -179,7 +183,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05bddba4', e
   background-color: #ffffff;
 }
 
-.fa-stack[data-count]:after{
+.farm-stack[data-count]:after{
   position:absolute;
   top:-5%;
   right:-10%;

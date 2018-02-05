@@ -81,6 +81,7 @@
 
 <script>
 import axios from 'axios';
+import { SERVER_URI } from '../constants';
 
 export default {
   name: 'mainPage',
@@ -101,7 +102,7 @@ export default {
           id_user: this.userId,
         },
       };
-      return axios.get('/items', config)
+      return axios.get(`${SERVER_URI}/items`, config)
       .then(({ data: userItems }) => {
         this.profileItems = userItems;
       })
@@ -117,7 +118,7 @@ export default {
           items: this.profileItems.map(item => item.id),
         },
       };
-      axios.get('/users', config)
+      axios.get(`${SERVER_URI}/users`, config)
         .then((items) => {
           const sorted = items.data.map((offer) => {
             if (offer.id_user.toString() === this.userId) {
@@ -135,7 +136,7 @@ export default {
           items: this.profileItems.map(item => item.id),
         },
       };
-      axios.get('/transactions', config)
+      axios.get(`${SERVER_URI}/transactions`, config)
       .then(({ data: tradeItem }) => {
         if (typeof tradeItem === 'string') {
           const noItemResponse = {
@@ -185,7 +186,7 @@ export default {
           accepted: false,
         },
       ] };
-      axios.post('/transactions', config)
+      axios.post(`${SERVER_URI}/transactions`, config)
       .then(this.getTradeItem)
       .catch((error) => {
         console.error(error);
@@ -207,7 +208,7 @@ export default {
         return config;
       });
       const config = { data: userItemsArray };
-      axios.post('/transactions', config)
+      axios.post(`${SERVER_URI}/transactions`, config)
       .then(() => {
         this.offeredItems = [];
         this.getTradeItem();
