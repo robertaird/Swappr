@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/HyT4LZP.png" alt="Drawing" width="400" height="400"/>
+<img src="./src/assets/logos/logofull.png" alt="Drawing" width="400" height="400"/>
 </p>
 
 # Swappr
