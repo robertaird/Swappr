@@ -1,6 +1,31 @@
 <template>
   <div class="hello">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <b-navbar toggleable="md" type="dark" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <b-navbar-brand href="#page-top" v-smooth-scroll>
+        <img src="../assets/logos/logo-white.png" style="width: 130px; height: auto;">
+      </b-navbar-brand>
+      <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
+      <b-collapse is-nav id="nav_dropdown_collapse" class="collapse navbar-collapse">
+        <b-navbar-nav class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" v-smooth-scroll href="#about">
+                <b-nav-item class="nav-link">About</b-nav-item>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" v-smooth-scroll href="#download">
+                <b-nav-item class="nav-link">Github</b-nav-item>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" v-smooth-scroll href="#contact">
+                <b-nav-item class="nav-link">Contact</b-nav-item>
+              </a>
+          </li>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" v-smooth-scroll href="#page-top"><img src="../assets/logos/logo-white.png" style="width: 130px; height: auto;"></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +46,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     <!-- Intro Header -->
     <header class="masthead">
@@ -29,7 +54,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <img src="../assets/logos/logofull.png" style="width: 600px; height: auto;">
+              <img id="main-logo" src="../assets/logos/logofull.png">
               <p class="intro-text">An App For Offloading Your Junk.
                 <br><small>Created by Honey Badger Hackers.</small></p>
               <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
@@ -149,20 +174,6 @@ export default {
 (function($) {
   "use strict"; // Start of use strict
 
-  // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: (target.offset().top - 48)
-        }, 1000, "easeInOutExpo");
-        return false;
-      }
-    }
-  });
-
   // Closes responsive menu when a scroll trigger link is clicked
   $('.js-scroll-trigger').click(function() {
     $('.navbar-collapse').collapse('hide');
@@ -234,6 +245,11 @@ a {
   a:focus, a:hover {
     text-decoration: none;
     color: #1d9b6c; }
+
+#main-logo {
+  width: 600px;
+  height: auto;
+}
 
 #mainNav {
   font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
