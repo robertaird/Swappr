@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <b-navbar toggleable="md" type="dark" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <b-navbar-brand href="#page-top" v-smooth-scroll>
+      <b-navbar-brand v-b-toggle.nav_dropdown_collapse href="#page-top" v-smooth-scroll>
         <img src="../assets/logos/logo-white.png" style="width: 130px; height: auto;">
       </b-navbar-brand>
       <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
@@ -25,36 +25,13 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" v-smooth-scroll href="#page-top"><img src="../assets/logos/logo-white.png" style="width: 130px; height: auto;"></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" v-smooth-scroll href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" v-smooth-scroll href="#download">Github</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" v-smooth-scroll href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
 
-    <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
         <div class="container">
           <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <img id="main-logo" src="../assets/logos/logofull.png">
+            <div class="col-lg-8 mx-auto about-col">
+              <img id="main-logo" src="../assets/logos/logofull.png" />
               <p class="intro-text">An App For Offloading Your Junk.
                 <br><small>Created by Honey Badger Hackers.</small></p>
               <a @click="auth.login" class="btn btn-login btn-lg">Login</a>
@@ -170,38 +147,6 @@ export default {
 };
 </script>
 
-<!--
-(function($) {
-  "use strict"; // Start of use strict
-
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
-  });
-
-  // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
-    target: '#mainNav',
-    offset: 54
-  });
-
-  // Collapse Navbar
-  var navbarCollapse = function() {
-    if ($("#mainNav").offset().top > 100) {
-      $("#mainNav").addClass("navbar-shrink");
-    } else {
-      $("#mainNav").removeClass("navbar-shrink");
-    }
-  };
-  // Collapse now if page is not at top
-  navbarCollapse();
-  // Collapse the navbar when page is scrolled
-  $(window).scroll(navbarCollapse);
-
-})(jQuery); // End of use strict
--->
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hello {
   font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -247,8 +192,14 @@ a {
     color: #1d9b6c; }
 
 #main-logo {
-  width: 600px;
-  height: auto;
+  width: auto;
+  max-width: 90vw;
+  min-width: 350px;
+  height: auto; }
+  @media (min-width: 768px) {
+    #main-logo {
+      width: 600px;
+    }
 }
 
 #mainNav {
@@ -290,30 +241,11 @@ a {
       #mainNav .nav-link.active:hover {
         color: white; } }
 
-    /* #mainNav {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      -webkit-transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
-      -moz-transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
-      transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
-      letter-spacing: 1px;
-      border-bottom: none;
-      background: transparent; }
-      #mainNav.navbar-shrink {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        background: black; }
-      #mainNav .nav-link.active {
-        outline: none;
-        background-color: rgba(255, 255, 255, 0.3); }
-        #mainNav .nav-link.active:hover {
-          color: white; } } */
 .masthead {
   display: table;
   width: 100%;
   height: auto;
-  padding: 200px 0;
+  padding: 23vh 0;
   text-align: center;
   color: white;
   background: url("../assets/background/bike-bg.jpg") no-repeat bottom center scroll;
@@ -332,7 +264,7 @@ a {
   @media (min-width: 768px) {
     .masthead {
       height: 100%;
-      padding: 0; }
+      padding: 100px; }
       .masthead .intro-body .brand-heading {
         font-size: 100px; }
       .masthead .intro-body .intro-text {
@@ -356,6 +288,12 @@ a {
     outline: none;
     background: rgba(255, 255, 255, 0.1); }
 
+/* @media (min-width: 768px) {
+  .about-col {
+    padding-top: 100px !important;
+    padding-bottom: 50px !important;
+  }
+} */
 .content-section {
   padding-top: 150px;
   padding-bottom: 150px; }
