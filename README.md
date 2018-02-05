@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./src/assets/logos/logofull.png" alt="Drawing" style="width: 400; height: auto;"/>
+<img src="./src/assets/logos/logofull.png" alt="Drawing" style="width: 400px; height: auto;"/>
 </p>
 
 # Swappr
